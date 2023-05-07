@@ -23,66 +23,67 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="body">
+                            <form action="{{route('banner.store')}}" method="post">
+                                @csrf
+                                <div class="row clearfix">
 
-                            <div class="row clearfix">
-
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Название <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="Название" name="title" value="{{old('title')}}">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Название <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Название" name="title" value="{{old('title')}}">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Описание</label>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Фото</label>
 
-                                        <div class="input-group">
+                                            <div class="input-group">
                                            <span class="input-group-btn">
                                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                                                    <i class="fa fa-picture-o"></i> Choose
+                                                    <i class="fa fa-picture-o"></i> Выбрать
                                                 </a>
                                            </span>
-                                           <input id="thumbnail" class="form-control" type="text" name="filepath">
+                                                <input id="thumbnail" class="form-control" type="text" name="photo">
+                                            </div>
+
+                                            <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+
                                         </div>
-
-                                        <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-
                                     </div>
-                                </div>
 
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Описание</label>
-                                        <textarea id="description" class="form-control" placeholder="Описание" name="description"> {{old('description')}} </textarea>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Описание</label>
+                                            <textarea id="description" class="form-control" placeholder="Описание" name="description"> {{old('description')}} </textarea>
+                                        </div>
                                     </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label for="">Тип</label>
+                                        <select name="condition" class="form-control show-tick">
+                                            <option value="">-- Тип --</option>
+                                            <option value="banner" {{old('condition'=='banner' ? 'selected': '')}}>Баннер</option>
+                                            <option value="promo" {{old('condition'=='promo' ? 'selected': '')}}>Реклама</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-12 col-sm-12">
+                                        <label for="">Статус</label>
+                                        <select name="status" class="form-control show-tick">
+                                            <option value="">-- Статус --</option>
+                                            <option value="active" {{old('status'=='active' ? 'selected': '')}}>Активнен</option>
+                                            <option value="inactive" {{old('status'=='inactive' ? 'selected': '')}}>Неактивен</option>
+                                        </select>
+                                    </div>
+
                                 </div>
 
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <label for="">Тип</label>
-                                    <select name="condition" class="form-control show-tick">
-                                        <option value="">-- Тип --</option>
-                                        <option value="banner" {{old('condition'=='banner' ? 'selected': '')}}>Баннер</option>
-                                        <option value="promo" {{old('condition'=='promo' ? 'selected': '')}}>Реклама</option>
-                                    </select>
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                                    <button type="submit" class="btn btn-outline-secondary">Отменить</button>
                                 </div>
-
-                                <div class="col-lg-12 col-sm-12">
-                                    <label for="">Статус</label>
-                                    <select name="status" class="form-control show-tick">
-                                        <option value="">-- Статус --</option>
-                                        <option value="active" {{old('status'=='active' ? 'selected': '')}}>Активнен</option>
-                                        <option value="inactive" {{old('status'=='inactive' ? 'selected': '')}}>Неактивен</option>
-                                    </select>
-                                </div>
-
-                            </div>
-
-                            <div class="col-sm-12">
-                                <button type="submit" class="btn btn-primary">Сохранить</button>
-                                <button type="submit" class="btn btn-outline-secondary">Отменить</button>
-                            </div>
-
+                            </form>
                         </div>
                     </div>
                 </div>

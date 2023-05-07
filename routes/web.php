@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
-
+Route::view('/', 'index')->name('index');
 Auth::routes(['register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -30,3 +29,10 @@ Route::group(['prefix'=>'admin/', 'middleware'=>'auth'], function (){
 Route::resource('banner', BannerController::class);
 
 Route::view('/test', 'test');
+
+
+
+// Main
+
+Route::view('/products', 'main.products.index')->name('products');
+
