@@ -9,7 +9,9 @@
 
 <!-- VENDOR CSS -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
+
+<!-- <link rel="stylesheet" href="{{asset('main/css/all_fonts.min.css')}}?v=<?=time()?>"> -->
 <link rel="stylesheet" href="{{asset('backend/assets/vendor/fontawesome-free/css/fontawesome-all.min.css')}}">
 
 

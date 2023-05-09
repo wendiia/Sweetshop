@@ -170,7 +170,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-4">
+                <div class="col-xl-4 mb-3">
                     <div class="card card-product text-center pb-3 mb-3 shadow-sm">
                         <div class="card-body d-flex align-items-center justify-content-between" style="flex-direction: column">
                             <h1 class="display-6 card-title">Наполеон</h1>
@@ -183,7 +183,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-4">
+                <div class="col-xl-4 mb-3">
                     <div class="card card-product text-center pb-3 mb-3 shadow-sm">
                         <div class="card-body d-flex align-items-center justify-content-between" style="flex-direction: column">
                             <h1 class="display-6 card-title">Панчо</h1>
@@ -196,7 +196,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-4">
+                <div class="col-xl-4 mb-3">
                     <div class="card card-product text-center pb-3 mb-3 shadow-sm">
                         <div class="card-body d-flex align-items-center justify-content-between" style="flex-direction: column">
                             <h1 class="display-6 card-title">Тирамису</h1>

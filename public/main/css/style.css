@@ -1,7 +1,7 @@
 :root {
     --color_pink: #ff8282;
     --color_pink2: #ff6f74;
-    --color_pink3: #eb686d;
+    --color_pink3: #eb686d; /*C9093*/
     --color_pink4: #FFD9D3;
     --color_bg: #F4EFF1;
     --color_grey: #6B6B6B;
@@ -20,8 +20,16 @@ section {
     color: var(--color_grey) !important;
 }
 
+.bg-pink {
+    background-color: var(--color_pink);
+}
+
 .bg-white {
     background-color: white;
+}
+
+.f-arial {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -45,12 +53,17 @@ body {
     background: var(--color_pink);
     color: white;
     border: var(--color_pink);
-    border-radius: 30px;
+    border-radius: 10px;
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 
+}
+
+.btn-none {
+    background: none;
+    border: none;
 }
 
 .btn-nav {
@@ -66,7 +79,10 @@ body {
     margin: 0;
 
 }
-
+.form-search {
+    border-radius: 10px;
+    min-width: 500px;
+}
 
 .btn:hover {
     background: var(--color_pink2);
@@ -302,4 +318,144 @@ header a {
 .btn-social {
     border: 1px solid white;
     border-radius: 50px;
+}
+
+
+/* Страница продукции */
+
+.breadcrumbs * {
+    color: var(--color_pink) !important;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.p-all-0 * {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
+/* Диапазон */
+
+
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+}
+
+.wrapper1{
+    /* position: relative;
+    width: 95vmin;
+    background-color: #ffffff;
+    padding: 50px 40px 20px 40px;
+    border-radius: 10px; */
+}
+.container1{
+    position: relative;
+    width: 100%;
+    height: 50px;
+} 
+input[type="range"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    background-color: transparent;
+    pointer-events: none;
+}
+.slider-track{
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+}
+input[type="range"]::-webkit-slider-runnable-track{
+    -webkit-appearance: none;
+    height: 5px; /*высота кружков*/
+}
+input[type="range"]::-moz-range-track{
+    -moz-appearance: none;
+    height: 5px;
+}
+input[type="range"]::-ms-track{
+    appearance: none;
+    height: 5px;
+}
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 1em;
+    width: 1em;
+    background-color: var(--color_pink);
+    cursor: pointer;
+    margin-top: -9px;
+    pointer-events: auto;
+    border-radius: 50%;
+}
+input[type="range"]::-moz-range-thumb{
+    -webkit-appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: var(--color_pink);
+    pointer-events: auto;
+}
+input[type="range"]::-ms-thumb{
+    appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: var(--color_pink);
+    pointer-events: auto;
+}
+input[type="range"]:active::-webkit-slider-thumb{
+    background-color: #ffffff;
+    border: 3px solid var(--color_pink);
+}
+.values{
+    background-color: var(--color_pink);
+    width: 32%;
+    position: relative;
+    margin: auto;
+    padding: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 25px;
+    color: #ffffff;
+}
+.values:before{
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-top: 15px solid var(--color_pink);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    margin: auto;
+    bottom: -14px;
+    left: 0;
+    right: 0;
+} 
+
+.my-form-control {
+    border-radius: 15px;
+    background: none;
+    color: var(--color_grey);
+    height: 35px;
 }

@@ -1,49 +1,50 @@
 <header class="shadow-sm sticky-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar navbar-light navbar-expand-lg bg-body-tertiary ">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img src="{{asset('main/img/logo.png')}}" alt="Logo" width="90" height="40"
-                                 class="d-inline-block align-text-top">
-                        </a>
+    {{-- Верхний навбар   --}}
+    <div class="container-fluid d-flex justify-content-center">
+        <nav class="navbar  navbar-expand-lg bg-body-tertiary d-flex justify-content-between">
+            <a class="py-0 pe-2" href="{{route('index')}}">
+                <img src="{{asset('main/img/logo-grey.png')}}" alt="Logo" width="100" height="50"
+                    class="d-inline-block align-text-top">
+            </a>
 
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Переключатель навигации">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+            <nav class="navbar navbar-light navbar-expand-sm bg-body-tertiary ">
+                <div class="navbar-nav">
+                    <a class="nav-link py-0" aria-current="page" href="{{route('index')}}">Главная</a>
+                    <a class="nav-link py-0" href="{{route('products')}}">Продукция</a>
+                    <a class="nav-link py-0" href="#">О компании</a>
+                </div>
+            </nav>
+            
+            <div class="d-flex">
+                <div class="dropdown d-flex justify-content-center align-center">
+                    <a class="btn btn-secondary dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="{{asset('main/img/i-menu.png')}}" width="30" height="30" class="" alt="Cart">
+                    </a>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Торты</a></li>
+                        <li><a class="dropdown-item" href="#">Вафли</a></li>
+                        <li><a class="dropdown-item" href="#">Маффины, печенье</a></li>
+                        <li><a class="dropdown-item" href="#">Вся продукция</a></li>
+                    </ul>
+                </div>
 
-                            <div class="collapse navbar-collapse d-flex justify-content-center"
-                                 id="navbarNavAltMarkup">
-                                <div class="navbar-nav">
-                                    <a class="nav-link text-uppercase" href="#"><i class="fa fa-search pe-2" aria-hidden="true"></i></a>
-                                    <a class="nav-link text-uppercase" aria-current="page" href="{{route('index')}}">Главная</a>
-                                    <a class="nav-link text-uppercase" href="{{route('products')}}">Продукция</a>
-                                    <a class="nav-link text-uppercase" href="#">О нас</a>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-center align-items-center">
-                                <button class="btn py-0 me-md-2" type="button">
-                                    <img src="{{asset('main/img/user.png')}}" width="20" height="20" class="me-2"
-                                         alt="Cart"> Войти
-                                </button>
-
-                                <button class="btn py-0 me-md-2" type="button">
-                                    <img src="{{asset('main/img/cart.png')}}" width="20" height="20" class="me-2"
-                                         alt="Cart"> Корзина
-                                </button>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </nav>
+                <form class="d-flex " role="search">
+                    <input class="form-control me-2 form-search" type="search" placeholder="Найти..."
+                        aria-label="Search">
+                    <button class="btn btn-outline-success me-3" type="submit"> <img src="{{asset('main/img/search.png')}}"
+                            width="30" height="30" class="me-2" alt="Cart"> </button>
+                </form>
             </div>
-        </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <a class="" href="#"><img src="{{asset('main/img/user1.png')}}" width="30" height="30"
+                        class="me-2" alt="Cart"></a>
+                <a href="#"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30" class="me-2"
+                        alt="Cart"></a>
+            </div>
+        </nav>
+
     </div>
 </header>
