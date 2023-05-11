@@ -36,3 +36,4 @@ Route::view('/test', 'test');
 
 Route::view('/products', 'main.products.products')->name('products');
 
+Route::view('/product', 'main.products.product')->name('product');

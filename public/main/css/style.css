@@ -1,15 +1,18 @@
 :root {
     --color_pink: #ff8282;
     --color_pink2: #ff6f74;
-    --color_pink3: #eb686d; /*C9093*/
+    --color_pink3: #eb686d;
+    /*C9093*/
     --color_pink4: #FFD9D3;
     --color_bg: #F4EFF1;
     --color_grey: #6B6B6B;
     --color_grey2: #C9BBBB;
     --color_dark_grey: #3E3E3E;
 }
+
 section {
-    padding: 80px 0;
+    padding-top: 30px;
+    padding-bottom: 80px;
 }
 
 .color-font-pink {
@@ -49,6 +52,7 @@ body {
     color: var(--color_grey);
 }
 
+/*Кнопка в розовом стиле*/
 .btn {
     background: var(--color_pink);
     color: white;
@@ -58,8 +62,43 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
+
+.btn:hover {
+    background: var(--color_pink2);
+    color: white;
+}
+
+.btn:focus,
+.btn:active {
+    background: var(--color_pink3);
+    box-shadow: none;
+}
+
+/*Кнопка в белом стиле*/
+.btn-white {
+    background: white;
+    color: var(--color_grey);
+    border: white;
+    border-radius: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-white:hover {
+    background: var(--color_pink2);
+    color: white;
+}
+
+.btn-white:focus,
+.btn-white:active {
+    background: var(--color_pink3);
+    box-shadow: none;
+}
+
+/**/
 
 .btn-none {
     background: none;
@@ -79,20 +118,12 @@ body {
     margin: 0;
 
 }
+
 .form-search {
     border-radius: 10px;
     min-width: 500px;
 }
 
-.btn:hover {
-    background: var(--color_pink2);
-    color: white;
-}
-
-.btn:focus,.btn:active {
-    background: var(--color_pink3);
-    box-shadow: none;
-}
 
 .p-btn-nav {
     padding: 0 5px;
@@ -162,11 +193,11 @@ header a {
 }
 
 .section_services h5 {
-    color:  var(--color_pink);
+    color: var(--color_pink);
 }
 
 .section_services p {
-    color:  var(--color_grey);
+    color: var(--color_grey);
     width: 100%;
     max-width: 300px;
     font-size: 16px;
@@ -248,37 +279,59 @@ header a {
 }
 
 
-.btn-products {
-    font-size: 24px;
-    height: 40px;
-    padding: 0px 25px;
-}
+/*card product*/
 
-.card-product {
-    border-radius: 50px;
-    height: 100%;
+.card {
+    border-radius: calc(1.5rem - 1px);
 }
-
-.btn-card {
+.card-body {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.btn-product {
     width: 100%;
-    max-width: 200px;
-    /* height: 45px; */
-    font-size: 25px;
-    background: #fff;
-    color: var(--color_pink);
-    border: 2px solid var(--color_pink);
+    height: 40px;
+    font-size: calc(1.2rem - 1px);
 }
 
-.img-card {
-    /* width: 250px;
-    height: 180px; */
-    width: 250px;
+/* card img auto width height */
+.card-img,
+.card-img-top {
+    border-top-left-radius: calc(1.5rem - 1px);
+    border-top-right-radius: calc(1.5rem - 1px);
+}
+.card-img-top {
+    height: 14vw;
+    object-fit: cover;
+}
+@media (min-width: 350px) {
+    .card-img-top {
+        height: 50vw;
+    }
+}
+@media (min-width: 576px) {
+    .card-img-top {
+        height: 40vw;
+    }
+}
+@media (min-width: 768px) {
+    .card-img-top {
+        height: 20vw;
+    }
+}
+@media (min-width: 992px) {
+    .card-img-top {
+        height: 14vw;
+    }
+}
+@media (min-width: 1200px) {
+    .card-img-top {
+        height: 14vw;
+    }
 }
 
-.card-desc {
-    font-size: 18px;
-    width: 300px;
-
+.container-margin {
+    margin-bottom: 200px;
 }
 
 .btn-all-products {
@@ -302,7 +355,8 @@ header a {
     border: 2px solid #222222;
 }
 
-.btn-registration:focus,.btn:active {
+.btn-registration:focus,
+.btn:active {
     background: var(--color_dark_grey);
     box-shadow: none;
 }
@@ -331,37 +385,28 @@ header a {
 
 }
 
-.p-all-0 * {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-
 
 /* Диапазон */
 
 
 *:before,
-*:after{
+*:after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Poppins",sans-serif;
 }
 
-.wrapper1{
-    /* position: relative;
-    width: 95vmin;
-    background-color: #ffffff;
-    padding: 50px 40px 20px 40px;
-    border-radius: 10px; */
+.wrapper-range {
+    /*padding-right: 80px;*/
 }
-.container1{
+
+.container1 {
     position: relative;
     width: 100%;
     height: 50px;
-} 
-input[type="range"]{
+}
+
+input[type="range"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -374,7 +419,8 @@ input[type="range"]{
     background-color: transparent;
     pointer-events: none;
 }
-.slider-track{
+
+.slider-track {
     width: 100%;
     height: 5px;
     position: absolute;
@@ -383,29 +429,37 @@ input[type="range"]{
     bottom: 0;
     border-radius: 5px;
 }
-input[type="range"]::-webkit-slider-runnable-track{
+
+input[type="range"]::-webkit-slider-runnable-track {
     -webkit-appearance: none;
-    height: 5px; /*высота кружков*/
+    height: 5px;
+    /*высота кружков*/
 }
-input[type="range"]::-moz-range-track{
+
+input[type="range"]::-moz-range-track {
     -moz-appearance: none;
     height: 5px;
 }
-input[type="range"]::-ms-track{
+
+input[type="range"]::-ms-track {
     appearance: none;
     height: 5px;
 }
-input[type="range"]::-webkit-slider-thumb{
+
+input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 1em;
-    width: 1em;
+    height: 0.8em;
+    /*ширины кружков*/
+    width: 0.8em;
+    /*высота кружков*/
     background-color: var(--color_pink);
     cursor: pointer;
     margin-top: -9px;
     pointer-events: auto;
     border-radius: 50%;
 }
-input[type="range"]::-moz-range-thumb{
+
+input[type="range"]::-moz-range-thumb {
     -webkit-appearance: none;
     height: 1.7em;
     width: 1.7em;
@@ -414,7 +468,8 @@ input[type="range"]::-moz-range-thumb{
     background-color: var(--color_pink);
     pointer-events: auto;
 }
-input[type="range"]::-ms-thumb{
+
+input[type="range"]::-ms-thumb {
     appearance: none;
     height: 1.7em;
     width: 1.7em;
@@ -423,11 +478,13 @@ input[type="range"]::-ms-thumb{
     background-color: var(--color_pink);
     pointer-events: auto;
 }
-input[type="range"]:active::-webkit-slider-thumb{
+
+input[type="range"]:active::-webkit-slider-thumb {
     background-color: #ffffff;
     border: 3px solid var(--color_pink);
 }
-.values{
+
+.values {
     background-color: var(--color_pink);
     width: 32%;
     position: relative;
@@ -439,7 +496,8 @@ input[type="range"]:active::-webkit-slider-thumb{
     font-size: 25px;
     color: #ffffff;
 }
-.values:before{
+
+.values:before {
     content: "";
     position: absolute;
     height: 0;
@@ -451,11 +509,90 @@ input[type="range"]:active::-webkit-slider-thumb{
     bottom: -14px;
     left: 0;
     right: 0;
-} 
+}
+
+/* Аккордион */
 
 .my-form-control {
     border-radius: 15px;
     background: none;
     color: var(--color_grey);
     height: 35px;
+}
+
+.form-check-input:checked {
+    background-color: var(--color_pink);
+    border-color: var(--color_pink);
+}
+
+.accordion-item {
+    background: transparent;
+    border: none;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #6b6b6b;
+    background: none;
+    box-shadow: none;
+}
+
+.btn-dropdown {
+    background: transparent;
+    width: 100px;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    color: #6b6b6b;
+}
+
+.accordion-button:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url(../img/i-chevron.png);
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+    border-color: var(--color_pink);
+}
+
+/* form-select*/
+
+.my-form-select {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
+    font-size: 18px;
+
+    padding: 4px;
+    padding-left: 20px;
+    /* font-weight: bold; */
+    color: #838383;
+
+}
+
+.form-select:focus {
+    box-shadow: none;
+    border-color: var(--color_grey);
+}
+
+/* hr*/
+
+.hr-line {
+    color: var(--color_pink);
+    padding-bottom: 2px;
+    border-radius: 15px;
+}
+
+/* Страница товара product-id*/
+
+.container_product {
+    margin-top: 50px;
+}
+
+.img-product {
+    border-radius: calc(1.5rem - 1px);
 }

@@ -14,7 +14,7 @@
                     <a class="nav-link py-0" href="#">О компании</a>
                 </div>
             </nav>
-            
+
             <div class="d-flex">
                 <div class="dropdown d-flex justify-content-center align-center">
                     <a class="btn btn-secondary dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown"
@@ -33,8 +33,7 @@
                 <form class="d-flex " role="search">
                     <input class="form-control me-2 form-search" type="search" placeholder="Найти..."
                         aria-label="Search">
-                    <button class="btn btn-outline-success me-3" type="submit"> <img src="{{asset('main/img/search.png')}}"
-                            width="30" height="30" class="me-2" alt="Cart"> </button>
+                    <button class="btn btn-outline-success me-3" type="submit"> <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> </button>
                 </form>
             </div>
 

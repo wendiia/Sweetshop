@@ -3,7 +3,7 @@
         <div class="row pt-5">
             <div class="col-xl-3">
                 <a class="navbar-brand" href="#">
-                    <img src="{{asset('main/img/logo-white.png')}}" alt="Logo" >
+                    <img src="{{asset('main/img/logo2.png')}}" alt="Logo" >
                 </a>
             </div>
 
