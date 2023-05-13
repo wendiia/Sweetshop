@@ -19,7 +19,7 @@
                 aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Вафли</li>
+                    <li class="breadcrumb-item active" aria-current="page">Торты</li>
                 </ol>
             </nav>
         </div>
@@ -27,7 +27,7 @@
         <!-- Название каталога -->
         <div class="row">
             <div class="col-12 d-flex align-items-center mb-2">
-                <h1 class="display-5 pe-3">Вафли</h1>
+                <h1 class="display-5 pe-3">Торты</h1>
                 <p class="my-0 fs-6">найдено: 20</p>
             </div>
         </div>
@@ -154,7 +154,8 @@
                 <div class="row row-cols-1 row-cols-md-3 px-4 g-4">
                     <div class="col">
                         <div class="card card-product h-100">
-                            <a href="{{route('product')}}"><img src="{{'main/img/cake1.jpg'}}" class="card-img-top mb-2" alt="..."></a> 
+                            <a href="{{route('product')}}"> <img src="{{'main/img/cake1.jpg'}}" class="card-img-top"
+                                    alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
                                     <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
@@ -172,7 +173,8 @@
                     </div>
                     <div class="col">
                         <div class="card card-product h-100">
-                            <img src="{{'main/img/cake2.jpeg'}}" class="card-img-top mb-2" alt="...">
+                            <a href="{{route('product')}}"> <img src="{{'main/img/cake2.jpeg'}}" class="card-img-top"
+                                    alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
                                     <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
@@ -190,7 +192,8 @@
                     </div>
                     <div class="col">
                         <div class="card card-product h-100">
-                            <img src="{{'main/img/cake3.png'}}" class="card-img-top mb-2" alt="...">
+                            <a href="{{route('product')}}"> <img src="{{'main/img/cake3.png'}}" class="card-img-top"
+                                    alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
                                     <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
@@ -208,7 +211,8 @@
                     </div>
                     <div class="col">
                         <div class="card card-product h-100">
-                            <img src="{{'main/img/cake3.png'}}" class="card-img-top mb-2" alt="...">
+                            <a href="{{route('product')}}"> <img src="{{'main/img/cake3.png'}}" class="card-img-top"
+                                    alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
                                     <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
@@ -226,7 +230,8 @@
                     </div>
                     <div class="col">
                         <div class="card card-product h-100">
-                            <img src="{{'main/img/cake1.jpg'}}" class="card-img-top mb-2" alt="...">
+                        <a href="{{route('product')}}"> <img src="{{'main/img/cake1.jpg'}}" class="card-img-top"
+                                    alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
                                     <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
@@ -244,7 +249,8 @@
                     </div>
                     <div class="col">
                         <div class="card card-product h-100">
-                            <img src="{{'main/img/cake2.jpeg'}}" class="card-img-top mb-2" alt="...">
+                        <a href="{{route('product')}}"> <img src="{{'main/img/cake2.jpeg'}}" class="card-img-top"
+                                    alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
                                     <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>

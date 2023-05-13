@@ -2,14 +2,14 @@
 
 @section('content')
 
-<div class="container container_product">
+<div class="container ">
     <!-- Товар -->
     <section class="">
         <!-- Крошки -->
-        <div class="row breadcrumbs mb-4">
+        <div class="row breadcrumbs mb-3">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
                 aria-label="breadcrumb">
-                <ol class="breadcrumb">
+                <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="#">Главная</a></li>
                     <li class="breadcrumb-item"><a href="#">Торты</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="#">Наполеон</a></li>
@@ -18,12 +18,11 @@
         </div>
 
 
-        <div class="row">
+        <div class="row g-5">
             <div class="col-6">
-                <img src="{{asset('main/img/product.png')}}" class="img-fluid img-product mb-5" alt="Торт товар">
+                <img src="{{asset('main/img/product.png')}}" class="img-fluid my-rounded img-product" alt="Торт товар">
                 <h3 class="fw-bold fs-4 mb-4">Состав и пищевая ценность</h3>
-                <p class="fs-5 color-font-pink"> Белки - 6,5 г; жиры - 29,4 г; углеводы - 54,0 г., 507 ккал/2124 кДж.
-                </p>
+                <p class="fs-5 color-font-pink"> Белки - 6,5 г; жиры - 29,4 г; углеводы - 54,0 г., 507 ккал/2124 кДж.</p>
                 <p class="fs-5">Сахар, масло сливочное (13%) (сливки пастеризованные), яйцо куриное пищевое, мука
                     пшеничная в/с,
                     молоко цельное сгущенное с сахаром (12%) (нормализованное молоко, сахар (сахароза, лактоза)), вода
@@ -39,15 +38,58 @@
                     кунжут.</p>
             </div>
             <div class="col-6">
-                <div class="d-flex mb-2 ">
-                    <h5 class="display-5 my-auto pe-4">Наполеон</h5>
+                <div class="d-flex mb-4">
+                    <p class="display-5 my-auto pe-2">Наполеон</p>
+                    <p class="fs-4 color-font-pink my-auto pe-4"> 800 г</p>
                     <p class="fs-5 my-auto pe-3"> <i class="fa-solid fa-star" style="color: #ffd500;"></i> 4.5 </p>
                     <p class="fs-5 my-auto"> <i class="fa-regular fa-comment" style="color: #b0b0b0;"></i> 2 </p>
+
                 </div>
+                <div class="d-flex">
+                    <h5 class="card-cost fs-2 my-auto fw-bold me-5">1500 ₽</h5>
+                    <button class="btn shadow-sm px-5 fs-4" type="button"> В корзину </button>
+                </div>
+
+                <hr class="hr-line ">
+
+                <div class="">
+                    <h3 class="fw-bold fs-4 mb-4"> Описание товара </h3>
+                    <p class="fs-5">
+                        Этот уникальный торт состоит из двух видов оригинальных тортов. Прага. Шоколадно-сливочный крем,
+                        шоколадный бисквит из свежих яиц, цельного сгущенного молока и сливочного масла, хорошо
+                        пропитанного ликером. Эквадорский какао придает торту густой шоколадный аромат. Прага -
+                        классический, всеми любимый, торт украшенный вручную солнечными розочками из сливочного крема.
+                        Ореховый.
+                        Потрясающе вкусный торт из орехового бисквита, искусно приготовленного нашими кондитерами из
+                        крупного арахиса, пропитанного сладким ароматным сиропом с коньяком с добавлением нежного крема
+                        из отборного сливочного масла и сгущенного молока. Украшения – сливочный шоколадный крем,
+                        отборный арахис и шоколад.
+                    </p>
+                </div>
+
+                <hr class="hr-line ">
+
+                <div class="fs-5">
+                    <h3 class="fw-bold fs-4 mb-4"> Характеристика </h3>
+
+                    <ul class="leaders mb-0">
+                        <li><span>Размер торта</span><span>маленький</span>
+                        <li><span>Срок годности товара</span><span>7 дней (168 часов) </span>
+                        <li><span>Витрина</span><span>торты</span>
+                        <li><span>Вес</span><span>800 г</span>
+                    </ul>
+                    <p class="mb-0">Особые ингредиенты: </p>
+                    <ul>
+                        <li>орехи</li>
+                        <li>сгущенное молоко</li>
+                        <li>шоколад и какао</li>
+                        <li>элитный алкоголь</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
-
-
     </section>
 </div>
+
 @endsection

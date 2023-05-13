@@ -10,10 +10,25 @@
     --color_dark_grey: #3E3E3E;
 }
 
-section {
-    padding-top: 30px;
-    padding-bottom: 80px;
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
 }
+
+
+section {
+    padding-bottom: 150px;
+}
+
+.container {
+    margin-top: 60px;
+}
+
 
 .color-font-pink {
     color: var(--color_pink);
@@ -37,12 +52,15 @@ section {
 
 header {
     background: rgba(255, 255, 255, 0.9) !important;
-    /* padding: 6px 0;  !!!!!! убрать потом */
 }
 
 footer {
-    padding: 60px 200px;
+    padding: 20px 0;
     background: #FF8083;
+}
+
+.my-rounded {
+    border-radius: calc(1.5rem - 1px) !important;
 }
 
 body {
@@ -246,6 +264,9 @@ header a {
     padding-top: 20px;
 }
 
+.index-products {
+    padding: 0 100px;
+}
 
 .btn-about {
     width: 70px;
@@ -395,11 +416,6 @@ header a {
     margin: 0;
     box-sizing: border-box;
 }
-
-.wrapper-range {
-    /*padding-right: 80px;*/
-}
-
 .container1 {
     position: relative;
     width: 100%;
@@ -514,9 +530,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 /* Аккордион */
 
 .my-form-control {
-    border-radius: 15px;
+    border-radius: calc(0.6rem - 1px);
     background: none;
-    color: var(--color_grey);
+    color: #616161;
     height: 35px;
 }
 
@@ -594,5 +610,69 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 
 .img-product {
-    border-radius: calc(1.5rem - 1px);
+    margin-top: 15px;
+    margin-bottom: 40px;
 }
+
+/* Характеристика с точками */
+
+ul.leaders {
+    max-width: 40em;
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none;
+}
+ul.leaders li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content:
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+}
+ul.leaders span:first-child {
+    padding-right: 0.33em;
+    background: #F8F8F8;
+}
+ul.leaders span + span {
+    float: right;
+    padding-left: 0.33em;
+    background: #F8F8F8;
+}
+
+
+/* Корзина */
+
+.cart-img {
+    width: 6vw;
+    height: 6vw;
+    object-fit: cover;
+}
+
+.cart-desc * {
+    margin-bottom: 0;
+}
+
+/* Кнопки увеличения количества товаров */
+
+.btns-count button {
+    border-radius: calc(0.4rem - 1px);
+    padding: 10px;
+}
+
+/* Личный профиль */
+
+.btn-profile-photo {
+    line-height: 0%;
+    background: #FFC0C0;
+    color: #ffffff;
+    padding: 40px 30px;
+    border: none;
+}
+.user-order {
+    box-shadow: inset 100px 100px rgb(136, 37, 37);
+    background: linear-gradient(to bottom, #fff1f1 90px, transparent 130px);
+}
+

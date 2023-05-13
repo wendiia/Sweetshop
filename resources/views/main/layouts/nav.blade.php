@@ -11,7 +11,7 @@
                 <div class="navbar-nav">
                     <a class="nav-link py-0" aria-current="page" href="{{route('index')}}">Главная</a>
                     <a class="nav-link py-0" href="{{route('products')}}">Продукция</a>
-                    <a class="nav-link py-0" href="#">О компании</a>
+                    <a class="nav-link py-0" href="{{route('about')}}">О компании</a>
                 </div>
             </nav>
 
@@ -38,9 +38,9 @@
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
-                <a class="" href="#"><img src="{{asset('main/img/user1.png')}}" width="30" height="30"
+                <a href="{{route('profile')}}"><img src="{{asset('main/img/user1.png')}}" width="30" height="30"
                         class="me-2" alt="Cart"></a>
-                <a href="#"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30" class="me-2"
+                <a href="{{route('cart')}}"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30" class="me-2"
                         alt="Cart"></a>
             </div>
         </nav>

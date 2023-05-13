@@ -37,3 +37,8 @@ Route::view('/test', 'test');
 Route::view('/products', 'main.products.products')->name('products');
 
 Route::view('/product', 'main.products.product')->name('product');
+
+Route::view('/about', 'main.about')->name('about');
+
+Route::view('/cart', 'main.cart')->name('cart'); // !!!! спроси потом насчет адресса корректного !!!!
+Route::view('/profile', 'main.profile')->name('profile'); // !!!! спроси потом насчет адресса корректного !!!!
