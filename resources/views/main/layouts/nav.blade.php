@@ -23,10 +23,9 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Торты</a></li>
-                        <li><a class="dropdown-item" href="#">Вафли</a></li>
-                        <li><a class="dropdown-item" href="#">Маффины, печенье</a></li>
-                        <li><a class="dropdown-item" href="#">Вся продукция</a></li>
+                        <li><a class="dropdown-item" href="{{route('cakes')}}">Торты</a></li>  {{-- проси roducts/cake--}}
+                        <li><a class="dropdown-item" href="{{route('waffles')}}">Вафли</a></li>
+                        <li><a class="dropdown-item" href="{{route('cookies')}}">Маффины, печенье</a></li>
                     </ul>
                 </div>
 

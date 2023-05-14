@@ -24,7 +24,7 @@
                     </div>
                     <h1 class="text-uppercase  my-3 display-2 slider-title ">Большой выбор</h1>
                     <p class="slider-subtitle ">Изумительные вкусняшки на любой вкус</p>
-                    <button class="btn btn-slider" type="button"> Продукция </button>
+                    <a class="btn btn-slider" href="{{route('products')}}" > Продукция </a>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="2000">
@@ -36,7 +36,7 @@
                     </div>
                     <h1 class="text-uppercase slider-title display-2 my-3">Низкие цены</h1>
                     <p class="slider-subtitle">Обязательно попробоуйте наши блинчики</p>
-                    <button class="btn btn-slider" type="button"> Продукция </button>
+                    <a class="btn btn-slider" href="{{route('products')}}" > Продукция </a>
                 </div>
             </div>
         </div>
@@ -140,8 +140,8 @@
                 <div class="d-flex text-center justify-content-center align-items-center h-100"
                     style="flex-direction: column">
                     <h3 class="text-white">С нами вы сможете реализовать любые кондитерские пожелания</h3>
-                    <h1 class="text-white display-1 mb-5">Хотите заказать нашу продукцию?</h1>
-                    <button class="btn btn-order" type="button"> Оставить заявку </button>
+                    <h1 class="text-white display-1 mb-5">Узнайте о нас побольше</h1>
+                    <a class="btn btn-order" href="{{route('about')}}"> О компании </a>
                 </div>
             </div>
         </div>
@@ -239,92 +239,11 @@
 
         <div class="row">
             <div class="col-xl-12 d-flex align-items-center justify-content-center mt-5">
-                <button class="btn btn-all-products shadow-sm" type="button"> Вся продукция </button>
+                <a class="btn btn-all-products shadow-sm" href="{{route('products')}}"> Вся продукция </a>
             </div>
         </div>
     </div>
 </section>
-
-
-<!-- <section class="section_products pt-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-4 col-sm-12">
-                <h2 class="display-5 text-uppercase section-header">Наша продукция</h2>
-                <div class="line-section-header mx-auto"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="d-flex justify-content-center pt-5 mb-5">
-                    <button class="btn btn-products shadow-sm" type="button"> <img
-                            src="{{asset('main/img/i-cake.png')}}" width="30" height="30" class="me-2" alt="Торт"> Торты
-                    </button>
-                    <button class="btn btn-products ms-4 shadow-sm" type="button"> <img
-                            src="{{asset('main/img/i-waffle.png')}}" width="30" height="30" class="me-2" alt="Вафля">
-                        Вафли </button>
-                    <button class="btn btn-products ms-4 shadow-sm" type="button"> <img
-                            src="{{asset('main/img/i-muffin.png')}}" width="30" height="30" class="me-2" alt="Кекс">
-                        Кексы </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xl-4 mb-3">
-                <div class="card card-product text-center pb-3 mb-3 shadow-sm">
-                    <div class="card-body d-flex align-items-center justify-content-between"
-                        style="flex-direction: column">
-                        <h1 class="display-6 card-title">Наполеон</h1>
-                        <p>1.8 кг</p>
-                        <img src="{{asset('main/img/product-1.png')}}" class="card-img-bottom img-card"
-                            alt="продукция_торт1">
-                        <p class="card-desc mb-1">Нежное воздушное тесто со сливочной начинкой</p>
-                        <p class="mb-2">2 000 ₽</p>
-                        <a href="#" class="btn btn-card">В корзину</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-4 mb-3">
-                <div class="card card-product text-center pb-3 mb-3 shadow-sm">
-                    <div class="card-body d-flex align-items-center justify-content-between"
-                        style="flex-direction: column">
-                        <h1 class="display-6 card-title">Панчо</h1>
-                        <p>2.5 кг</p>
-                        <img src="{{asset('main/img/product-2.png')}}" class="card-img-bottom img-card"
-                            alt="продукция_торт2">
-                        <p class="card-desc mb-1">Нежное воздушное тесто со сливочной начинкой</p>
-                        <p class="mb-2">3 500 ₽</p>
-                        <a href="#" class="btn btn-card">В корзину</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-4 mb-3">
-                <div class="card card-product text-center pb-3 mb-3 shadow-sm">
-                    <div class="card-body d-flex align-items-center justify-content-between"
-                        style="flex-direction: column">
-                        <h1 class="display-6 card-title">Тирамису</h1>
-                        <p>2.0 кг</p>
-                        <img src="{{asset('main/img/product-3.png')}}" class="card-img-bottom img-card"
-                            alt="продукция_торт3">
-                        <p class="card-desc mb-1">Нежное воздушное тесто со сливочной начинкой</p>
-                        <p class="mb-2">1 500 ₽</p>
-                        <a href="#" class="btn btn-card">В корзину</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xl-12 d-flex align-items-center justify-content-center mt-5">
-                <button class="btn btn-all-products shadow-sm" type="button"> Вся продукция </button>
-            </div>
-        </div>
-    </div>
-</section> -->
 
 <!-- Рагестрация -->
 <section class="section_registration bg-white">
@@ -337,4 +256,5 @@
         </div>
     </div>
 </section>
+
 @endsection

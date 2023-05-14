@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'index')->name('index');
+
+//Route::view('/', 'welcome')->name('index');
+
 Auth::routes(['register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,9 +39,20 @@ Route::view('/test', 'test');
 
 Route::view('/products', 'main.products.products')->name('products');
 
+
+Route::group(['prefix'=>'category/'], function (){
+    Route::view('/cakes', 'main.products.products')->name('cakes');
+    Route::view('/waffles', 'main.products.products')->name('waffles');
+    Route::view('/cookies', 'main.products.products')->name('cookies');
+});
+
+
+
 Route::view('/product', 'main.products.product')->name('product');
 
 Route::view('/about', 'main.about')->name('about');
 
 Route::view('/cart', 'main.cart')->name('cart'); // !!!! спроси потом насчет адресса корректного !!!!
 Route::view('/profile', 'main.profile')->name('profile'); // !!!! спроси потом насчет адресса корректного !!!!
+
+

@@ -6,7 +6,7 @@
     <!-- Баннер  -->
     <section class="section_category_banner pb-5">
         <div class="row">
-            <img src="{{asset('main/img/banner-waffle.png')}}" class="img-fluid " alt="Баннер вафли">
+            <img src="{{asset('main/img/banner-all.png')}}" class="img-fluid " alt="Баннер вафли">
         </div>
     </section>
 
@@ -18,8 +18,8 @@
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
                 aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Торты</li>
+                    <li class="breadcrumb-item"><a href="{{route('index')}}">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Вся продукция</li>
                 </ol>
             </nav>
         </div>
@@ -27,7 +27,7 @@
         <!-- Название каталога -->
         <div class="row">
             <div class="col-12 d-flex align-items-center mb-2">
-                <h1 class="display-5 pe-3">Торты</h1>
+                <h1 class="display-5 pe-3">Вся продукция</h1>
                 <p class="my-0 fs-6">найдено: 20</p>
             </div>
         </div>
@@ -154,7 +154,7 @@
                 <div class="row row-cols-1 row-cols-md-3 px-4 g-4">
                     <div class="col">
                         <div class="card card-product h-100">
-                            <a href="{{route('product')}}"> <img src="{{'main/img/cake1.jpg'}}" class="card-img-top"
+                            <a href="{{route('product')}}"> <img src="{{asset('main/img/cake1.jpg')}}" class="card-img-top"
                                     alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
@@ -173,7 +173,26 @@
                     </div>
                     <div class="col">
                         <div class="card card-product h-100">
-                            <a href="{{route('product')}}"> <img src="{{'main/img/cake2.jpeg'}}" class="card-img-top"
+                            <a href="{{route('product')}}"> <img src="{{asset('main/img/waffle1.jpg')}}" class="card-img-top"
+                                    alt="..."> </a>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div class="card-cost-social d-flex mb-2">
+                                    <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
+                                    <p class="fs-6 my-auto pe-2"> <i class="fa-solid fa-star"
+                                            style="color: #ffd500;"></i> 4.5 </p>
+                                    <p class="fs-6 my-auto"> <i class="fa-regular fa-comment"
+                                            style="color: #b0b0b0;"></i> 2 </p>
+                                </div>
+                                <p class="card-title fs-5 mb-3">Вафля1
+                                    <span class="card-weight fs-5 color-font-pink"> 650 г </span>
+                                </p>
+                                <button class="btn btn-product shadow-sm fs-" type="button"> В корзину </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-product h-100">
+                            <a href="{{route('product')}}"> <img src="{{asset('main/img/cake3.png')}}" class="card-img-top"
                                     alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
@@ -192,7 +211,26 @@
                     </div>
                     <div class="col">
                         <div class="card card-product h-100">
-                            <a href="{{route('product')}}"> <img src="{{'main/img/cake3.png'}}" class="card-img-top"
+                            <a href="{{route('product')}}"> <img src="{{asset('main/img/muffin2.jpg')}}" class="card-img-top"
+                                    alt="..."> </a>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div class="card-cost-social d-flex mb-2">
+                                    <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
+                                    <p class="fs-6 my-auto pe-2"> <i class="fa-solid fa-star"
+                                            style="color: #ffd500;"></i> 4.5 </p>
+                                    <p class="fs-6 my-auto"> <i class="fa-regular fa-comment"
+                                            style="color: #b0b0b0;"></i> 2 </p>
+                                </div>
+                                <p class="card-title fs-5 mb-3">Клубничный маффин
+                                    <span class="card-weight fs-5 color-font-pink"> 650 г </span>
+                                </p>
+                                <button class="btn btn-product shadow-sm fs-" type="button"> В корзину </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-product h-100">
+                        <a href="{{route('product')}}"> <img src="{{asset('main/img/cake1.jpg')}}" class="card-img-top"
                                     alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">
@@ -211,45 +249,7 @@
                     </div>
                     <div class="col">
                         <div class="card card-product h-100">
-                            <a href="{{route('product')}}"> <img src="{{'main/img/cake3.png'}}" class="card-img-top"
-                                    alt="..."> </a>
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <div class="card-cost-social d-flex mb-2">
-                                    <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
-                                    <p class="fs-6 my-auto pe-2"> <i class="fa-solid fa-star"
-                                            style="color: #ffd500;"></i> 4.5 </p>
-                                    <p class="fs-6 my-auto"> <i class="fa-regular fa-comment"
-                                            style="color: #b0b0b0;"></i> 2 </p>
-                                </div>
-                                <p class="card-title fs-5 mb-3">Наполеон с ягодами
-                                    <span class="card-weight fs-5 color-font-pink"> 650 г </span>
-                                </p>
-                                <button class="btn btn-product shadow-sm fs-" type="button"> В корзину </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product h-100">
-                        <a href="{{route('product')}}"> <img src="{{'main/img/cake1.jpg'}}" class="card-img-top"
-                                    alt="..."> </a>
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <div class="card-cost-social d-flex mb-2">
-                                    <h5 class="card-cost fs-4 my-auto pe-3">1500 ₽</h5>
-                                    <p class="fs-6 my-auto pe-2"> <i class="fa-solid fa-star"
-                                            style="color: #ffd500;"></i> 4.5 </p>
-                                    <p class="fs-6 my-auto"> <i class="fa-regular fa-comment"
-                                            style="color: #b0b0b0;"></i> 2 </p>
-                                </div>
-                                <p class="card-title fs-5 mb-3">Наполеон с ягодами
-                                    <span class="card-weight fs-5 color-font-pink"> 650 г </span>
-                                </p>
-                                <button class="btn btn-product shadow-sm fs-" type="button"> В корзину </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-product h-100">
-                        <a href="{{route('product')}}"> <img src="{{'main/img/cake2.jpeg'}}" class="card-img-top"
+                        <a href="{{route('product')}}"> <img src="{{asset('main/img/waffle3.jpg')}}" class="card-img-top"
                                     alt="..."> </a>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="card-cost-social d-flex mb-2">

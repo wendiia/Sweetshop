@@ -655,6 +655,10 @@ ul.leaders span + span {
     margin-bottom: 0;
 }
 
+.modal-confirm-order {
+    max-width: 800px !important;
+}
+
 /* Кнопки увеличения количества товаров */
 
 .btns-count button {
