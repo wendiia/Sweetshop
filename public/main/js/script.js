@@ -31,3 +31,9 @@ function fillColor(){
     percent2 = (sliderTwo.value / sliderMaxValue) * 100;
     sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #FFD9D3 ${percent1}% , #FFD9D3 ${percent2}%, #dadae5 ${percent2}%)`;
 }
+
+// на главной странице переключение отображаемой продукции по категориям
+
+function ShowCakes() {
+
+}

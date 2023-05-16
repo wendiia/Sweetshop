@@ -10,7 +10,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-confirm-order">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="ModalConfirmOrder">Заголовок модального окна</h1>
+                            <h1 class="modal-title fs-5" id="ModalConfirmOrder">Оформление заказа</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Закрыть"></button>
                         </div>
@@ -70,10 +70,12 @@
                         <div class="cart-item d-flex justify-content-between">
 
                             <div class="d-flex">
-                                <img src="{{asset('main/img/cake1.jpg')}}" class="img-fluid rounded-3 cart-img me-3"
-                                     style="" alt="Товар в корзине">
+                                <a href="{{route('product')}}"> <img src="{{asset('main/img/cake1.jpg')}}"
+                                                                     class="img-fluid rounded-3 cart-img me-3" style=""
+                                                                     alt="Товар в корзине"></a>
                                 <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <p class="fs-5 fw-bold">Наполеон с ягодами </p>
+                                    <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                            class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                     <p class="fs-6 color-font-pink"> 650 г </p>
                                     <p class="fs-6"> Категория: торт </p>
                                     <button class="color-font-pink fs-6 btn-none me-auto p-0">Удалить</button>
@@ -98,10 +100,12 @@
                         <div class="cart-item d-flex justify-content-between">
 
                             <div class="d-flex">
-                                <img src="{{asset('main/img/cake2.jpeg')}}" class="img-fluid rounded-3 cart-img me-3"
-                                     style="" alt="Товар в корзине">
+                                <a href="{{route('product')}}"> <img src="{{asset('main/img/cake2.jpeg')}}"
+                                                                     class="img-fluid rounded-3 cart-img me-3" style=""
+                                                                     alt="Товар в корзине"></a>
                                 <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <p class="fs-5 fw-bold">Наполеон с ягодами </p>
+                                    <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                            class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                     <p class="fs-6 color-font-pink"> 650 г </p>
                                     <p class="fs-6"> Категория: торт </p>
                                     <button class="color-font-pink fs-6 btn-none me-auto p-0">Удалить</button>
@@ -126,10 +130,12 @@
                         <div class="cart-item d-flex justify-content-between">
 
                             <div class="d-flex">
-                                <img src="{{asset('main/img/cake3.png')}}" class="img-fluid rounded-3 cart-img me-3"
-                                     style="" alt="Товар в корзине">
+                                <a href="{{route('product')}}"> <img src="{{asset('main/img/cake3.png')}}"
+                                                                     class="img-fluid rounded-3 cart-img me-3" style=""
+                                                                     alt="Товар в корзине"></a>
                                 <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <p class="fs-5 fw-bold">Наполеон с ягодами </p>
+                                    <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                            class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                     <p class="fs-6 color-font-pink"> 650 г </p>
                                     <p class="fs-6"> Категория: торт </p>
                                     <button class="color-font-pink fs-6 btn-none me-auto p-0">Удалить</button>
@@ -160,8 +166,9 @@
                             <div class="mb-3">
                                 <input type="text" class="form-control my-form-control mb-3" id="" placeholder="ФИО">
                                 <input type="tel" class="form-control my-form-control mb-3" id="" placeholder="Телефон">
-                                <input type="email" class="form-control my-form-control mb-3" id="" placeholder="Email">
-                                <input type="date" class="form-control my-form-control mb-3" id="" placeholder="Email">
+                                <input type="email" class="form-control my-form-control mb-1" id="" placeholder="Email">
+                                <label class="fs-5 pt-0 ps-1" for="date_input"> Желаемая дата выдачи: </label>
+                                <input type="date" class="form-control my-form-control mb-3" id="date_input">
                             </div>
 
                             <p class="fs-6 my-auto text-center mb-2">
