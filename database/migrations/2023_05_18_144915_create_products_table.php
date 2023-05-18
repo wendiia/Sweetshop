@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('product_value');
             $table->mediumText('description');
             $table->mediumText('ingredients');
-            $table->integer('weight');
+            $table->integer('weight')->unsigned();
             $table->string('photo');
-            $table->integer('price');
+            $table->integer('price')->unsigned();
             $table->enum('status', ['active', 'inactive'])->default('active');
         });
     }

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained();
             $table->foreignId('cart_id')->constrained();
 
-            $table->integer('quantity');
-            $table->integer('amount');
+            $table->integer('quantity')->unsigned();
+            $table->integer('amount')->unsigned();
         });
     }
 

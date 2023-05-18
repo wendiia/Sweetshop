@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
 
             $table->date('date_readiness');
-            $table->integer('quantity');
-            $table->integer('amount');
+            $table->integer('quantity')->unsigned();
+            $table->integer('amount')->unsigned();
             $table->enum('status', ['active', 'inactive'])->default('active');
         });
     }
