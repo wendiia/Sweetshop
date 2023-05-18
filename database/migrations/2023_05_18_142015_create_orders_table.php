@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('title', 50);
-            $table->string('slug')->unique();
-            $table->mediumText('description')->nullable();
-            $table->string('photo');
+
+            $table->foreignId('user_id')->constrained();
+
+            $table->date('date_readiness');
+            $table->integer('quantity');
+            $table->integer('amount');
             $table->enum('status', ['active', 'inactive'])->default('active');
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('orders');
     }
 };

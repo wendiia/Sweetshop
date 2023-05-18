@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('title', 50);
-            $table->string('slug')->unique();
-            $table->mediumText('description')->nullable();
-            $table->string('photo');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+
+            $table->foreignId('user_id')->constrained();
+
+            $table->string('session');
+            $table->integer('quantity');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('carts');
     }
 };

@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('special_ingredients', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('title', 50);
-            $table->string('slug')->unique();
-            $table->mediumText('description')->nullable();
-            $table->string('photo');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('name')->unique();
         });
     }
 
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('special_ingredients');
     }
 };
