@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
             $table->foreignId('user_id')->constrained();
-
             $table->date('date_readiness');
             $table->integer('quantity')->unsigned();
             $table->integer('amount')->unsigned();
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['new', 'progress', 'complete', 'cancel'])->default('new');
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

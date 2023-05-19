@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title', 100);
+
             $table->string('slug')->unique();
 
             $table->foreignId('category_id')->constrained();
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->string('photo');
             $table->integer('price')->unsigned();
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->softDeletes();
         });
     }
 
@@ -36,6 +38,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->unique();
+            $table->softDeletes();
         });
     }
 
@@ -23,6 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('special_ingredients');
+        Schema::table('special_ingredients', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

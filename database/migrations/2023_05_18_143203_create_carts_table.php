@@ -17,8 +17,9 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained();
 
-            $table->string('session');  // ???
+            $table->string('session');
             $table->integer('quantity')->unsigned();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::table('carts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->char('phone', 11)->unique();
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->softDeletes();
             $table->rememberToken();
         });
     }
@@ -31,6 +32,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

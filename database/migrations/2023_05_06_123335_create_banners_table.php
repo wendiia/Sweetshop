@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title', 50);
-            $table->string('slug')->unique();
             $table->mediumText('description')->nullable();
             $table->string('photo');
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +27,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('banners');
+        Schema::table('banners', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };
