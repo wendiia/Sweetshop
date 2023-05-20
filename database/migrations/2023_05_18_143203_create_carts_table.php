@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
 
-            $table->string('session');
             $table->integer('quantity')->unsigned();
+            $table->string('session')->nullable(); // спросить потом
             $table->softDeletes();
         });
     }

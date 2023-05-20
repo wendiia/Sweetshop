@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('special_ingredient_product', function (Blueprint $table) {
+        Schema::create('product_special_ingredient', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('product_id')->constrained();
-            $table->foreignId('special_ingredient_id')->constrained();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('special_ingredient_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+
             $table->softDeletes();
         });
     }
@@ -26,7 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('special_ingredient_product', function (Blueprint $table) {
+        Schema::table('product_special_ingredient', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

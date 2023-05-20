@@ -17,9 +17,17 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'=> fake()->unique()->numerify('product-##'),
-
-//            остановилась тут!!!!
+            'title'=> fake()->unique()->numerify('Продукт-###'),
+            'category_id' => rand(1, 3),
+            'size_id' => rand(1, 3),
+            'expiration_date' => rand(24, 3000),
+            'product_value' => fake()->sentence(),
+            'description' =>  fake()->text(300),
+            'ingredients' =>  fake()->text(400),
+            'weight' => rand(300, 2000),
+            'price' => rand(300, 10000),
+            'photo' => fake()->imageUrl(category: 'cake'),
+            'status' => fake()->randomElement(['active', 'inactive']),
         ];
     }
 }

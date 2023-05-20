@@ -31,7 +31,15 @@ Route::group(['prefix'=>'admin/', 'middleware'=>'auth'], function (){
 // Banner section
 Route::resource('banner', BannerController::class);
 
-Route::view('/test', 'test');
+
+Route::get('/test', function () {
+//   $users = \App\Models\User::with('orders')->get();
+//    $users = \App\Models\User::all();
+//    $categories = \App\Models\Category::all();
+    $sizes= \App\Models\Size::all();
+
+   return view('test', compact('sizes'));
+});
 
 
 

@@ -37,6 +37,10 @@ class Order extends Model
 
     protected $fillable = ['quantity'];
     public function products() {
-        return $this->belongsToMany(Product::class)->withTimestamps();
+        return $this->belongsToMany(Product::class)
+            ->withPivot('price', 'amount', 'quantity', 'updated_at', 'created_at', 'deleted_at') //
+            ->as('order_product')
+            ->withTimestamps();
     }
+
 }

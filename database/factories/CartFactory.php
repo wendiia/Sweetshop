@@ -17,8 +17,7 @@ class CartFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=> rand(1, 50),
-            'session' => '1',
+            'user_id'=> fake()->unique()->numberBetween(1, 50),
             'quantity'=> rand(1, 20),
         ];
     }

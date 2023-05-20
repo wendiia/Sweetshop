@@ -18,8 +18,7 @@ class SpecialIngredientFactory extends Factory
     public function definition(): array
     {
         return [
-//            'name'=> 'ингредиент №' . Str::random(rand(1, 10)),
-            'name'=> 'ингредиент №' . fake()->unique()->randomNumber(5, false),
+            'name'=> 'ингредиент №' . fake()->unique()->randomNumber(3, false),
         ];
     }
 }

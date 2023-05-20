@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,6 +30,37 @@ class Product extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Sluggable;
 
 
+    protected $fillable = [
+        'title',
+        'slug',
+        'category_id',
+        'size_id',
+        'expiration_date',
+        'product_value',
+        'description',
+        'ingredients',
+        'weight',
+        'photo',
+        'price',
+        'status',
+    ];
+
+    public function special_ingredients() {
+        return $this->belongsToMany(SpecialIngredient::class)
+            ->withPivot('updated_at', 'created_at', 'deleted_at')
+            ->as('product_special_ingredient')
+            ->withTimestamps();
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 }

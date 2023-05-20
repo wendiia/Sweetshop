@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('order_id')->constrained();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
 
-//            $table->integer('quantity')->unsigned();
-//            $table->integer('price')->unsigned();
-//            $table->integer('amount')->unsigned();
+            $table->integer('quantity')->unsigned()->nullable();
+            $table->integer('price')->unsigned();
+            $table->integer('amount')->unsigned();
             $table->softDeletes();
         });
     }
