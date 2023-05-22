@@ -55,6 +55,15 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function size() {
+        return $this->belongsTo(Size::class);
+    }
+
+
     public function sluggable(): array
     {
         return [

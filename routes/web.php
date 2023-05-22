@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,52 +17,50 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'index')->name('index');
+
 
 //Route::view('/', 'welcome')->name('index');
 
-Auth::routes(['register'=>false]);
+//Auth::routes(['register'=>false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Admin dashboard
-Route::group(['prefix'=>'admin/', 'middleware'=>'auth'], function (){
-    Route::get('/', [AdminController::class, 'admin'])->name('admin');
-});
+//// Admin dashboard
+//Route::group(['prefix'=>'admin/', 'middleware'=>'auth'], function (){
+//    Route::get('/', [AdminController::class, 'admin'])->name('admin');
+//});
+//
+//// Banner section
+//Route::resource('banner', BannerController::class);
 
-// Banner section
-Route::resource('banner', BannerController::class);
 
-
-Route::get('/test', function () {
+// Тест на вывод фейковых данных с различных таблиц
+//Route::get('/test', function () {
 //   $users = \App\Models\User::with('orders')->get();
-//    $users = \App\Models\User::all();
-//    $categories = \App\Models\Category::all();
-    $sizes= \App\Models\Size::all();
-
-   return view('test', compact('sizes'));
-});
-
+//   $users = \App\Models\User::all();
+//   $categories = \App\Models\Category::all();
+//   $sizes= \App\Models\Size::all();
+//   return view('test', compact('sizes'));
+//});
 
 
 // Main
-
-Route::view('/products', 'main.products.products')->name('products');
-
-
-Route::group(['prefix'=>'category/'], function (){
-    Route::view('/cakes', 'main.products.products')->name('cakes');
-    Route::view('/waffles', 'main.products.products')->name('waffles');
-    Route::view('/cookies', 'main.products.products')->name('cookies');
-});
-
-
+Route::view('/', 'index')->name('index');
+Route::view('/about', 'main.about')->name('about');
+Route::view('/cart', 'main.cart')->name('cart');
+Route::view('/profile', 'main.profile')->name('profile');
 
 Route::view('/product', 'main.products.product')->name('product');
 
-Route::view('/about', 'main.about')->name('about');
 
-Route::view('/cart', 'main.cart')->name('cart'); // !!!! спроси потом насчет адресса корректного !!!!
-Route::view('/profile', 'main.profile')->name('profile'); // !!!! спроси потом насчет адресса корректного !!!!
+Route::resource('categories', CategoryController::class);
+Route::resource('products', ProductController::class);
+
+
+
+//Route::resource('categories/{category}/products', ProductController::class);
+//Route::get('categories/{category}/products', [ProductController::class, 'index'])->named('category.products.index');
+
+
 
 

@@ -164,9 +164,6 @@
                         <h1 class="fs-4 text-center mb-4 fw-bold">Оставить заявку</h1>
                         <form>
                             <div class="mb-3">
-                                <input type="text" class="form-control my-form-control mb-3" id="" placeholder="ФИО">
-                                <input type="tel" class="form-control my-form-control mb-3" id="" placeholder="Телефон">
-                                <input type="email" class="form-control my-form-control mb-1" id="" placeholder="Email">
                                 <label class="fs-5 pt-0 ps-1" for="date_input"> Желаемая дата выдачи: </label>
                                 <input type="date" class="form-control my-form-control mb-3" id="date_input">
                             </div>

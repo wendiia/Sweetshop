@@ -10,7 +10,7 @@
             <nav class="navbar navbar-light navbar-expand-sm bg-body-tertiary ">
                 <div class="navbar-nav">
                     <a class="nav-link py-0" aria-current="page" href="{{route('index')}}">Главная</a>
-                    <a class="nav-link py-0" href="{{route('products')}}">Продукция</a>
+                    <a class="nav-link py-0" href="{{route('products.index')}}">Продукция</a>
                     <a class="nav-link py-0" href="{{route('about')}}">О компании</a>
                 </div>
             </nav>
@@ -23,9 +23,10 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('cakes')}}">Торты</a></li>  {{-- проси roducts/cake--}}
-                        <li><a class="dropdown-item" href="{{route('waffles')}}">Вафли</a></li>
-                        <li><a class="dropdown-item" href="{{route('cookies')}}">Маффины, печенье</a></li>
+                        @foreach($categories =\App\Models\Category::all() as $category)
+                            <li><a class="dropdown-item" href="{{route('categories.show', $category->slug)}}"> {{$category->title}} </a></li>
+                        @endforeach
+                        <li><a class="dropdown-item" href="{{route('categories.index')}}"> Все категории </a></li>
                     </ul>
                 </div>
 

@@ -15,23 +15,23 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'title'=> 'торты',
+                'title'=> 'Торты',
                 'slug'=> 'cakes',
-                'photo'=> 'main/img/banner-all.png',
+                'photo'=> 'main/img/category-cakes-photo.png',
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ],
             [
-                'title'=> 'вафли',
+                'title'=> 'Вафли',
                 'slug'=> 'waffles',
-                'photo'=> 'main/img/banner-all.png',
+                'photo'=> 'main/img/category-waffles-photo.png',
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ],
             [
-                'title'=> 'маффины, печенье',
+                'title'=> 'Маффины, печенье',
                 'slug'=> 'muffins',
-                'photo'=> 'main/img/banner-all.png',
+                'photo'=> 'main/img/category-muffins-photo.png',
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ],

@@ -11,8 +11,8 @@
                 aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{route('index')}}">Главная</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('cakes')}}">Торты</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Наполеон</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('categories.show', $product->category->slug)}}"> {{$product->category->title}}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$product->title}}</li>
                 </ol>
             </nav>
         </div>
@@ -20,33 +20,23 @@
 
         <div class="row g-5">
             <div class="col-6">
-                <img src="{{asset('main/img/product.png')}}" class="img-fluid my-rounded img-product" alt="Торт товар">
+                <img src="{{asset($product->photo)}}" class="img-fluid my-rounded img-product" alt="Торт товар">
                 <h3 class="fw-bold fs-4 mb-4">Состав и пищевая ценность</h3>
-                <p class="fs-5 color-font-pink"> Белки - 6,5 г; жиры - 29,4 г; углеводы - 54,0 г., 507 ккал/2124 кДж.</p>
-                <p class="fs-5">Сахар, масло сливочное (13%) (сливки пастеризованные), яйцо куриное пищевое, мука
-                    пшеничная в/с,
-                    молоко цельное сгущенное с сахаром (12%) (нормализованное молоко, сахар (сахароза, лактоза)), вода
-                    очищенная, сметана (сливки, закваска), ядра арахиса (5%), шоколад белый (сахар, масло какао, молоко
-                    сухое цельное, сыворотка молочная сухая, эмульгатор соевый лецитин, ароматизатор экстракт ванили
-                    натуральный), молоко питьевое, какао-порошок, коньяк (дистилляты коньячные, выдержанные в контакте с
-                    древесиной дуба не менее трех лет, вода питьевая, сахарный сироп, краситель сахарный колер I
-                    простой), крахмал картофельный, ядра кешью, патока, ликёр (вода питьевая исправленная, сахарный
-                    сироп, спирт этиловый ректификованный из пищевого сырья «Люкс», настой миндаля, ароматизаторы,
-                    настой полыни, краситель Е150d, настой пажитника), разрыхлитель сода пищевая (гидрокарбонат натрия),
-                    ароматизатор экстракт ванили натуральный, консервант сорбиновая кислота, красители натуральные:
-                    бета-каротин, кармины. Произведено на предприятии, на котором также выпускаются продукты, содержащие
-                    кунжут.</p>
+                <p class="fs-5 color-font-pink"> {{$product->product_value}} </p>
+                <p class="fs-5">
+                    {{$product->ingredients}}
+                </p>
             </div>
             <div class="col-6">
                 <div class="d-flex mb-4">
-                    <p class="display-5 my-auto pe-2">Наполеон</p>
-                    <p class="fs-4 color-font-pink my-auto pe-4"> 800 г</p>
+                    <p class="display-5 my-auto pe-2"> {{$product->title}} </p>
+                    <p class="fs-4 color-font-pink my-auto pe-4"> {{$product->weight}} г</p>
+
                     <p class="fs-5 my-auto pe-3"> <i class="fa-solid fa-star" style="color: #ffd500;"></i> 4.5 </p>
                     <p class="fs-5 my-auto"> <i class="fa-regular fa-comment" style="color: #b0b0b0;"></i> 2 </p>
-
                 </div>
                 <div class="d-flex">
-                    <h5 class="card-cost fs-2 my-auto fw-bold me-5">1500 ₽</h5>
+                    <h5 class="card-cost fs-2 my-auto fw-bold me-5"> {{$product->price / 100}} ₽</h5>
                     <button class="btn shadow-sm px-5 fs-4" type="button"> В корзину </button>
                 </div>
 
@@ -55,15 +45,7 @@
                 <div class="">
                     <h3 class="fw-bold fs-4 mb-4"> Описание товара </h3>
                     <p class="fs-5">
-                        Этот уникальный торт состоит из двух видов оригинальных тортов. Прага. Шоколадно-сливочный крем,
-                        шоколадный бисквит из свежих яиц, цельного сгущенного молока и сливочного масла, хорошо
-                        пропитанного ликером. Эквадорский какао придает торту густой шоколадный аромат. Прага -
-                        классический, всеми любимый, торт украшенный вручную солнечными розочками из сливочного крема.
-                        Ореховый.
-                        Потрясающе вкусный торт из орехового бисквита, искусно приготовленного нашими кондитерами из
-                        крупного арахиса, пропитанного сладким ароматным сиропом с коньяком с добавлением нежного крема
-                        из отборного сливочного масла и сгущенного молока. Украшения – сливочный шоколадный крем,
-                        отборный арахис и шоколад.
+                        {{$product->description}}
                     </p>
                 </div>
 
@@ -72,18 +54,18 @@
                 <div class="fs-5">
                     <h3 class="fw-bold fs-4 mb-4"> Характеристика </h3>
 
-                    <ul class="leaders mb-0">
-                        <li><span>Размер торта</span><span>маленький</span>
-                        <li><span>Срок годности товара</span><span>7 дней (168 часов) </span>
-                        <li><span>Витрина</span><span>торты</span>
-                        <li><span>Вес</span><span>800 г</span>
+                    <ul class="leaders mb-2">
+                        <li><span>Размер</span><span> {{$product->size->name}} </span>
+                        <li><span>Срок годности товара</span><span> {{ round($product->expiration_date / 24) }} дней ({{$product->expiration_date}} часов) </span>
+                        <li><span>Витрина</span><span> {{$product->category->title}} </span>
+                        <li><span>Вес</span><span> {{$product->weight}} г</span>
                     </ul>
-                    <p class="mb-0">Особые ингредиенты: </p>
-                    <ul>
-                        <li>орехи</li>
-                        <li>сгущенное молоко</li>
-                        <li>шоколад и какао</li>
-                        <li>элитный алкоголь</li>
+                    <p class="mb-0 fw-bold">Особые ингредиенты: </p>
+                    <ul class="px-4">
+
+                        @foreach($product->special_ingredients as $ingredient)
+                            <li>{{$ingredient->name}}</li>
+                        @endforeach
                     </ul>
                 </div>
 

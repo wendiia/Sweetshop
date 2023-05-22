@@ -26,11 +26,11 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(BannerSeeder::class);
 
-        User::factory(50)->create();
+        User::factory(50)->create(); // спросить почему "factory" разные
 
         SpecialIngredient::factory(30)->create();
 
-        Product::factory(50)->create();
+        Product::factory(50)->create(); // спросить почему "factory" разные
         foreach (Product::all() as $product) {
             $special_ingredients = SpecialIngredient::inRandomOrder()->take(rand(1, 6))->pluck('id');
             $product->special_ingredients()->attach($special_ingredients);

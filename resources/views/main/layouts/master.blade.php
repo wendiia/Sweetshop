@@ -4,8 +4,17 @@
 <head>
     @include('main.layouts.head')
 </head>
-
 <body>
+    <div class="wrapper">
+        @include('main.layouts.nav')
+
+        @yield('content')
+
+        @include('main.layouts.footer')
+    </div>
+</body>
+</html>
+
 
 {{--<!-- Page Loader потом сделать -->--}}
 {{--<div class="page-loader-wrapper">--}}
@@ -17,11 +26,3 @@
 {{--<!-- Overlay For Sidebars -->--}}
 
 <!-- Шапка -->
-@include('main.layouts.nav')
-
-@yield('content')
-
-@include('main.layouts.footer')
-</body>
-
-</html>

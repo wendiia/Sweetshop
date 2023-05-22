@@ -24,7 +24,7 @@
                     </div>
                     <h1 class="text-uppercase  my-3 display-2 slider-title ">Большой выбор</h1>
                     <p class="slider-subtitle ">Изумительные вкусняшки на любой вкус</p>
-                    <a class="btn btn-slider" href="{{route('products')}}" > Продукция </a>
+                    <a class="btn btn-slider" href="{{route('products.index')}}" > Продукция </a>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="2000">
@@ -36,7 +36,7 @@
                     </div>
                     <h1 class="text-uppercase slider-title display-2 my-3">Низкие цены</h1>
                     <p class="slider-subtitle">Обязательно попробоуйте наши блинчики</p>
-                    <a class="btn btn-slider" href="{{route('products')}}" > Продукция </a>
+                    <a class="btn btn-slider" href="{{route('products.index')}}" > Продукция </a>
                 </div>
             </div>
         </div>
@@ -240,7 +240,7 @@
 
         <div class="row">
             <div class="col-xl-12 d-flex align-items-center justify-content-center mt-5">
-                <a class="btn btn-all-products shadow-sm" href="{{route('products')}}"> Вся продукция </a>
+                <a class="btn btn-all-products shadow-sm" href="{{route('products.index')}}"> Вся продукция </a>
             </div>
         </div>
     </div>

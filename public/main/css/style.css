@@ -2,7 +2,6 @@
     --color_pink: #ff8282;
     --color_pink2: #ff6f74;
     --color_pink3: #eb686d;
-    /*C9093*/
     --color_pink4: #FFD9D3;
     --color_bg: #F4EFF1;
     --color_grey: #6B6B6B;
@@ -27,11 +26,12 @@ section {
 
 .container {
     margin-top: 60px;
+    padding-bottom: 90px;
 }
 
 
 .color-font-pink {
-    color: var(--color_pink);
+    color: var(--color_pink) !important;
 }
 
 .color-font-grey {
@@ -63,11 +63,26 @@ footer {
     border-radius: calc(1.5rem - 1px) !important;
 }
 
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
     background: #F8F8F8;
     font-family: 'Calibri';
     font-size: x-large;
     color: var(--color_grey);
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 1 auto;
 }
 
 /*Кнопка в розовом стиле*/
@@ -266,6 +281,21 @@ header a {
 
 .index-products {
     padding: 0 100px;
+}
+
+.pagination * {
+    color: #fd8181;
+}
+
+.page-link:hover {
+    background: #fdd7d1;
+    color: #6a6a6a;
+}
+
+.page-item.active .page-link {
+
+    background-color: #fd8181;
+    border-color: #fd8181;
 }
 
 .btn-about {
