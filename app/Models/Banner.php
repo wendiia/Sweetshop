@@ -38,5 +38,7 @@ class Banner extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title', 'slug', 'description', 'photo', 'status', 'condition'];
+//    protected $fillable = ['title', 'slug', 'description', 'photo', 'status', 'condition'];
+
+    protected $guarded = [];
 }

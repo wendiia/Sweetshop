@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -35,7 +36,5 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
-//        Schema::dropIfExists('users');
-
     }
 };

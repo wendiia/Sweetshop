@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -13,62 +12,27 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('main.categories', [
-            'categories' => Category::all()
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return "Создание категории create";
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        return "Хранение(добавление) категории store";
+        return view('main.categories');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $category)
+    public function show(string $slug)
     {
+        $category = Category::where('slug', $slug)->first();
+        if (empty($category)) {
+            abort(404);
+        }
 
-        return view('main.products.products', [
-            'category' =>  Category::where('slug', $category)->first()->title,
-            'products' => Product::where('category_id', Category::where('slug', $category)->first()->id)->paginate(15),
-            'photo' => Category::where('slug', $category)->first()->photo,
+        return view('main.products.products_category', [
+            'category' => $category,
+            'products' => Product::where([
+                ['category_id', function ($query) use ($slug) {
+                    $query->select('id')->from('categories')->where('slug', $slug);
+                }],
+                ['status', 'active'],
+            ])->paginate(15),
         ]);
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        return "Редактирование категории " . $id;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        return "Обновление категории " . $id;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        return "Удаление категории " . $id;
     }
 }

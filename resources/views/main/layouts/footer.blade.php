@@ -52,10 +52,6 @@
 </footer>
 
 
-
-
-<script src="{{secure_asset('main/js/script.js')}}"></script>
-<script src="{{secure_asset('main/js/bootstrap.bundle.min.js')}}?v=<?=time()?>"></script>
-
-<script src="{{asset('main/js/script.js')}}"></script>
+<script src="{{asset('main/js/script.js')}}?v=<?=time()?>"></script>
 <script src="{{asset('main/js/bootstrap.bundle.min.js')}}?v=<?=time()?>"></script>
+

@@ -13,8 +13,8 @@
 
 {{--<link rel="stylesheet" href="{{secure_asset('backend/assets/vendor/fontawesome-free/css/fontawesome-all.min.css')}}">--}}
 
-<link rel="stylesheet" href="{{secure_asset('main/css/bootstrap.min.css')}}?v=<?=time()?>">
-<link rel="stylesheet" href="{{secure_asset('main/css/style.css')}}?v=<?=time()?>">
+{{--<link rel="stylesheet" href="{{secure_asset('main/css/bootstrap.min.css')}}?v=<?=time()?>">--}}
+{{--<link rel="stylesheet" href="{{secure_asset('main/css/style.css')}}?v=<?=time()?>">--}}
 
 
 <link rel="stylesheet" href="{{asset('main/css/bootstrap.min.css')}}?v=<?=time()?>">

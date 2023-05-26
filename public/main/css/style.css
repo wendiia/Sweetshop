@@ -710,3 +710,15 @@ ul.leaders span + span {
     background: linear-gradient(to bottom, #fff1f1 90px, transparent 130px);
 }
 
+/* section 404*/
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+
+

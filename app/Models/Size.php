@@ -30,6 +30,8 @@ class Size extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $guarded = [];
+
     public function products() {
         return $this->hasMany(Product::class);
     }

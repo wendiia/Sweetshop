@@ -33,20 +33,22 @@ class Product extends Model
     use Sluggable;
 
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'category_id',
-        'size_id',
-        'expiration_date',
-        'product_value',
-        'description',
-        'ingredients',
-        'weight',
-        'photo',
-        'price',
-        'status',
-    ];
+//    protected $fillable = [
+//        'title',
+//        'slug',
+//        'category_id',
+//        'size_id',
+//        'expiration_date',
+//        'product_value',
+//        'description',
+//        'ingredients',
+//        'weight',
+//        'photo',
+//        'price',
+//        'status',
+//    ];
+
+    protected $guarded = [];
 
     public function special_ingredients() {
         return $this->belongsToMany(SpecialIngredient::class)

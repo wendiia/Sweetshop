@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,17 +45,17 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
+Route::get('/', [IndexController::class, 'index'])->name('index');
 // Main
-Route::view('/', 'index')->name('index');
+//Route::view('/', 'index')->name('index');
 Route::view('/about', 'main.about')->name('about');
 Route::view('/cart', 'main.cart')->name('cart');
 Route::view('/profile', 'main.profile')->name('profile');
 
-Route::view('/product', 'main.products.product')->name('product');
-
 
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
+
 
 
 

@@ -23,7 +23,7 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        @foreach($categories =\App\Models\Category::all() as $category)
+                        @foreach($categories as $category)
                             <li><a class="dropdown-item" href="{{route('categories.show', $category->slug)}}"> {{$category->title}} </a></li>
                         @endforeach
                         <li><a class="dropdown-item" href="{{route('categories.index')}}"> Все категории </a></li>
@@ -44,6 +44,5 @@
                         alt="Cart"></a>
             </div>
         </nav>
-
     </div>
 </header>
