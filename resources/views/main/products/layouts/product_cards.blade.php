@@ -1,11 +1,20 @@
 <!-- Продукция -->
 <div class="col-10 test pt-2">
-    <select id="select-sort-products" class="form-select my-form-select ms-4 " aria-label="Default select example">
-        <option selected disabled hidden>Выберите</option>
-        <option value="new">Новинки</option>
-        <option value="cheapFirst">Дешевые</option>
-        <option value="expensiveFirst">Дорогие</option>
-    </select>
+
+    <div class="d-flex ms-3">
+        <a class="color-font-pink fs-5 text-decoration-none mx-2"
+           href="{{route(Route::currentRouteName(), array_merge($filterData, array('sort' => 'none', $category->slug ?? null)))}}">
+            Без сортировки </a>
+        <a class="color-font-pink fs-5 text-decoration-none mx-2"
+           href="{{route(Route::currentRouteName(), array_merge($filterData, array('sort' => 'created_at.asc', $category->slug ?? null)))}}">
+            Новинки </a>
+        <a class="color-font-pink fs-5 text-decoration-none mx-2"
+           href="{{route(Route::currentRouteName(), array_merge($filterData, array('sort' => 'price.asc', $category->slug ?? null)))}}">
+            Дешевле</a>
+        <a class="color-font-pink fs-5 text-decoration-none mx-2"
+           href="{{route(Route::currentRouteName(), array_merge($filterData, array('sort' => 'price.desc', $category->slug ?? null)))}}">
+            Дороже </a>
+    </div>
 
     <hr class="hr-line">
 

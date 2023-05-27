@@ -732,3 +732,10 @@ ul.leaders span + span {
 .alert-warning {
     border: none;
 }
+
+/* показать все мингредиенты*/
+
+.check-status {
+    display: none;
+}
+

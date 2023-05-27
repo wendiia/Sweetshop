@@ -16,16 +16,19 @@ class SizeSeeder extends Seeder
         DB::table('sizes')->insert([
             [
                 'name'=> 'маленький',
+                'order'=> 1,
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ],
             [
                 'name'=> 'средний',
+                'order'=> 2,
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ],
             [
                 'name'=> 'большой',
+                'order'=> 3,
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ],

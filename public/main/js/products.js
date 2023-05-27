@@ -32,3 +32,18 @@ function fillColor(){
     sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #FFD9D3 ${percent1}% , #FFD9D3 ${percent2}%, #dadae5 ${percent2}%)`;
 }
 
+//  show all special_ingredients
+
+
+function showAll() {
+    let btnShowAll = document.getElementById("btnShowAll");
+
+    if (btnShowAll.textContent  === "Показать все") {
+        document.querySelectorAll('.check-status').forEach(el => el.style.display = "block");
+        btnShowAll.textContent = "Скрыть";
+    }
+    else if (btnShowAll.textContent  === "Скрыть") {
+        document.querySelectorAll('.check-status').forEach(el => el.style.display = "none");
+        btnShowAll.textContent = "Показать все";
+    }
+}

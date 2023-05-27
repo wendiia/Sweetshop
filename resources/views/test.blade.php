@@ -10,6 +10,13 @@
 {{--@endphp--}}
 
 
+{{--    <select id="select-sort-products" class="form-select my-form-select ms-4 " aria-label="Default select example">--}}
+{{--        <option selected disabled hidden>Выберите</option>--}}
+{{--        <option value="new" data-href="{{route('index')}}">Новинки</option>--}}
+{{--        <option value="cheapFirst">Дешевые</option>--}}
+{{--        <option value="expensiveFirst">Дорогие</option>--}}
+{{--    </select>--}}
+
 <div class="container">
     <div class="row justify-content-center" style="background: #e2e9ea">
         <div class="col-12">

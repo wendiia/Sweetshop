@@ -18,7 +18,7 @@ class SpecialIngredientFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=> 'ингредиент №' . fake()->unique()->randomNumber(3, false),
+            'name'=> 'ингредиент №' . fake()->unique()->randomNumber(2, false),
         ];
     }
 }

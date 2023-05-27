@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductIndexRequest extends FormRequest
 {
@@ -28,6 +29,7 @@ class ProductIndexRequest extends FormRequest
             'sizes.*' => 'integer|exists:sizes,id',
             'specialIngredients' => 'array',
             'specialIngredients.*' => 'integer|exists:special_ingredients,id',
+            'sort' => ['string', Rule::in(['price.asc', 'price.desc', 'created_at.asc', 'none'])],
         ];
     }
 }

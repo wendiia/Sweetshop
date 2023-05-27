@@ -15,13 +15,20 @@ class ProductController extends Controller
      */
     public function index(ProductIndexRequest $request)
     {
+        $products = Product::where('status', '=', 'active')
+            ->filter($request->all())->paginate(15)->withQueryString();
+
+        if ($request->has('sort') and $request->sort <> 'none') {
+            $type_sort = explode('.', $request->sort);
+            $products = Product::where('status', '=', 'active')->orderBy($type_sort[0], $type_sort[1])
+                    ->filter($request->all())->paginate(15)->withQueryString();
+        }
 
         return view('main.products.products_all', [
-            'products' => Product::where('status', '=', 'active')
-                ->filter($request->all())->paginate(15)->withQueryString(),
+            'products' => $products,
             'maxPrice' => Product::where('status', '=', 'active')->max('price'),
             'sizes' => Size::orderBy('order')->get(),
-            'specialIngredients' => SpecialIngredient::orderBy('name')->limit(3)->get(),
+            'specialIngredients' => SpecialIngredient::orderBy('name')->get(),
             'filterData' => $request->all(),
             'currentUrl' => $request->url(),
         ]);
@@ -32,7 +39,7 @@ class ProductController extends Controller
      */
     public function show(string $slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('slug', $slug)->firstOrFail();
         if (empty($product)) {
             abort(404);
         }

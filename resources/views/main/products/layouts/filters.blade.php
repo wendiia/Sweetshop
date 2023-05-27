@@ -1,5 +1,5 @@
 <!-- Фильтр товаров -->
-<div class="col-2">
+<div class="col-2 pt-3">
     <form method="get">
         <a class="color-font-pink fs-5 btn-none mb-2 p-0 m-0 text-decoration-none" href="{{$currentUrl}}">
             Сбросить
@@ -67,7 +67,7 @@
         </div>
 
         {{--     Фильтр ингредиенты    --}}
-        <div class="filter-ingredients">
+        <div class="filter-ingredients mb-2">
             <div class="accordion" id="accordion_ingredients">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
@@ -82,7 +82,7 @@
                          data-bs-parent="#accordion_ingredients">
                         <div class="accordion-body ps-0 fs-5">
                             @foreach ($specialIngredients as $specialIngredient)
-                                <div class="form-check">
+                                <div class="form-check {{$loop->index > 3 ? 'check-status': ''}}">
                                     <input class="form-check-input" type="checkbox" value="{{ $specialIngredient->id }}"
                                            id="flexCheckDefault"
                                            name="specialIngredients[]" {{ isset($filterData['specialIngredients']) && in_array($specialIngredient->id, $filterData['specialIngredients']) ? 'checked' : '' }}>
@@ -91,12 +91,16 @@
                                     </label>
                                 </div>
                             @endforeach
-                            {{--                        ошибка на массив--}}
+
+                            <button id="btnShowAll" type="button" class="btn-none color-font-pink px-0" onclick="showAll()">Показать все</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mx-auto">Применить</button>
+
+        <input type="hidden" name="sort" value="{{$filterData['sort'] ?? 'none' }}"/>
+
+        <button type="submit" class="btn btn-primary mx-0">Применить</button>
     </form>
 </div>
