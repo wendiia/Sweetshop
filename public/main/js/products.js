@@ -32,8 +32,3 @@ function fillColor(){
     sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #FFD9D3 ${percent1}% , #FFD9D3 ${percent2}%, #dadae5 ${percent2}%)`;
 }
 
-// // Фильтрация продукции
-
-let SelectSortProducts = document.getElementById("select-sort-products");
-
-console.log(SelectSortProducts.value);

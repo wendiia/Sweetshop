@@ -17,3 +17,6 @@
     <h1 class="display-5 pe-3"> {{$category->title}}</h1>
 @endsection
 
+@section('products_route')
+    console.log("category products");
+@endsection

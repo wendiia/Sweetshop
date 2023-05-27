@@ -6,6 +6,9 @@
         @yield('products_banner')
 
         <section class="section_products py-0">
+
+            @include('main.products.layouts.errors')
+
             <!-- Крошки -->
             <div class="row breadcrumbs">
                 <nav
@@ -32,8 +35,9 @@
             </div>
         </section>
     </div>
-
-    <script src="{{asset('main/js/products.js')}}?v=<?=time()?>"></script>
 @endsection
 
+@section('custom_script')
+    <script src="{{asset('main/js/products.js')}}?v=<?=time()?>"></script>
+@endsection
 

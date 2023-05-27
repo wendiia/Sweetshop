@@ -22,3 +22,5 @@
 
 
 <script src="https://kit.fontawesome.com/5aa26e8b69.js" crossorigin="anonymous"></script>
+
+<meta name="csrf-token" content="{{ csrf_token() }}">

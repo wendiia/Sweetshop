@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\ProductIndexRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Size;
+use App\Models\SpecialIngredient;
 
 class CategoryController extends Controller
 {
@@ -18,7 +21,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug)
+    public function show(ProductIndexRequest $request, string $slug)
     {
         $category = Category::where('slug', $slug)->first();
         if (empty($category)) {
@@ -32,7 +35,12 @@ class CategoryController extends Controller
                     $query->select('id')->from('categories')->where('slug', $slug);
                 }],
                 ['status', 'active'],
-            ])->paginate(15),
+            ])->filter($request->all())->paginate(15)->withQueryString(),
+            'maxPrice' => Product::where('status', '=', 'active')->max('price'),
+            'sizes' => Size::orderBy('order')->get(),
+            'specialIngredients' => SpecialIngredient::orderBy('name')->limit(3)->get(),
+            'filterData' => $request->all(),
+            'currentUrl' => $request->url(),
         ]);
     }
 }

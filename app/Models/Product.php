@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+
 
 /**
  * App\Models\Product
@@ -31,24 +33,23 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
     use Sluggable;
+    use Filterable;
 
+    protected $fillable = [
+        'title',
+        'slug',
+        'category_id',
+        'size_id',
+        'expiration_date',
+        'product_value',
+        'description',
+        'ingredients',
+        'weight',
+        'photo',
+        'price',
+        'status',
+    ];
 
-//    protected $fillable = [
-//        'title',
-//        'slug',
-//        'category_id',
-//        'size_id',
-//        'expiration_date',
-//        'product_value',
-//        'description',
-//        'ingredients',
-//        'weight',
-//        'photo',
-//        'price',
-//        'status',
-//    ];
-
-    protected $guarded = [];
 
     public function special_ingredients() {
         return $this->belongsToMany(SpecialIngredient::class)

@@ -11,6 +11,8 @@
         @yield('content')
 
         @include('main.layouts.footer')
+
+        @yield('custom_script')
     </div>
 </body>
 </html>

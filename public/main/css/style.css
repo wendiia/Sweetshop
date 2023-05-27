@@ -175,7 +175,7 @@ header a {
 }
 
 .section_slider {
-    padding: 0px !important;
+    padding: 0 !important;
 }
 
 .slider-title {
@@ -719,6 +719,16 @@ ul.leaders span + span {
     text-align: center;
     min-height: 100vh;
 }
+/**/
 
+.btn-close {
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 0.7em;
+    height: 0.7em;
+}
 
-
+.alert-warning {
+    border: none;
+}
