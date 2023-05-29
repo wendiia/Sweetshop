@@ -64,19 +64,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-//    protected $fillable = [
-//        'full_name',
-//        'username',
-//        'photo',
-//        'phone',
-//        'email',
-//        'password',
-//        'address',
-//        'role',
-//        'status',
-//    ];
-
-    protected $guarded = [];
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'middle_name',
+        'password',
+        'email',
+        'phone',
+        'status',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -96,6 +92,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+
+    public function getPhoneAttribute($phone)
+    {
+        $phone_view = '+' . $phone[0] . '(' . substr($phone, 1, 3) . ')' . substr($phone, 4, 3) . '-' . substr($phone, 7, 2) . '-' . substr($phone, 9);
+        return $phone_view;
+    }
+
+    public function setPhoneAttribute($phone_raw)
+    {
+        $phone = str_replace(['+', '(', ')', '-'], '', $phone_raw);
+        $this->attributes['phone'] = $phone;
+    }
+
 
     public function orders() {
         return $this->hasMany(Order::class);

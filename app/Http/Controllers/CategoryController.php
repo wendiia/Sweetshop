@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\SpecialIngredient;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryController extends Controller
 {
@@ -25,7 +26,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
         if (empty($category)) {
-            abort(404);
+            throw new NotFoundHttpException('Category not found');
         }
 
         $products = Product::where([

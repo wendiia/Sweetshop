@@ -4,7 +4,7 @@
         <nav class="navbar  navbar-expand-lg bg-body-tertiary d-flex justify-content-between">
             <a class="py-0 pe-2" href="{{route('index')}}">
                 <img src="{{asset('main/img/logo-grey.png')}}" alt="Logo" width="100" height="50"
-                    class="d-inline-block align-text-top">
+                     class="d-inline-block align-text-top">
             </a>
 
             <nav class="navbar navbar-light navbar-expand-sm bg-body-tertiary ">
@@ -18,13 +18,14 @@
             <div class="d-flex">
                 <div class="dropdown d-flex justify-content-center align-center">
                     <a class="btn btn-secondary dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                       aria-expanded="false">
                         <img src="{{asset('main/img/i-menu.png')}}" width="30" height="30" class="" alt="Cart">
                     </a>
 
                     <ul class="dropdown-menu">
                         @foreach($categories as $category)
-                            <li><a class="dropdown-item" href="{{route('categories.show', $category->slug)}}"> {{$category->title}} </a></li>
+                            <li><a class="dropdown-item"
+                                   href="{{route('categories.show', $category->slug)}}"> {{$category->title}} </a></li>
                         @endforeach
                         <li><a class="dropdown-item" href="{{route('categories.index')}}"> Все категории </a></li>
                     </ul>
@@ -32,16 +33,33 @@
 
                 <form class="d-flex " role="search">
                     <input class="form-control me-2 form-search" type="search" placeholder="Найти..."
-                        aria-label="Search">
-                    <button class="btn btn-outline-success me-3" type="submit"> <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> </button>
+                           aria-label="Search">
+                    <button class="btn btn-outline-success me-3" type="submit"><i class="fa-solid fa-magnifying-glass"
+                                                                                  style="color: #ffffff;"></i></button>
                 </form>
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
-                <a href="{{route('profile')}}"><img src="{{asset('main/img/user1.png')}}" width="30" height="30"
-                        class="me-2" alt="Cart"></a>
-                <a href="{{route('cart')}}"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30" class="me-2"
-                        alt="Cart"></a>
+
+                @auth
+                    <form method="POST" action="{{route('login.destroy')}}">
+                        @csrf
+                        <button class="color-font-pink fs-5 btn-none" type="submit"> Выйти </button>
+                    </form>
+
+                    <a class="a-nav" href="{{route('profile')}}"><img src="{{asset('main/img/user1.png')}}" width="30" height="30"
+                                                        class="me-2" alt="Cart"></a>
+                @else
+                    <a class="text-decoration-none color-font-pink fs-5 pe-3" href="{{route('login.create')}}">
+                        Войти
+                    </a>
+                    <a class="text-decoration-none color-font-pink fs-5 pe-3" href="{{route('register.create')}}">
+                        Регистрация
+                    </a>
+                @endguest
+
+                <a class="a-nav" href="{{route('cart')}}"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30"
+                                                 class="me-2" alt="Cart"></a>
             </div>
         </nav>
     </div>

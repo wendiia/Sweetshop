@@ -70,11 +70,11 @@
                         <div class="cart-item d-flex justify-content-between">
 
                             <div class="d-flex">
-                                <a href="{{route('product')}}"> <img src="{{asset('main/img/cake1.jpg')}}"
+                                <a href="#"> <img src="{{asset('main/img/cake1.jpg')}}"
                                                                      class="img-fluid rounded-3 cart-img me-3" style=""
                                                                      alt="Товар в корзине"></a>
                                 <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                    <a href="#" class="text-decoration-none color-font-grey"><p
                                             class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                     <p class="fs-6 color-font-pink"> 650 г </p>
                                     <p class="fs-6"> Категория: торт </p>
@@ -100,11 +100,11 @@
                         <div class="cart-item d-flex justify-content-between">
 
                             <div class="d-flex">
-                                <a href="{{route('product')}}"> <img src="{{asset('main/img/cake2.jpeg')}}"
+                                <a href="#"> <img src="{{asset('main/img/cake2.jpeg')}}"
                                                                      class="img-fluid rounded-3 cart-img me-3" style=""
                                                                      alt="Товар в корзине"></a>
                                 <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                    <a href="#" class="text-decoration-none color-font-grey"><p
                                             class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                     <p class="fs-6 color-font-pink"> 650 г </p>
                                     <p class="fs-6"> Категория: торт </p>
@@ -130,11 +130,11 @@
                         <div class="cart-item d-flex justify-content-between">
 
                             <div class="d-flex">
-                                <a href="{{route('product')}}"> <img src="{{asset('main/img/cake3.png')}}"
+                                <a href="#"> <img src="{{asset('main/img/cake3.png')}}"
                                                                      class="img-fluid rounded-3 cart-img me-3" style=""
                                                                      alt="Товар в корзине"></a>
                                 <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                    <a href="#" class="text-decoration-none color-font-grey"><p
                                             class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                     <p class="fs-6 color-font-pink"> 650 г </p>
                                     <p class="fs-6"> Категория: торт </p>

@@ -54,6 +54,7 @@
         </div>
     </section>
 
+
     <!-- Преимущества -->
     <section class="section_services">
         <div class="container">
@@ -230,4 +231,8 @@
         </div>
     </section>
 
+    <x-flash/>
+
 @endsection
+
+

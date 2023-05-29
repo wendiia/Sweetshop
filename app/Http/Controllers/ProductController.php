@@ -7,6 +7,7 @@ use App\Http\Requests\Product\ProductIndexRequest;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\SpecialIngredient;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductController extends Controller
 {
@@ -41,7 +42,7 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->firstOrFail();
         if (empty($product)) {
-            abort(404);
+            throw new NotFoundHttpException('Product not found');
         }
 
         return view('main.products.product', compact('product'));

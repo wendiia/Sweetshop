@@ -152,6 +152,10 @@ body {
 
 }
 
+.a-nav {
+    line-height: 0;
+}
+
 .form-search {
     border-radius: 10px;
     min-width: 500px;
@@ -563,7 +567,7 @@ input[type="range"]:active::-webkit-slider-thumb {
     border-radius: calc(0.6rem - 1px);
     background: none;
     color: #616161;
-    height: 35px;
+    height: 40px;
 }
 
 .form-check-input:checked {
@@ -739,3 +743,20 @@ ul.leaders span + span {
     display: none;
 }
 
+/* регистрация */
+
+.register-form {
+    padding: 50px 0;
+}
+
+.register-frame {
+    padding: 20px 60px;
+}
+
+/* toast*/
+.toast-fixed {
+    position: fixed;
+    bottom: 0;
+    width:100%;
+}
+/**/
