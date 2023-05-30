@@ -56,7 +56,7 @@
                     <a class="text-decoration-none color-font-pink fs-5 pe-3" href="{{route('register.create')}}">
                         Регистрация
                     </a>
-                @endguest
+                @endauth
 
                 <a class="a-nav" href="{{route('cart')}}"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30"
                                                  class="me-2" alt="Cart"></a>

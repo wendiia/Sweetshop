@@ -3,6 +3,8 @@
 @section('content')
     <section>
 
+        <form method="POST" action="{{route('login.update')}}">
+            @csrf
 
         <!-- Модальное окно -->
         <div class="modal fade" id="ModalEditProfile" tabindex="-1" aria-labelledby="ModalEditProfile" aria-hidden="true">
@@ -13,20 +15,86 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control my-form-control mb-3" id="" placeholder="Имя">
-                        <input type="text" class="form-control my-form-control mb-3" id="" placeholder="Фамилия">
-                        <input type="text" class="form-control my-form-control mb-3" id="" placeholder="Отчество">
-                        <input type="tel" class="form-control my-form-control mb-3" id="" placeholder="Номер телефона">
-                        <input type="email" class="form-control my-form-control mb-3" id="" placeholder="Email">
+                        <div class="mb-2">
+                            <label for="first_name" class="mb-2 fs-5"> <span class="text-danger">*</span> Имя: </label>
+                            <input type="text" id="first_name" name="first_name" value="{{auth()->user()->first_name}}"
+                                   class="form-control my-form-control fs-5 ps-4 @error('first_name') is-invalid @enderror"
+                                   required>
+                            @error('first_name')
+                            <p class="text-danger fs-6"> {{ $message }} </p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="last_name" class="mb-2 fs-5"> <span class="text-danger">*</span> Фамилия:
+                            </label>
+                            <input type="text" id="last_name" name="last_name" value="{{auth()->user()->last_name}}"
+                                   class="form-control my-form-control fs-5 ps-4 @error('last_name') is-invalid @enderror"
+                                   required>
+                            @error('last_name')
+                            <p class="text-danger fs-6"> {{ $message }} </p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="middle_name" class="mb-2 fs-5"> Отчество: </label>
+                            <input type="text" id="middle_name" name="middle_name" value="{{auth()->user()->middle_name}}"
+                                   class="form-control my-form-control fs-5 ps-4  @error('middle_name') is-invalid @enderror">
+                            @error('middle_name')
+                            <p class="text-danger fs-6"> {{ $message }} </p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="phone" class="mb-2 fs-5"> <span class="text-danger">*</span> Телефон: </label>
+                            <input type="tel" id="phone" name="phone" value="{{auth()->user()->phone}}"
+                                   class="form-control my-form-control fs-5 ps-4 @error('phone') is-invalid @enderror"
+                                   required>
+                            @error('phone')
+                            <p class="text-danger fs-6"> {{ $message }} </p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="email" class="mb-2 fs-5"> <span class="text-danger">*</span> E-mail: </label>
+                            <input type="email" id="email" name="email" value="{{auth()->user()->email}}"
+                                   class="form-control my-form-control fs-5 ps-4 @error('email') is-invalid @enderror"
+                                   required>
+                            @error('email')
+                            <p class="text-danger fs-6"> {{ $message }} </p>
+                            @enderror
+                        </div>
+
+{{--                        <div class="mb-2">--}}
+{{--                            <label for="password" class="mb-2 fs-5"> <span class="text-danger">*</span> Пароль: </label>--}}
+{{--                            <input type="password" id="password" name="password"--}}
+{{--                                   class="form-control my-form-control fs-5 ps-4 @error('password') is-invalid @enderror"--}}
+{{--                                   required>--}}
+{{--                            @error('password')--}}
+{{--                            <p class="text-danger fs-6"> {{ $message }} </p>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+
+{{--                        <div class="mb-4">--}}
+{{--                            <label for="password-repeat" class="mb-2 fs-5"> Подтверждение пароля: </label>--}}
+{{--                            <input type="password" id="password-repeat" name="passwordRepeat"--}}
+{{--                                   class="form-control my-form-control fs-5 ps-4  @error('passwordRepeat') is-invalid @enderror"--}}
+{{--                                   required>--}}
+{{--                            @error('passwordRepeat')--}}
+{{--                            <p class="text-danger fs-6"> {{ $message }} </p>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary">Сохранить</button>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        </form>
 
         <div class="container ">
             <!-- Крошки -->
@@ -50,14 +118,15 @@
                     <div class="bg-white my-rounded shadow-sm px-4 mb-4 py-3 d-flex  ">
                         <button class="btn-profile-photo rounded-circle my-auto fs-1 me-4"> Н</button>
                         <div class="d-flex flex-column justify-content-between">
-                            <h3 class="fs-4">Курлыкина Наталья
+                            <h3 class="fs-4">
+                                {{auth()->user()->last_name . ' ' . auth()->user()->first_name . ' ' . auth()->user()->middle_name}}
                                 <button class="btn-none" data-bs-toggle="modal" data-bs-target="#ModalEditProfile">
                                     <i class="fa-solid fa-pen fa-2xs" style="color: #ff8282;"></i>
                                 </button>
                             </h3>
                             <div class="d-flex">
-                                <p class="fs-5 me-3"> Email: Wesdfkj@mail.ru</p>
-                                <p class="fs-5"> Телефон: 8974342658</p>
+                                <p class="fs-5 me-3"> Email: {{auth()->user()->email}} </p>
+                                <p class="fs-5"> Телефон: {{auth()->user()->phone}} </p>
                             </div>
                         </div>
                     </div>
@@ -86,11 +155,11 @@
                         <div class="history-orders">
                             <div class="cart-item d-flex justify-content-between mb-3">
                                 <div class="d-flex">
-                                    <a href="{{route('product')}}"> <img src="{{asset('main/img/cake1.jpg')}}"
+                                    <a href="#"> <img src="{{asset('main/img/cake1.jpg')}}"
                                                                          class="img-fluid rounded-3 cart-img me-3" style=""
                                                                          alt="Товар в корзине"></a>
                                     <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                        <a href="#" class="text-decoration-none color-font-grey"><p
                                                 class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                         <p class="fs-6 color-font-pink"> 650 г </p>
                                         <p class="fs-6"> Категория: торт </p>
@@ -113,11 +182,11 @@
 
                             <div class="cart-item d-flex justify-content-between mb-3">
                                 <div class="d-flex">
-                                    <a href="{{route('product')}}"> <img src="{{asset('main/img/cake2.jpeg')}}"
+                                    <a href="#"> <img src="{{asset('main/img/cake2.jpeg')}}"
                                                                          class="img-fluid rounded-3 cart-img me-3" style=""
                                                                          alt="Товар в корзине"></a>
                                     <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                        <a href="#" class="text-decoration-none color-font-grey"><p
                                                 class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                         <p class="fs-6 color-font-pink"> 650 г </p>
                                         <p class="fs-6"> Категория: торт </p>
@@ -140,11 +209,11 @@
 
                             <div class="cart-item d-flex justify-content-between mb-3">
                                 <div class="d-flex">
-                                    <a href="{{route('product')}}"> <img src="{{asset('main/img/cake3.png')}}"
+                                    <a href="#"> <img src="{{asset('main/img/cake3.png')}}"
                                                                          class="img-fluid rounded-3 cart-img me-3" style=""
                                                                          alt="Товар в корзине"></a>
                                     <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                        <a href="#}" class="text-decoration-none color-font-grey"><p
                                                 class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                         <p class="fs-6 color-font-pink"> 650 г </p>
                                         <p class="fs-6"> Категория: торт </p>
@@ -185,11 +254,11 @@
 
                             <div class="cart-item d-flex justify-content-between mb-3">
                                 <div class="d-flex">
-                                    <a href="{{route('product')}}"> <img src="{{asset('main/img/cake2.jpeg')}}"
+                                    <a href="#"> <img src="{{asset('main/img/cake2.jpeg')}}"
                                                                          class="img-fluid rounded-3 cart-img me-3" style=""
                                                                          alt="Товар в корзине"></a>
                                     <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                        <a href="#" class="text-decoration-none color-font-grey"><p
                                                 class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                         <p class="fs-6 color-font-pink"> 650 г </p>
                                         <p class="fs-6"> Категория: торт </p>
@@ -212,11 +281,11 @@
 
                             <div class="cart-item d-flex justify-content-between mb-3">
                                 <div class="d-flex">
-                                    <a href="{{route('product')}}"> <img src="{{asset('main/img/cake3.png')}}"
+                                    <a href="#"> <img src="{{asset('main/img/cake3.png')}}"
                                                                          class="img-fluid rounded-3 cart-img me-3" style=""
                                                                          alt="Товар в корзине"></a>
                                     <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="{{route('product')}}" class="text-decoration-none color-font-grey"><p
+                                        <a href="#" class="text-decoration-none color-font-grey"><p
                                                 class="fs-5 fw-bold">Наполеон с ягодами </p></a>
                                         <p class="fs-6 color-font-pink"> 650 г </p>
                                         <p class="fs-6"> Категория: торт </p>
@@ -238,8 +307,21 @@
                     </div>
                 </div>
             </div>
-
-
+        </div>
     </section>
 
+    <x-flash/>
+
+@endsection
+
+@section('custom_script')
+    <script src="https://unpkg.com/imask"></script>
+
+    <script>
+        let phoneMask = IMask(
+            document.getElementById('phone'), {
+                mask: '+{7}(000)000-00-00',
+                lazy: false,
+            });
+    </script>
 @endsection

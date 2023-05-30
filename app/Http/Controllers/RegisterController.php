@@ -22,9 +22,7 @@ class RegisterController extends Controller
         }
 
         $user = User::create($request->all());
-
         auth()->login($user);
-
         return redirect('/')->with('success', 'Ваш аккаунт был создан');
     }
 }

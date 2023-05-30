@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Login\LoginStoreRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\Login\LoginUpdateRequest;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -13,11 +13,31 @@ class LoginController extends Controller
     }
 
     public function store(LoginStoreRequest $request) {
-        if (auth()->attempt($request->only(['email', 'password']))) {
-            return redirect('/')->with('success', 'Вы вошли в аккаунт');
+
+        if (!auth()->attempt($request->only(['email', 'password']))) {
+            throw ValidationException::withMessages([
+                'email' => 'Данного e-mail не существует',
+                'password' => 'Пароль неверный',
+            ]);
         }
 
-        return back()->withErrors(['email' => 'Данного e-mail не существует', 'password' => 'Пароль неверный']);
+        $request->session()->regenerate();
+        return redirect('/')->with('success', 'Вы вошли в аккаунт');
+    }
+
+    public function update(LoginUpdateRequest $request)
+    {
+        $user = auth()->user();
+        $user->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        return redirect()->route('profile')->with('success', 'Данные были успешно обновлены');
     }
 
     public function destroy()

@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,11 +57,13 @@ Route::view('/profile', 'main.profile')->name('profile');
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
 
+
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest')->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest')->name('register.store');
 
 Route::get('login', [LoginController::class, 'create'])->middleware('guest')->name('login.create');
 Route::post('login', [LoginController::class, 'store'])->middleware('guest')->name('login.store');
+Route::post('login/update', [LoginController::class, 'update'])->middleware('auth')->name('login.update');
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 
 
