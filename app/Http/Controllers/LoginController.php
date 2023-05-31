@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Login\LoginStoreRequest;
 use App\Http\Requests\Login\LoginUpdateRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
     public function create() {
-        return view('auth.sessions.create');
+        return view('auth.login.create');
     }
 
     public function store(LoginStoreRequest $request) {
@@ -34,7 +37,6 @@ class LoginController extends Controller
             'middle_name' => $request->middle_name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'password' => $request->password,
         ]);
 
         return redirect()->route('profile')->with('success', 'Данные были успешно обновлены');

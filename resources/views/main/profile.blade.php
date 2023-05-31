@@ -64,27 +64,6 @@
                             <p class="text-danger fs-6"> {{ $message }} </p>
                             @enderror
                         </div>
-
-{{--                        <div class="mb-2">--}}
-{{--                            <label for="password" class="mb-2 fs-5"> <span class="text-danger">*</span> Пароль: </label>--}}
-{{--                            <input type="password" id="password" name="password"--}}
-{{--                                   class="form-control my-form-control fs-5 ps-4 @error('password') is-invalid @enderror"--}}
-{{--                                   required>--}}
-{{--                            @error('password')--}}
-{{--                            <p class="text-danger fs-6"> {{ $message }} </p>--}}
-{{--                            @enderror--}}
-{{--                        </div>--}}
-
-{{--                        <div class="mb-4">--}}
-{{--                            <label for="password-repeat" class="mb-2 fs-5"> Подтверждение пароля: </label>--}}
-{{--                            <input type="password" id="password-repeat" name="passwordRepeat"--}}
-{{--                                   class="form-control my-form-control fs-5 ps-4  @error('passwordRepeat') is-invalid @enderror"--}}
-{{--                                   required>--}}
-{{--                            @error('passwordRepeat')--}}
-{{--                            <p class="text-danger fs-6"> {{ $message }} </p>--}}
-{{--                            @enderror--}}
-{{--                        </div>--}}
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -116,11 +95,12 @@
             <div class="row">
                 <div class="col">
                     <div class="bg-white my-rounded shadow-sm px-4 mb-4 py-3 d-flex  ">
-                        <button class="btn-profile-photo rounded-circle my-auto fs-1 me-4"> Н</button>
-                        <div class="d-flex flex-column justify-content-between">
+{{--                        <button class="btn-profile-photo rounded-circle my-auto fs-1 me-4"> {{ auth()->user()->last_name[0]  }} </button>--}}
+
+                        <div class="d-flex flex-column justify-content-between" >
                             <h3 class="fs-4">
                                 {{auth()->user()->last_name . ' ' . auth()->user()->first_name . ' ' . auth()->user()->middle_name}}
-                                <button class="btn-none" data-bs-toggle="modal" data-bs-target="#ModalEditProfile">
+                                <button onclick="clicked()" class="btn-none btnEdit" data-bs-toggle="modal" data-bs-target="#ModalEditProfile" id="btnEditProfile">
                                     <i class="fa-solid fa-pen fa-2xs" style="color: #ff8282;"></i>
                                 </button>
                             </h3>
@@ -133,184 +113,191 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-5">
                 <h1 class="display-5 pe-1">История заказов</h1>
             </div>
 
-            <div class="row mb-4">
-                <div class="col">
-                    <div class="bg-white my-rounded shadow-sm p-4 user-order">
-                        <div class="temp-div"></div>
-                        <div class="mb-5">
-                            <div class="d-flex mb-2 justify-content-between">
-                                <h3 class="fw-bold">Заказ №11273867853 от 23.07.22 </h3>
-                                <p class="fs-5 my-auto"><i class="fa-solid fa-circle fa-xs"
-                                                           style="color: #fec343; padding-right: 10px;"></i>В процессе
-                                </p>
+            <div class="row align-content-center justify-content-center">
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="bg-white my-rounded shadow-sm p-4 user-order">
+                            <div class="temp-div"></div>
+                            <div class="mb-5">
+                                <div class="d-flex mb-2 justify-content-between">
+                                    <h3 class="fw-bold">Заказ №11273867853 от 23.07.22 </h3>
+                                    <p class="fs-5 my-auto"><i class="fa-solid fa-circle fa-xs"
+                                                               style="color: #fec343; padding-right: 10px;"></i>В процессе
+                                    </p>
+                                </div>
+
+                                <p class="fs-5 color-font-pink">Сумма: 6 000 руб. </p>
                             </div>
 
-                            <p class="fs-5 color-font-pink">Сумма: 6 000 руб. </p>
-                        </div>
+                            <div class="history-orders">
+                                <div class="cart-item d-flex justify-content-between mb-3">
+                                    <div class="d-flex">
+                                        <a href="#"> <img src="{{asset('main/img/cake1.jpg')}}"
+                                                          class="img-fluid rounded-3 cart-img me-3" style=""
+                                                          alt="Товар в корзине"></a>
+                                        <div class="d-flex flex-column justify-content-start cart-desc">
+                                            <a href="#" class="text-decoration-none color-font-grey"><p
+                                                    class="fs-5 fw-bold">Наполеон с ягодами </p></a>
+                                            <p class="fs-6 color-font-pink"> 650 г </p>
+                                            <p class="fs-6"> Категория: торт </p>
+                                        </div>
+                                    </div>
 
-                        <div class="history-orders">
-                            <div class="cart-item d-flex justify-content-between mb-3">
-                                <div class="d-flex">
-                                    <a href="#"> <img src="{{asset('main/img/cake1.jpg')}}"
-                                                                         class="img-fluid rounded-3 cart-img me-3" style=""
-                                                                         alt="Товар в корзине"></a>
-                                    <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="#" class="text-decoration-none color-font-grey"><p
-                                                class="fs-5 fw-bold">Наполеон с ягодами </p></a>
-                                        <p class="fs-6 color-font-pink"> 650 г </p>
-                                        <p class="fs-6"> Категория: торт </p>
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> 2 шт. </p>
+                                        <p class="fs-6 my-auto me-2">х</p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> Сумма: </p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
                                     </div>
                                 </div>
 
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> 2 шт. </p>
-                                    <p class="fs-6 my-auto me-2">х</p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
-                                </div>
+                                <hr class="hr-line mx-5">
 
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> Сумма: </p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
-                                </div>
-                            </div>
+                                <div class="cart-item d-flex justify-content-between mb-3">
+                                    <div class="d-flex">
+                                        <a href="#"> <img src="{{asset('main/img/cake2.jpeg')}}"
+                                                          class="img-fluid rounded-3 cart-img me-3" style=""
+                                                          alt="Товар в корзине"></a>
+                                        <div class="d-flex flex-column justify-content-start cart-desc">
+                                            <a href="#" class="text-decoration-none color-font-grey"><p
+                                                    class="fs-5 fw-bold">Наполеон с ягодами </p></a>
+                                            <p class="fs-6 color-font-pink"> 650 г </p>
+                                            <p class="fs-6"> Категория: торт </p>
+                                        </div>
+                                    </div>
 
-                            <hr class="hr-line mx-5">
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> 2 шт. </p>
+                                        <p class="fs-6 my-auto me-2">х</p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
+                                    </div>
 
-                            <div class="cart-item d-flex justify-content-between mb-3">
-                                <div class="d-flex">
-                                    <a href="#"> <img src="{{asset('main/img/cake2.jpeg')}}"
-                                                                         class="img-fluid rounded-3 cart-img me-3" style=""
-                                                                         alt="Товар в корзине"></a>
-                                    <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="#" class="text-decoration-none color-font-grey"><p
-                                                class="fs-5 fw-bold">Наполеон с ягодами </p></a>
-                                        <p class="fs-6 color-font-pink"> 650 г </p>
-                                        <p class="fs-6"> Категория: торт </p>
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> Сумма: </p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
                                     </div>
                                 </div>
 
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> 2 шт. </p>
-                                    <p class="fs-6 my-auto me-2">х</p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
-                                </div>
+                                <hr class="hr-line mx-5">
 
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> Сумма: </p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
-                                </div>
-                            </div>
-
-                            <hr class="hr-line mx-5">
-
-                            <div class="cart-item d-flex justify-content-between mb-3">
-                                <div class="d-flex">
-                                    <a href="#"> <img src="{{asset('main/img/cake3.png')}}"
-                                                                         class="img-fluid rounded-3 cart-img me-3" style=""
-                                                                         alt="Товар в корзине"></a>
-                                    <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="#}" class="text-decoration-none color-font-grey"><p
-                                                class="fs-5 fw-bold">Наполеон с ягодами </p></a>
-                                        <p class="fs-6 color-font-pink"> 650 г </p>
-                                        <p class="fs-6"> Категория: торт </p>
+                                <div class="cart-item d-flex justify-content-between mb-3">
+                                    <div class="d-flex">
+                                        <a href="#"> <img src="{{asset('main/img/cake3.png')}}"
+                                                          class="img-fluid rounded-3 cart-img me-3" style=""
+                                                          alt="Товар в корзине"></a>
+                                        <div class="d-flex flex-column justify-content-start cart-desc">
+                                            <a href="#}" class="text-decoration-none color-font-grey"><p
+                                                    class="fs-5 fw-bold">Наполеон с ягодами </p></a>
+                                            <p class="fs-6 color-font-pink"> 650 г </p>
+                                            <p class="fs-6"> Категория: торт </p>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> 2 шт. </p>
-                                    <p class="fs-6 my-auto me-2">х</p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
-                                </div>
-
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> Сумма: </p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="bg-white my-rounded shadow-sm p-4 user-order">
-                        <div class="temp-div"></div>
-                        <div class="mb-5">
-                            <div class="d-flex mb-2 justify-content-between">
-                                <h3 class="fw-bold">Заказ №45876867853 от 12.07.23 </h3>
-                                <p class="fs-5 my-auto"><i class="fa-solid fa-circle fa-xs"
-                                                           style="color: #83BF91; padding-right: 10px;"></i>Выдано</p>
-                            </div>
-
-                            <p class="fs-5 color-font-pink">Сумма: 6 000 руб. </p>
-                        </div>
-
-                        <div class="history-orders">
-
-                            <div class="cart-item d-flex justify-content-between mb-3">
-                                <div class="d-flex">
-                                    <a href="#"> <img src="{{asset('main/img/cake2.jpeg')}}"
-                                                                         class="img-fluid rounded-3 cart-img me-3" style=""
-                                                                         alt="Товар в корзине"></a>
-                                    <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="#" class="text-decoration-none color-font-grey"><p
-                                                class="fs-5 fw-bold">Наполеон с ягодами </p></a>
-                                        <p class="fs-6 color-font-pink"> 650 г </p>
-                                        <p class="fs-6"> Категория: торт </p>
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> 2 шт. </p>
+                                        <p class="fs-6 my-auto me-2">х</p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
                                     </div>
-                                </div>
 
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> 2 шт. </p>
-                                    <p class="fs-6 my-auto me-2">х</p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
-                                </div>
-
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> Сумма: </p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
-                                </div>
-                            </div>
-
-                            <hr class="hr-line mx-5">
-
-                            <div class="cart-item d-flex justify-content-between mb-3">
-                                <div class="d-flex">
-                                    <a href="#"> <img src="{{asset('main/img/cake3.png')}}"
-                                                                         class="img-fluid rounded-3 cart-img me-3" style=""
-                                                                         alt="Товар в корзине"></a>
-                                    <div class="d-flex flex-column justify-content-start cart-desc">
-                                        <a href="#" class="text-decoration-none color-font-grey"><p
-                                                class="fs-5 fw-bold">Наполеон с ягодами </p></a>
-                                        <p class="fs-6 color-font-pink"> 650 г </p>
-                                        <p class="fs-6"> Категория: торт </p>
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> Сумма: </p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
                                     </div>
-                                </div>
-
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> 2 шт. </p>
-                                    <p class="fs-6 my-auto me-2">х</p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
-                                </div>
-
-                                <div class="d-flex">
-                                    <p class="fs-6 my-auto me-2"> Сумма: </p>
-                                    <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="bg-white my-rounded shadow-sm p-4 user-order">
+                            <div class="temp-div"></div>
+                            <div class="mb-5">
+                                <div class="d-flex mb-2 justify-content-between">
+                                    <h3 class="fw-bold">Заказ №45876867853 от 12.07.23 </h3>
+                                    <p class="fs-5 my-auto"><i class="fa-solid fa-circle fa-xs"
+                                                               style="color: #83BF91; padding-right: 10px;"></i>Выдано</p>
+                                </div>
+
+                                <p class="fs-5 color-font-pink">Сумма: 6 000 руб. </p>
+                            </div>
+
+                            <div class="history-orders">
+
+                                <div class="cart-item d-flex justify-content-between mb-3">
+                                    <div class="d-flex">
+                                        <a href="#"> <img src="{{asset('main/img/cake2.jpeg')}}"
+                                                          class="img-fluid rounded-3 cart-img me-3" style=""
+                                                          alt="Товар в корзине"></a>
+                                        <div class="d-flex flex-column justify-content-start cart-desc">
+                                            <a href="#" class="text-decoration-none color-font-grey"><p
+                                                    class="fs-5 fw-bold">Наполеон с ягодами </p></a>
+                                            <p class="fs-6 color-font-pink"> 650 г </p>
+                                            <p class="fs-6"> Категория: торт </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> 2 шт. </p>
+                                        <p class="fs-6 my-auto me-2">х</p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> Сумма: </p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
+                                    </div>
+                                </div>
+
+                                <hr class="hr-line mx-5">
+
+                                <div class="cart-item d-flex justify-content-between mb-3">
+                                    <div class="d-flex">
+                                        <a href="#"> <img src="{{asset('main/img/cake3.png')}}"
+                                                          class="img-fluid rounded-3 cart-img me-3" style=""
+                                                          alt="Товар в корзине"></a>
+                                        <div class="d-flex flex-column justify-content-start cart-desc">
+                                            <a href="#" class="text-decoration-none color-font-grey"><p
+                                                    class="fs-5 fw-bold">Наполеон с ягодами </p></a>
+                                            <p class="fs-6 color-font-pink"> 650 г </p>
+                                            <p class="fs-6"> Категория: торт </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> 2 шт. </p>
+                                        <p class="fs-6 my-auto me-2">х</p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">750 ₽</h5>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <p class="fs-6 my-auto me-2"> Сумма: </p>
+                                        <h5 class="color-font-pink fs-6 my-auto fw-bold">1500 ₽</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
         </div>
     </section>
 
     <x-flash/>
+
+    @if ($errors->any())
+        <script defer src="{{asset('main/js/profile.js')}}"></script>--}}
+    @endif
 
 @endsection
 

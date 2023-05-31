@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Register;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Symfony\Component\Console\Input\Input;
 
 class RegisterStoreRequest extends FormRequest
 {

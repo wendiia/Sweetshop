@@ -29,8 +29,6 @@ class LoginUpdateRequest extends FormRequest
             'middle_name' => 'max:50',
             'phone' => ['required','string', 'size:16', Rule::notIn(User::where('id', '<>', auth()->user()->id)->pluck('phone'))],
             'email' => ['required','email', 'max:100', Rule::notIn(User::where('email', '<>', auth()->user()->email)->pluck('email'))],
-//            'password' => 'required|min:3|max:255',  // поменять min:7
-//            'passwordRepeat' => 'required|same:password',
         ];
     }
 }
