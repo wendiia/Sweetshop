@@ -2,58 +2,59 @@
 
 @section('content')
 
-    <!-- Слайдер -->
-    <section class="section_slider">
-        <div id="carouselExampleDark" class="carousel carousel-dark slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000">
-                    <img src="{{asset('main/img/slider_1.png')}}" class="d-block slider-img img-fluid"
-                         alt="Слайдер моти">
-                    <!-- Текст для слайдера -->
-                    <div class="slider-desc">
-                        <div class="d-flex align-items-center">
-                            <div class="line-discount "></div>
-                            <div class="discount ">20% на первый заказ</div>
-                        </div>
-                        <h1 class="text-uppercase  my-3 display-2 slider-title ">Большой выбор</h1>
-                        <p class="slider-subtitle ">Изумительные вкусняшки на любой вкус</p>
-                        <a class="btn btn-slider" href="{{route('products.index')}}"> Продукция </a>
-                    </div>
+    @if(!$banners->isEmpty())
+        <!-- Слайдер -->
+        <section class="section_slider">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide">
+                <div class="carousel-indicators">
+                    @foreach($banners as $banner)
+                        <button type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide-to="{{$banner->id - 1}}" class="{{ $banner->id == 1  ? 'active' : '' }}"
+                                aria-current="true" aria-label="Slide {{$banner->id - 1}}"></button>
+                    @endforeach
                 </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="{{asset('main/img/slider_2.png')}}" class="d-block w-100" alt="Слайдер блинчик">
-                    <div class="slider-desc">
-                        <div class="d-flex align-items-center">
-                            <div class="line-discount"></div>
-                            <div class="discount">20% на первый заказ</div>
-                        </div>
-                        <h1 class="text-uppercase slider-title display-2 my-3">Низкие цены</h1>
-                        <p class="slider-subtitle">Обязательно попробоуйте наши блинчики</p>
-                        <a class="btn btn-slider" href="{{route('products.index')}}"> Продукция </a>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Предыдущий</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Следующий</span>
-            </button>
-        </div>
-    </section>
+                <div class="carousel-inner">
 
+                    @foreach($banners as $banner)
+                        <div class="carousel-item {{ $banner->id == 1 ? 'active' : '' }}" data-bs-interval="10000">
+                            <img src="{{asset($banner->photo)}}" class="d-block slider-img img-fluid"
+                                 alt="Слайдер моти">
+                            <div class="slider-desc">
+                                <div class="d-flex align-items-center">
+                                    <div class="line-discount "></div>
+                                    <div class="discount "> {{ $banner->discount }} </div>
+                                </div>
+                                <h1 class="text-uppercase  my-3 display-2 slider-title "> {{ $banner->title }} </h1>
+                                <p class="slider-subtitle "> {{ $banner->description }} </p>
+                                <a class="btn btn-slider" href="{{route('products.index')}}"> Продукция </a>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Предыдущий</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Следующий</span>
+                </button>
+            </div>
+        </section>
+    @else
+        {{--  Если нет баннеров --}}
+        <div class="bg-image-banner-default">
+            <div class="d-flex text-center justify-content-center align-items-center h-100"
+                 style="flex-direction: column">
+                <h3 class="text-white">Заказав один раз, захочется еще...</h3>
+                <h1 class="text-white fw-bold display-1 mb-5">Мини-кондитерская "Еще кусочек"</h1>
+                <a class="btn btn-order" href="{{route('products.index')}}"> Наша продукция </a>
+            </div>
+        </div>
+    @endif
 
     <!-- Преимущества -->
     <section class="section_services">

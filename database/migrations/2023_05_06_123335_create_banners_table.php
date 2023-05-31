@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title', 50);
             $table->mediumText('description')->nullable();
+            $table->string('discount')->nullable();
             $table->string('photo');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->softDeletes();

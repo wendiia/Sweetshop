@@ -760,3 +760,16 @@ ul.leaders span + span {
     width:100%;
 }
 /**/
+
+.bg-image-banner-default {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/none-banners2.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 95vh;
+}
+
+.img-banner-default {
+    filter: brightness(80%);
+}

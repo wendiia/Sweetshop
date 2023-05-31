@@ -15,16 +15,18 @@ class BannerSeeder extends Seeder
     {
         DB::table('banners')->insert([
             [
-                'title'=> fake()->word(),
+                'title'=> 'Большой выбор',
                 'photo'=> 'main/img/slider_1.png',
                 'description'=> 'Изумительные вкусняшки на любой вкус',
+                'discount' => 'В день вашего рождения 15% на блинчики',
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],
             [
-                'title'=> fake()->word(),
+                'title'=> 'Низкие цены',
                 'photo'=> 'main/img/slider_2.png',
                 'description'=> 'Наши вафли вас удивят!',
+                'discount' => '20% на первый заказ',
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],
