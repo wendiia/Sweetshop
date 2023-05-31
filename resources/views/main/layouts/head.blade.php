@@ -17,9 +17,6 @@
 {{--<link rel="stylesheet" href="{{secure_asset('main/css/style.css')}}?v=<?=time()?>">--}}
 
 
-
-
-
 <link rel="stylesheet" href="{{asset('main/css/bootstrap.min.css')}}?v=<?=time()?>">
 <link rel="stylesheet" href="{{asset('main/css/style.css')}}?v=<?=time()?>">
 

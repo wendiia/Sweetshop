@@ -257,13 +257,7 @@ header a {
 .card_service {
     padding: 40px 20px;
     border-radius: 10px;
-    transition: all 0.3s ease-in-out;
 }
-
-.card_service:hover {
-    background: #FFF3F3;
-}
-
 
 .img-cake-about {
     width: 350px;
@@ -392,6 +386,11 @@ header a {
 .btn-all-products {
     font-size: 24px;
     padding: 5px 25px;
+}
+
+
+.index-registration {
+    padding: 100px 0;
 }
 
 .btn-registration {
@@ -773,3 +772,5 @@ ul.leaders span + span {
 .img-banner-default {
     filter: brightness(80%);
 }
+
+
