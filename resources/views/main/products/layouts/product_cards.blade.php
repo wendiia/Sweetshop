@@ -38,7 +38,9 @@
                                 <span
                                     class="card-weight fs-5 color-font-pink"> {{$product->weight}} г </span>
                             </p>
-                            <button class="btn btn-product shadow-sm fs-" type="button"> В корзину</button>
+
+                            <button id="{{$product->id}}" class="btn btn-product shadow-sm fs-4" type="button"> В корзину </button>
+
                         </div>
                     </div>
                 </div>

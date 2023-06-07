@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Register\RegisterStoreRequest;
 
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -22,6 +23,8 @@ class RegisterController extends Controller
         }
 
         $user = User::create($request->all());
+        Cart::where('session', '=', session('session_id'))->update(['user_id' => $user->id]);
+
         auth()->login($user);
         return redirect('/')->with('success', 'Ваш аккаунт был создан');
     }

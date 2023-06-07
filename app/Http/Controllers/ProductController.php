@@ -16,6 +16,8 @@ class ProductController extends Controller
      */
     public function index(ProductIndexRequest $request)
     {
+//        dump(session()->all());
+
         $products = Product::where('status', '=', 'active')
             ->filter($request->all())->paginate(15)->withQueryString();
 

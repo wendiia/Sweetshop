@@ -58,7 +58,7 @@
                     </a>
                 @endauth
 
-                <a class="a-nav" href="{{route('cart')}}"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30"
+                <a class="a-nav" href="{{route('cart.index')}}"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30"
                                                  class="me-2" alt="Cart"></a>
             </div>
         </nav>

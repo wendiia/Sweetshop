@@ -39,5 +39,35 @@
 
 @section('custom_script')
     <script src="{{asset('main/js/products.js')}}?v=<?=time()?>"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+
+        // console.log("start");
+
+        $(document).ready(function () {
+            $('.btn-product').click(function () {
+                // console.log("ok");
+                addToCart(this.id)
+            })
+        })
+
+        function addToCart(product_id) {
+            $.ajax({
+                url: "{{route('cart.addToCart')}}",
+                type: "POST",
+                data: {
+                    product_id: product_id
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (data) => {
+                    console.log(data)
+                },
+            })
+        }
+        // console.log("end");
+    </script>
+
 @endsection
 

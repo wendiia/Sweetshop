@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\Session;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,15 +52,31 @@ use Illuminate\Support\Facades\Route;
 
 
 // Main
-Route::get('/', [IndexController::class, 'index'])->name('index');
-Route::view('/about', 'main.about')->name('about');
-Route::view('/cart', 'main.cart')->name('cart');
-Route::view('/profile', 'main.profile')->name('profile');
-
-Route::resource('categories', CategoryController::class);
-Route::resource('products', ProductController::class);
+//
+Route::middleware(Session::class)->group(function () {
 
 
+
+    Route::get('/', [IndexController::class, 'index'])->name('index');
+    Route::view('/about', 'main.about')->name('about');
+    Route::view('/profile', 'main.profile')->name('profile');
+
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('cart', CartController::class);
+
+
+
+    // test
+
+    //Route::get('cart',[CartController::class,'index'])->name('cart.index');
+
+
+
+});
+
+Route::post('add-to-cart',[CartController::class,'addToCart'])->name('cart.addToCart');
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest')->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest')->name('register.store');
 
@@ -65,5 +84,3 @@ Route::get('login', [LoginController::class, 'create'])->middleware('guest')->na
 Route::post('login', [LoginController::class, 'store'])->middleware('guest')->name('login.store');
 Route::post('login/update', [LoginController::class, 'update'])->middleware('auth')->name('login.update');
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->name('login.destroy');
-
-
