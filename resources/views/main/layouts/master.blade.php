@@ -8,6 +8,8 @@
     <div class="wrapper">
         @include('main.layouts.nav')
 
+        {{dump(request()->cookie('uuid'))}}
+
         @yield('content')
 
         @include('main.layouts.footer')

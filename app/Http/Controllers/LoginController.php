@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Login\LoginStoreRequest;
 use App\Http\Requests\Login\LoginUpdateRequest;
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -25,6 +26,17 @@ class LoginController extends Controller
         }
 
         $request->session()->regenerate();
+
+//        if (Cart::where('user_id', '=', auth()->user()->id)->exists()) {
+//            $c = Cart::where('session', '=', session('session_id'))->where('user_id', '=', Null)->first();
+//            dd($c);
+//            Cart::where('session', '=', session('session_id'))->where('user_id', '=', Null)->forceDelete();
+//            Cart::where('user_id', '=', auth()->user()->id)->update(['session' =>  session('session_id')]);
+//        }
+//        else {
+//            Cart::where('session', '=', session('session_id'))->update(['user_id' => auth()->user()->id]);
+//        }
+
         return redirect('/')->with('success', 'Вы вошли в аккаунт');
     }
 

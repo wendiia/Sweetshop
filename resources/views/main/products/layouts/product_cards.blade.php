@@ -39,7 +39,13 @@
                                     class="card-weight fs-5 color-font-pink"> {{$product->weight}} г </span>
                             </p>
 
-                            <button id="{{$product->id}}" class="btn btn-product shadow-sm fs-4" type="button"> В корзину </button>
+                            <form action="{{ route('cart.addToCart', ['id' => $product->id]) }}" method="post"
+                                  class="form-inline d-flex">
+                                @csrf
+                                <input id="input-quantity" value="1" name="quantity"
+                                       class="form-control product-quantity" placeholder="0" type="number">
+                                <button type="submit" class="btn btn-success">В корзину</button>
+                            </form>
 
                         </div>
                     </div>

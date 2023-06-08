@@ -52,7 +52,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Main
-//
+
 Route::middleware(Session::class)->group(function () {
 
 
@@ -66,17 +66,7 @@ Route::middleware(Session::class)->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('cart', CartController::class);
 
-
-
-    // test
-
-    //Route::get('cart',[CartController::class,'index'])->name('cart.index');
-
-
-
 });
-
-Route::post('add-to-cart',[CartController::class,'addToCart'])->name('cart.addToCart');
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest')->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest')->name('register.store');
 
@@ -84,3 +74,7 @@ Route::get('login', [LoginController::class, 'create'])->middleware('guest')->na
 Route::post('login', [LoginController::class, 'store'])->middleware('guest')->name('login.store');
 Route::post('login/update', [LoginController::class, 'update'])->middleware('auth')->name('login.update');
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->name('login.destroy');
+
+
+//Route::post('add-to-cart',[CartController::class,'addToCart'])->name('cart.addToCart');
+Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->where('id', '[0-9]+')->name('cart.addToCart');

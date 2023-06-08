@@ -34,14 +34,11 @@ class Cart extends Model
     use HasFactory;
     use SoftDeletes;
 
-//    protected $fillable = ['quantity'];
-
     protected $guarded = [];
 
     public function products() {
         return $this->belongsToMany(Product::class)
             ->withPivot('quantity', 'updated_at', 'created_at', 'deleted_at')
-//            ->as('cart_product')
             ->withTimestamps();
     }
 }

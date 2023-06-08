@@ -50,6 +50,11 @@ class Product extends Model
         'status',
     ];
 
+    public function carts() {
+        return $this->belongsToMany(Cart::class)
+            ->withPivot('quantity', 'updated_at', 'created_at', 'deleted_at')
+            ->withTimestamps();
+    }
 
     public function special_ingredients() {
         return $this->belongsToMany(SpecialIngredient::class)
