@@ -34,7 +34,6 @@ function fillColor(){
 
 //  show all special_ingredients
 
-
 function showAll() {
     let btnShowAll = document.getElementById("btnShowAll");
 

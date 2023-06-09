@@ -23,11 +23,11 @@
 
                 <div class="form-row d-flex justify-content-between">
                     <div class="form-group col-md-6 pe-2">
-                        <input id="range1" class="form-control my-form-control ps-2 " placeholder="От"
+                        <input id="range1" class="form-control my-form-control ps-2" min="0" placeholder="От"
                                type="number">
                     </div>
                     <div class="form-group text-right col-md-6 ps-2">
-                        <input id="range2" class="form-control my-form-control ps-2" placeholder="До"
+                        <input id="range2" class="form-control my-form-control ps-2"  min="0" placeholder="До"
                                type="number">
                     </div>
                 </div>
