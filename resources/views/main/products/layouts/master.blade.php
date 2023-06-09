@@ -31,39 +31,57 @@
 
             <div class="row">
                 @include('main.products.layouts.filters')
+
                 @include('main.products.layouts.product_cards')
             </div>
         </section>
     </div>
+    <div class="flash-success"></div>
 @endsection
 
 @section('custom_script')
     <script src="{{asset('main/js/products.js')}}?v=<?=time()?>"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-{{--    <script>--}}
+    <script>
 
-{{--        $(document).ready(function () {--}}
-{{--            $('.btn-product').click(function () {--}}
-{{--                addToCart(this.id)--}}
-{{--            })--}}
-{{--        })--}}
+        $(document).ready(function () {
+            $('.btn-product').click(function () {
+                let quantity = $('#input-quantity-' + this.id).val()
+                addToCart(this.id, quantity)
+            })
+        })
 
-{{--        function addToCart(product_id) {--}}
-{{--            $.ajax({--}}
-{{--                url: "{{route('cart.addToCart')}}",--}}
-{{--                type: "POST",--}}
-{{--                data: {--}}
-{{--                    product_id: product_id--}}
-{{--                },--}}
-{{--                headers: {--}}
-{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--                },--}}
-{{--                success: (data) => {--}}
-{{--                    console.log(data)--}}
-{{--                },--}}
-{{--            })--}}
-{{--        }--}}
-{{--    </script>--}}
+        function addToCart(product_id, quantity) {
+            $.ajax({
+                url: "{{route('cart.addToCart')}}",
+                type: "POST",
+                data: {
+                    product_id: product_id,
+                    quantity: quantity,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: () => {
+                    flushMessage("Товар был успешно добавлен в корзину!")
+                },
+            })
+        }
+
+        function flushMessage (message) {
+            $(".flash-success").html(
+                `<div x-data="{show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
+                    class="row justify-content-end me-2 toast-fixed">
+                    <div class="col-3 shadow-lg bg-white my-rounded  mb-4 py-3 d-flex align-center">
+                        <p class="fs-5 mx-auto color-font-pink my-auto">
+                            ${message}
+                        </p>
+                    </div>
+                </div>`
+            )
+        }
+
+    </script>
 
 @endsection
 

@@ -76,5 +76,10 @@ Route::post('login/update', [LoginController::class, 'update'])->middleware('aut
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 
 
-//Route::post('add-to-cart',[CartController::class,'addToCart'])->name('cart.addToCart');
-Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->where('id', '[0-9]+')->name('cart.addToCart');
+Route::post('add-to-cart',[CartController::class,'addToCart'])->name('cart.addToCart');
+Route::post('delete-all-cart',[CartController::class,'deleteAllCart'])->name('cart.deleteAllCart');
+Route::post('delete-product',[CartController::class,'deleteProduct'])->name('cart.deleteProduct');
+//Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->where('id', '[0-9]+')->name('cart.addToCart');
+
+
+//Route::get('test-delete',[CartController::class,'testDelete'])->name('cart.testDelete');

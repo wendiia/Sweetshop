@@ -60,19 +60,19 @@
                 </div>
             @endguest
 
-            <div class="row mb-3">
-                <div class="col-3">
-                    <button class="color-font-pink fs-5 btn-none ">Удалить все товары</button>
-                </div>
-            </div>
-
             @if (isset($products))
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <button id="cartDeleteAll" class="color-font-pink fs-5 btn-none">Удалить все товары</button>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-8">
-                        <div class="bg-white my-rounded p-4">
+                        <div class="bg-white my-rounded p-4 cart-products">
 
                             @foreach($products as $product)
-                                <div class="position-relative">
+                                <div id="cart-product-{{$product->id}}" class="position-relative">
 
                                     <div class="position-absolute cart-product-counter">
                                         <div class="btns-count d-flex">
@@ -99,12 +99,10 @@
                                                         class="fs-5 fw-bold"> {{$product->title}} </p></a>
                                                 <p class="fs-6 color-font-pink"> {{$product->weight}} г</p>
                                                 <p class="fs-6"> Категория: {{$product->category->title}} </p>
-                                                <button class="color-font-pink fs-6 btn-none me-auto p-0">Удалить</button>
+
+                                                <button id="{{$product->id}}" class="color-font-pink fs-6 btn-none me-auto p-0 btn-cart-del">Удалить</button>
                                             </div>
                                         </div>
-
-
-
                                         <h5 class="color-font-pink fs-5 my-auto fw-bold"> {{$product->price / 100 * $product->pivot->quantity}} ₽</h5>
                                     </div>
 
@@ -157,4 +155,67 @@
         </div>
     </section>
 
+    <div class="flash-success"></div>
+
+@endsection
+
+@section('custom_script')
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#cartDeleteAll').click(function () {
+                DeleteAll()
+            })
+
+            $('.btn-cart-del').click(function () {
+                ProductDelete(this.id)
+            })
+        })
+
+        function ProductDelete(product_id) {
+            $.ajax({
+                url: "{{route('cart.deleteProduct')}}",
+                type: "POST",
+                data: {
+                    product_id: product_id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (data) => {
+                    // $("#cart-product-" + product_id).hide()
+                    flushMessage("Товар удален")
+                },
+            })
+        }
+
+        function DeleteAll() {
+            $.ajax({
+                url: "{{route('cart.deleteAllCart')}}",
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: () => {
+                    $(".cart-products").hide()
+                    flushMessage("Корзина очищена!")
+                },
+            })
+        }
+
+        function flushMessage (message) {
+            $(".flash-success").html(
+                `<div x-data="{show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
+                    class="row justify-content-end me-2 toast-fixed">
+                    <div class="col-3 shadow-lg bg-white my-rounded  mb-4 py-3 d-flex align-center">
+                        <p class="fs-5 mx-auto color-font-pink my-auto">
+                            ${message}
+                        </p>
+                    </div>
+                </div>`
+            )
+        }
+
+    </script>
 @endsection

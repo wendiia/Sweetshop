@@ -19,6 +19,7 @@
     <hr class="hr-line">
 
     <div class="product-cards">
+
         <div class="row row-cols-1 row-cols-md-3 px-4 g-4 mb-5 ">
             @foreach($products as $product)
                 <div class="col">
@@ -39,16 +40,12 @@
                                     class="card-weight fs-5 color-font-pink"> {{$product->weight}} г </span>
                             </p>
 
-                            <form action="{{ route('cart.addToCart', ['id' => $product->id]) }}" method="post"
-                                  class="form-inline d-flex">
-                                @csrf
-                                <input id="input-quantity" value="1" name="quantity"
+
+                            <div class="d-flex">
+                                <input id="input-quantity-{{$product->id}}" value="1" name="quantity" min="1"
                                        class="form-control product-quantity" placeholder="0" type="number">
-{{--                                <button type="submit" class="btn btn-success">В корзину</button>--}}
-                                <button type="submit" class="btn btn-success">В корзину</button>
-
-                            </form>
-
+                                <button type="submit" id="{{$product->id}}" class="btn btn-product">В корзину</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,6 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-
         if (auth()->check()) {
             $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
         }
@@ -30,17 +29,19 @@ class CartController extends Controller
 
         return view('main.cart')->with('emptyCart', ' К сожалению, ваша корзина пуста, но вы можете это исправить!');
     }
-
-    public function addToCart(Request $request, $id)
+//    public function addToCart(Request $request, $product_id)
+    public function addToCart(Request $request)
     {
         $session = $request->cookie('uuid');
-        $quantity = $request->input('quantity') ?? 1;
+//        $quantity = $request->input('quantity') ?? 1;
+        $quantity = $request->quantity;
+        $product_id = $request->product_id;
 
         if (auth()->check()) {
             $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
         }
         else {
-            $cart = Cart::where('session', '=', $session)->first();
+            $cart = Cart::where('session', '=', $session)->orderByDesc('updated_at')->first();
         }
 
         if (empty($cart)) {
@@ -48,14 +49,14 @@ class CartController extends Controller
         } else {
             $cart->touch();
         }
-        if ($cart->products->contains($id)) {
+        if ($cart->products->contains($product_id)) {
             // если такой товар есть в корзине — изменяем кол-во
-            $pivotRow = $cart->products()->where('product_id', $id)->first()->pivot;
+            $pivotRow = $cart->products()->where('product_id', $product_id)->first()->pivot;
             $quantity = $pivotRow->quantity + $quantity;
             $pivotRow->update(['quantity' => $quantity]);
         } else {
             // если такого товара нет в корзине — добавляем его
-            $cart->products()->attach($id, ['quantity' => $quantity]);
+            $cart->products()->attach($product_id, ['quantity' => $quantity]);
         }
 
         // обновляем общее количество добавленных товароы в корзину
@@ -64,7 +65,33 @@ class CartController extends Controller
         $cart->save();
 
         // выполняем редирект обратно на страницу, где была нажата кнопка «В корзину»
-        return back();
+//        return back();
+        return response()->json();
+//        return response()->json(['product_id' => $request->product_id, 'quantity' => $request->quantity]);
+    }
+
+    public function deleteAllCart(Request $request)
+    {
+        if (auth()->check()) {
+            $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
+        }
+        else {
+            $cart = Cart::where('session', '=', $request->cookie('uuid'))->orderByDesc('updated_at')->first();
+        }
+        $cart->products()->detach();
+        return response()->json();
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        if (auth()->check()) {
+            $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
+        }
+        else {
+            $cart = Cart::where('session', '=', $request->cookie('uuid'))->orderByDesc('updated_at')->first();
+        }
+        $cart->products()->detach($request->product_id);
+        return response()->json();
     }
 
     /**
@@ -107,11 +134,4 @@ class CartController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
