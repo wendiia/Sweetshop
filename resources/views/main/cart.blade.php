@@ -42,21 +42,23 @@
             <div class="row mb-3">
                 <div class="d-flex">
                     <h1 class="display-5 pe-1">Корзина</h1>
-                    <p class="fs-4"> 5</p>
+                    <p class="fs-4"> {{$cart->quantity ?? 0}} </p>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <div class="bg-white my-rounded px-4 mb-4 py-3 d-flex justify-content-between align-center ">
-                        <p class="fs-6 my-auto">
-                            <i class="fa-solid fa-circle-exclamation fa-xl pe-3" style="color: #fc9093;"></i>
-                            Авторизуйтесь или зарегистрируйтесь, чтобы оформить заказ
-                        </p>
-                        <button class="btn shadow-sm fs-6 px-5 py-1" type="button"> Войти</button>
+            @guest
+                <div class="row">
+                    <div class="col">
+                        <div class="bg-white my-rounded px-4 mb-4 py-3 d-flex justify-content-between align-center ">
+                            <p class="fs-6 my-auto">
+                                <i class="fa-solid fa-circle-exclamation fa-xl pe-3" style="color: #fc9093;"></i>
+                                Авторизуйтесь или зарегистрируйтесь, чтобы оформить заказ
+                            </p>
+                            <a class="btn shadow-sm fs-6 px-5 py-1" href="{{route('login.store')}}"> Войти </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endguest
 
             <div class="row mb-3">
                 <div class="col-3">
@@ -64,126 +66,94 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-8">
-                    <div class="bg-white my-rounded p-4">
-                        <div class="cart-item d-flex justify-content-between">
+            @if (isset($products))
+                <div class="row">
+                    <div class="col-8">
+                        <div class="bg-white my-rounded p-4">
 
-                            <div class="d-flex">
-                                <a href="#"> <img src="{{asset('main/img/cake1.jpg')}}"
-                                                                     class="img-fluid rounded-3 cart-img me-3" style=""
-                                                                     alt="Товар в корзине"></a>
-                                <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <a href="#" class="text-decoration-none color-font-grey"><p
-                                            class="fs-5 fw-bold">Наполеон с ягодами </p></a>
-                                    <p class="fs-6 color-font-pink"> 650 г </p>
-                                    <p class="fs-6"> Категория: торт </p>
-                                    <button class="color-font-pink fs-6 btn-none me-auto p-0">Удалить</button>
+                            @foreach($products as $product)
+                                <div class="position-relative">
+
+                                    <div class="position-absolute cart-product-counter">
+                                        <div class="btns-count d-flex">
+                                            <button class="btn my-auto me-2"><i class="fa-solid fa-minus fa-xs"
+                                                                                style="color: #ffffff;"></i>
+                                            </button>
+                                            <p class="fs-6 my-auto me-2"> {{$product->pivot->quantity}} шт. </p>
+                                            <button class="btn my-auto"><i class="fa-solid fa-plus fa-xs"
+                                                                           style="color: #ffffff;"></i>
+                                            </button>
+                                        </div>
+
+                                        <p class="fs-6 quantity-cost"> шт. {{$product->price / 100}} ₽ </p>
+                                    </div>
+
+                                    <div class="cart-item d-flex justify-content-between align-items-center">
+
+                                        <div class="d-flex">
+                                            <a href="#"> <img src="{{asset($product->photo)}}"
+                                                              class="img-fluid rounded-3 cart-img me-3" style=""
+                                                              alt="Товар в корзине"></a>
+                                            <div class="d-flex flex-column justify-content-center cart-desc">
+                                                <a href="#" class="text-decoration-none color-font-grey"><p
+                                                        class="fs-5 fw-bold"> {{$product->title}} </p></a>
+                                                <p class="fs-6 color-font-pink"> {{$product->weight}} г</p>
+                                                <p class="fs-6"> Категория: {{$product->category->title}} </p>
+                                                <button class="color-font-pink fs-6 btn-none me-auto p-0">Удалить</button>
+                                            </div>
+                                        </div>
+
+
+
+                                        <h5 class="color-font-pink fs-5 my-auto fw-bold"> {{$product->price / 100 * $product->pivot->quantity}} ₽</h5>
+                                    </div>
+
+                                    <hr class="hr-line mx-5">
                                 </div>
-                            </div>
+                            @endforeach
 
-                            <div class="btns-count d-flex">
-                                <button class="btn my-auto me-2"><i class="fa-solid fa-plus fa-xs"
-                                                                    style="color: #ffffff;"></i>
-                                </button>
-                                <p class="fs-6 my-auto me-2"> 2 шт. </p>
-                                <button class="btn my-auto"><i class="fa-solid fa-minus fa-xs"
-                                                               style="color: #ffffff;"></i>
-                                </button>
-                            </div>
-
-                            <h5 class="color-font-pink fs-5 my-auto fw-bold">1500 ₽</h5>
                         </div>
-
-                        <hr class="hr-line mx-5">
-
-                        <div class="cart-item d-flex justify-content-between">
-
-                            <div class="d-flex">
-                                <a href="#"> <img src="{{asset('main/img/cake2.jpeg')}}"
-                                                                     class="img-fluid rounded-3 cart-img me-3" style=""
-                                                                     alt="Товар в корзине"></a>
-                                <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <a href="#" class="text-decoration-none color-font-grey"><p
-                                            class="fs-5 fw-bold">Наполеон с ягодами </p></a>
-                                    <p class="fs-6 color-font-pink"> 650 г </p>
-                                    <p class="fs-6"> Категория: торт </p>
-                                    <button class="color-font-pink fs-6 btn-none me-auto p-0">Удалить</button>
-                                </div>
-                            </div>
-
-                            <div class="btns-count d-flex">
-                                <button class="btn my-auto me-2"><i class="fa-solid fa-plus fa-xs"
-                                                                    style="color: #ffffff;"></i>
-                                </button>
-                                <p class="fs-6 my-auto me-2"> 2 шт. </p>
-                                <button class="btn my-auto"><i class="fa-solid fa-minus fa-xs"
-                                                               style="color: #ffffff;"></i>
-                                </button>
-                            </div>
-
-                            <h5 class="color-font-pink fs-5 my-auto fw-bold">1500 ₽</h5>
-                        </div>
-
-                        <hr class="hr-line mx-5">
-
-                        <div class="cart-item d-flex justify-content-between">
-
-                            <div class="d-flex">
-                                <a href="#"> <img src="{{asset('main/img/cake3.png')}}"
-                                                                     class="img-fluid rounded-3 cart-img me-3" style=""
-                                                                     alt="Товар в корзине"></a>
-                                <div class="d-flex flex-column justify-content-center cart-desc">
-                                    <a href="#" class="text-decoration-none color-font-grey"><p
-                                            class="fs-5 fw-bold">Наполеон с ягодами </p></a>
-                                    <p class="fs-6 color-font-pink"> 650 г </p>
-                                    <p class="fs-6"> Категория: торт </p>
-                                    <button class="color-font-pink fs-6 btn-none me-auto p-0">Удалить</button>
-                                </div>
-                            </div>
-
-                            <div class="btns-count d-flex">
-                                <button class="btn my-auto me-2"><i class="fa-solid fa-plus fa-xs"
-                                                                    style="color: #ffffff;"></i>
-                                </button>
-                                <p class="fs-6 my-auto me-2"> 2 шт. </p>
-                                <button class="btn my-auto"><i class="fa-solid fa-minus fa-xs"
-                                                               style="color: #ffffff;"></i>
-                                </button>
-                            </div>
-
-                            <h5 class="color-font-pink fs-5 my-auto fw-bold">1500 ₽</h5>
-                        </div>
-
-                        <hr class="hr-line mx-5">
                     </div>
+
+
+                    <div class="col-4">
+                        <div class="bg-white my-rounded p-4">
+                            <h1 class="fs-4 text-center mb-4 fw-bold">Оставить заявку</h1>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="fs-5 pt-0 ps-1" for="date_input"> Желаемая дата выдачи: </label>
+                                    <input type="date" class="form-control my-form-control mb-3" id="date_input" @guest disabled @endguest>
+                                </div>
+
+                                <p class="fs-6 my-auto text-center mb-2">
+                                    Вся информация будет отправлена на почту, когда заказ будет готов, мы с вами свяжемся!
+                                </p>
+
+                                <div class="d-flex justify-content-between mb-2">
+                                    <p class="fs-4 fw-bold my-auto">Общая стоимость:</p>
+                                    <p class="fs-3 color-font-pink fw-bold my-auto "> {{$cart->amount / 100}} ₽</p>
+                                </div>
+
+                                <button type="button" class="btn w-100" data-bs-toggle="modal"
+                                        data-bs-target="#ModalConfirmOrder" @guest disabled @endguest>
+                                    Оформить заказ
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
-
-                <div class="col-4">
-                    <div class="bg-white my-rounded p-4">
-                        <h1 class="fs-4 text-center mb-4 fw-bold">Оставить заявку</h1>
-                        <form>
-                            <div class="mb-3">
-                                <label class="fs-5 pt-0 ps-1" for="date_input"> Желаемая дата выдачи: </label>
-                                <input type="date" class="form-control my-form-control mb-3" id="date_input">
-                            </div>
-
-                            <p class="fs-6 my-auto text-center mb-2">
-                                Вся информация будет отправлена на почту, когда заказ будет готов, мы с вами свяжемся!
+            @else
+                <div class="row">
+                    <div class="col">
+                        <div class="bg-white my-rounded px-4 mb-4 py-3 d-flex justify-content-between align-center ">
+                            <p class="fs-4 my-auto">
+                                {{$emptyCart}}
                             </p>
-
-                            <div class="d-flex justify-content-between mb-2">
-                                <p class="fs-4 fw-bold my-auto">Общая стоимость:</p>
-                                <p class="fs-3 color-font-pink fw-bold my-auto ">1500 ₽</p>
-                            </div>
-
-                            <button type="button" class="btn w-100" data-bs-toggle="modal"
-                                    data-bs-target="#ModalConfirmOrder">Оформить заказ
-                            </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
 

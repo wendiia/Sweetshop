@@ -52,13 +52,13 @@ class Product extends Model
 
     public function carts() {
         return $this->belongsToMany(Cart::class)
-            ->withPivot('quantity', 'updated_at', 'created_at', 'deleted_at')
+            ->withPivot('quantity', 'deleted_at')
             ->withTimestamps();
     }
 
     public function special_ingredients() {
         return $this->belongsToMany(SpecialIngredient::class)
-            ->withPivot('updated_at', 'created_at', 'deleted_at')
+            ->withPivot('deleted_at')
             ->as('product_special_ingredient')
             ->withTimestamps();
     }

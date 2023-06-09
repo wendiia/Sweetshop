@@ -779,3 +779,16 @@ ul.leaders span + span {
     height: 43px;
     margin-right: 20px;
 }
+
+
+.quantity-cost {
+    color: #888888;
+}
+
+.cart-product-counter {
+    height:50px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 55%; bottom: 0; right: 0;
+}
+

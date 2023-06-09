@@ -44,7 +44,9 @@
                                 @csrf
                                 <input id="input-quantity" value="1" name="quantity"
                                        class="form-control product-quantity" placeholder="0" type="number">
+{{--                                <button type="submit" class="btn btn-success">В корзину</button>--}}
                                 <button type="submit" class="btn btn-success">В корзину</button>
+
                             </form>
 
                         </div>

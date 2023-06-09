@@ -32,7 +32,12 @@ class RegisterController extends Controller
             Cart::create(['session' => $session, 'user_id' => $user->id]);
         }
         else { // Если корзина уже создана (без авторизации), то присваиваем только user_id
-            $cart->update(['user_id' => $user->id]);
+            if (empty($cart->user_id)) {
+                $cart->update(['user_id' => $user->id]);
+            }
+            else {
+                Cart::create(['session' => $session, 'user_id' => $user->id]);
+            }
         }
 
         auth()->login($user);

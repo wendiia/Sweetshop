@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -13,32 +14,38 @@ class CartController extends Controller
     public function index(Request $request)
     {
 
-//        Здесь остановилась
+        if (auth()->check()) {
+            $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
+        }
+        else {
+            $cart = Cart::where('session', '=', $request->cookie('uuid'))->orderByDesc('updated_at')->first();
+        }
 
-//        $cart = Cart::where('session', '=', $request->cookie('uuid'))->first();
+        if ($cart->products->count() > 0) {
+            return view('main.cart', [
+                'products' => $cart->products,
+                'cart' => $cart,
+            ]);
+        }
 
-
-//        dd($cart->products->count());
-
-//        if ($cart->products->count() > 0) {
-//            $products = Cart::findOrFail($cart_id)->products;
-//            return view('main.cart', compact('products'));
-//        } else {
-//            abort(404);
-//        }
-
-//        return view('main.cart');
+        return view('main.cart')->with('emptyCart', ' К сожалению, ваша корзина пуста, но вы можете это исправить!');
     }
 
     public function addToCart(Request $request, $id)
     {
         $session = $request->cookie('uuid');
-        $cart = Cart::where('session', '=', $session)->first();
         $quantity = $request->input('quantity') ?? 1;
-        if (empty($cart)) {
-            $cart = Cart::create(['session' => $session]);
+
+        if (auth()->check()) {
+            $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
         }
         else {
+            $cart = Cart::where('session', '=', $session)->first();
+        }
+
+        if (empty($cart)) {
+            $cart = Cart::create(['session' => $session]);
+        } else {
             $cart->touch();
         }
         if ($cart->products->contains($id)) {
@@ -46,42 +53,20 @@ class CartController extends Controller
             $pivotRow = $cart->products()->where('product_id', $id)->first()->pivot;
             $quantity = $pivotRow->quantity + $quantity;
             $pivotRow->update(['quantity' => $quantity]);
-        }
-        else {
+        } else {
             // если такого товара нет в корзине — добавляем его
             $cart->products()->attach($id, ['quantity' => $quantity]);
         }
+
+        // обновляем общее количество добавленных товароы в корзину
+        $cart->quantity = $cart->products()->sum('quantity');
+        $cart->amount = $cart->products()->sum(DB::raw('quantity * price'));
+        $cart->save();
+
         // выполняем редирект обратно на страницу, где была нажата кнопка «В корзину»
         return back();
-
-
-//        $cart_id = $request->cookie('cart_id');
-//        $quantity = $request->input('quantity') ?? 1;
-//        if (empty($cart_id)) {
-//            // если корзина еще не существует — создаем объект
-//            $cart = Cart::create();
-//            // получаем идентификатор, чтобы записать в cookie
-//            $cart_id = $cart->id;
-//        }
-//        else {
-//            // корзина уже существует, получаем объект корзины
-//            $cart = Cart::findOrFail($cart_id);
-//            // обновляем поле `updated_at` таблицы `baskets`
-//            $cart->touch();
-//        }
-//        if ($cart->products->contains($id)) {
-//            // если такой товар есть в корзине — изменяем кол-во
-//            $pivotRow = $cart->products()->where('product_id', $id)->first()->pivot;
-//            $quantity = $pivotRow->quantity + $quantity;
-//            $pivotRow->update(['quantity' => $quantity]);
-//        }
-//        else {
-//            // если такого товара нет в корзине — добавляем его
-//            $cart->products()->attach($id, ['quantity' => $quantity]);
-//        }
-//        // выполняем редирект обратно на страницу, где была нажата кнопка «В корзину»
-//        return back()->withCookie(cookie('cart_id', $cart_id, 525600));
     }
+
     /**
      * Show the form for creating a new resource.
      */
