@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+use App\Models\Cart;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -20,6 +21,7 @@ class Session
         }
 
         $uuid = Str::uuid();
+
         return $next($request)->withCookie(cookie('uuid', $uuid, 525600));
     }
 }

@@ -37,7 +37,7 @@
                 </div>
                 <div class="d-flex">
                     <h5 class="card-cost fs-2 my-auto fw-bold me-5"> {{$product->price / 100}} ₽</h5>
-                    <button class="btn shadow-sm px-5 fs-4" type="button"> В корзину </button>
+                    <button id="{{$product->id}}" class="btn-product-add btn shadow-sm px-5 fs-4" type="button"> В корзину </button>
                 </div>
 
                 <hr class="hr-line ">
@@ -62,16 +62,69 @@
                     </ul>
                     <p class="mb-0 fw-bold">Особые ингредиенты: </p>
                     <ul class="px-4">
-
                         @foreach($product->special_ingredients as $ingredient)
                             <li>{{$ingredient->name}}</li>
                         @endforeach
                     </ul>
                 </div>
-
             </div>
         </div>
     </section>
 </div>
+@endsection
+
+@section('custom_script')
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.btn-product-add').click(function () {
+
+                if ($('.btn-product-add').text() === "К корзине") {
+                    location.href = "{{route('cart.index')}}"
+                    return
+                }
+
+                addToCart(this.id)
+            })
+        })
+
+        function addToCart(product_id) {
+            $.ajax({
+                url: "{{route('cart.addToCart')}}",
+                type: "POST",
+                data: {
+                    product_id: product_id,
+                    quantity: 1,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: () => {
+                    console.log(product_id)
+
+                    let btnCartProduct = $(".btn-product-add")
+                    btnCartProduct.text("К корзине")
+                    btnCartProduct.toggleClass("btn-cart-product-active")
+
+                    // btnAddToCart.text("В коризне")
+                    flushMessage("Товар был успешно добавлен в корзину!")
+                },
+            })
+        }
+
+        function flushMessage (message) {
+            $(".flash-success").html(
+                `<div x-data="{show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
+                    class="row justify-content-end me-2 toast-fixed">
+                    <div class="col-3 shadow-lg bg-white my-rounded  mb-4 py-3 d-flex align-center">
+                        <p class="fs-5 mx-auto color-font-pink my-auto">
+                            ${message}
+                        </p>
+                    </div>
+                </div>`
+            )
+        }
+
+    </script>
 
 @endsection

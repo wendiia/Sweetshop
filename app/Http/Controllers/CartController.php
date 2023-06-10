@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CartController extends Controller
 {
@@ -20,6 +21,10 @@ class CartController extends Controller
             $cart = Cart::where('session', '=', $request->cookie('uuid'))->orderByDesc('updated_at')->first();
         }
 
+        if (empty($cart)) {
+            throw new NotFoundHttpException('Cart is not found');
+        }
+
         if ($cart->products->count() > 0) {
             return view('main.cart', [
                 'products' => $cart->products,
@@ -29,11 +34,10 @@ class CartController extends Controller
 
         return view('main.cart')->with('emptyCart', ' К сожалению, ваша корзина пуста, но вы можете это исправить!');
     }
-//    public function addToCart(Request $request, $product_id)
+
     public function addToCart(Request $request)
     {
         $session = $request->cookie('uuid');
-//        $quantity = $request->input('quantity') ?? 1;
         $quantity = $request->quantity;
         $product_id = $request->product_id;
 
@@ -65,9 +69,7 @@ class CartController extends Controller
         $cart->save();
 
         // выполняем редирект обратно на страницу, где была нажата кнопка «В корзину»
-//        return back();
         return response()->json();
-//        return response()->json(['product_id' => $request->product_id, 'quantity' => $request->quantity]);
     }
 
     public function deleteAllCart(Request $request)
@@ -78,8 +80,14 @@ class CartController extends Controller
         else {
             $cart = Cart::where('session', '=', $request->cookie('uuid'))->orderByDesc('updated_at')->first();
         }
+
         $cart->products()->detach();
-        return response()->json();
+
+        $newQuantity = $cart->products()->sum('quantity');
+        $newAmount = $cart->products()->sum(DB::raw('quantity * price'));
+
+        return response()->json(['newQuantity' => $newQuantity, 'newAmount' => $newAmount / 100]);
+
     }
 
     public function deleteProduct(Request $request)
@@ -91,7 +99,71 @@ class CartController extends Controller
             $cart = Cart::where('session', '=', $request->cookie('uuid'))->orderByDesc('updated_at')->first();
         }
         $cart->products()->detach($request->product_id);
-        return response()->json();
+
+        // обновляем общее количество добавленных товароы в корзину
+        $newQuantity = $cart->products()->sum('quantity');
+        $newAmount = $cart->products()->sum(DB::raw('quantity * price'));
+
+        $cart->quantity = $newQuantity;
+        $cart->amount = $newAmount;
+        $cart->save();
+
+        return response()->json(['newQuantity' => $newQuantity, 'newAmount' => $newAmount / 100]);
+    }
+
+    /**
+     * Reduces the quantity of the product by one
+     */
+    public function countMinus(Request $request)
+    {
+        $cart = $this->getCart($request->cookie('uuid'));
+        $productQuantity = $request->old_quantity - 1;
+
+        if ($request->operation == "plus") {
+            $productQuantity = $request->old_quantity + 1;
+        }
+        if ($productQuantity <= 0) {
+            return response()->json(['message' => 'Количество товара не может быть меньше одного!']);
+        }
+
+        $cart->products()->sync([$request->product_id => ['quantity' => $productQuantity]], false);
+
+        // обновляем общее количество добавленных товароы в корзину
+        $allQuantity = $cart->products()->sum('quantity');
+        $allAmount = $cart->products()->sum(DB::raw('quantity * price'));
+        $productAmount = round($cart->products()->find($request->product_id)->price / 100 * $productQuantity, 2);
+
+        $cart->quantity = $allQuantity;
+        $cart->amount = $allAmount;
+        $cart->save();
+
+        return response()->json(
+            [
+                'productQuantity' => $productQuantity,
+                'allQuantity' => $allQuantity,
+                'allAmount' => $allAmount / 100,
+                'productAmount' => $productAmount,
+            ]);
+    }
+
+    public function getCart($session)
+    {
+        if (auth()->check()) {
+            $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
+        }
+        else {
+            $cart = Cart::where('session', '=', $session)->orderByDesc('updated_at')->first();
+        }
+
+        return $cart;
+    }
+
+    /**
+     * Increases the quantity of the product by one
+     */
+    public function countPlus()
+    {
+        //
     }
 
     /**
