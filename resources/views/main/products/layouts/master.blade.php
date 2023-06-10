@@ -41,13 +41,11 @@
 
 @section('custom_script')
     <script src="{{asset('main/js/products.js')}}?v=<?=time()?>"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-
         $(document).ready(function () {
             $('.btn-product').click(function () {
-                let quantity = $('#input-quantity-' + this.id).val()
-                addToCart(this.id, quantity)
+                let quantity = $('#input-quantity-' + this.id).val();
+                addToCart(this.id, quantity);
             })
         })
 
@@ -63,7 +61,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: () => {
-                    flushMessage("Товар был успешно добавлен в корзину!")
+                    flushMessage("Товар был успешно добавлен в корзину!");
                 },
             })
         }
@@ -80,8 +78,6 @@
                 </div>`
             )
         }
-
     </script>
-
 @endsection
 

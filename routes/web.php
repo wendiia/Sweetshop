@@ -20,32 +20,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Main
-
 Route::middleware(Session::class)->group(function () {
+    // Main
     Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::view('/about', 'main.about')->name('about');
     Route::view('/profile', 'main.profile')->name('profile');
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('cart', CartController::class);
+
+    // Authorization
+    Route::get('register', [RegisterController::class, 'create'])->middleware('guest')->name('register.create');
+    Route::post('register', [RegisterController::class, 'store'])->middleware('guest')->name('register.store');
+
+    Route::get('login', [LoginController::class, 'create'])->middleware('guest')->name('login.create');
+    Route::post('login', [LoginController::class, 'store'])->middleware('guest')->name('login.store');
+    Route::post('login/update', [LoginController::class, 'update'])->middleware('auth')->name('login.update');
+    Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->name('login.destroy');
+
+    // Cart
+    Route::post('add-to-cart',[CartController::class,'addToCart'])->name('cart.addToCart');
+    Route::post('delete-all-cart',[CartController::class,'deleteAllCart'])->name('cart.deleteAllCart');
+    Route::post('delete-product',[CartController::class,'deleteProduct'])->name('cart.deleteProduct');
+    Route::post('count-minus-plus',[CartController::class,'countMinusPlus'])->name('cart.countMinusPlus');
 });
-
-// Authorization
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest')->name('register.create');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest')->name('register.store');
-
-Route::get('login', [LoginController::class, 'create'])->middleware('guest')->name('login.create');
-Route::post('login', [LoginController::class, 'store'])->middleware('guest')->name('login.store');
-Route::post('login/update', [LoginController::class, 'update'])->middleware('auth')->name('login.update');
-Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->name('login.destroy');
-
-
-// Cart
-Route::post('add-to-cart',[CartController::class,'addToCart'])->name('cart.addToCart');
-
-Route::post('delete-all-cart',[CartController::class,'deleteAllCart'])->name('cart.deleteAllCart');
-Route::post('delete-product',[CartController::class,'deleteProduct'])->name('cart.deleteProduct');
-
-Route::post('count-minus',[CartController::class,'countMinus'])->name('cart.countMinus');
-Route::post('count-plus',[CartController::class,'countPlus'])->name('cart.countPlus');

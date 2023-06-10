@@ -241,8 +241,6 @@
 
 @endsection
 
-
-
 @section('custom_script')
     <script>
         function showCategoryProducts(clickedElement) {

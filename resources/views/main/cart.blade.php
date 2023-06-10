@@ -60,7 +60,7 @@
                 </div>
             @endguest
 
-            @if (isset($products))
+            @if (isset($cart->products))
                 <div class="row mb-3">
                     <div class="col-3">
                         <button id="cartDeleteAll" class="color-font-pink fs-5 btn-none">Удалить все товары</button>
@@ -71,7 +71,7 @@
                     <div class="col-8">
                         <div class="bg-white my-rounded p-4">
 
-                            @foreach($products as $product)
+                            @foreach($cart->products as $product)
                                 <div id="cart-product-{{$product->id}}" class="position-relative">
 
                                     <div class="position-absolute cart-product-counter">
@@ -160,25 +160,22 @@
 @endsection
 
 @section('custom_script')
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-
         $(document).ready(function () {
             $('#cartDeleteAll').click(function () {
-                DeleteAll()
+                DeleteAll();
             })
 
             $('.btn-cart-del').click(function () {
-                ProductDelete(this.id)
+                ProductDelete(this.id);
             })
 
-
             $('.btn-count-minus').click(function () {
-                CountMinusPlus(this.id, "minus")
+                CountMinusPlus(this.id, "minus");
             })
 
             $('.btn-count-plus').click(function () {
-                CountMinusPlus(this.id, "plus")
+                CountMinusPlus(this.id, "plus");
             })
 
         })
@@ -194,10 +191,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: (data) => {
-                    $("#cart-product-" + product_id).hide()
-                    $('#cart-all-quantity').text(data['newQuantity'].toString())
-                    $('#cart-amount').text(data['newAmount'].toString())
-                    flushMessage("Товар удален")
+                    $("#cart-product-" + product_id).hide();
+                    $('#cart-all-quantity').text(data['newQuantity'].toString());
+                    $('#cart-amount').text(data['newAmount'].toString());
+                    flushMessage("Товар удален");
                 },
             })
         }
@@ -210,19 +207,19 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: (data) => {
-                    $(".cart-products").hide()
-                    $('#cart-all-quantity').text(data['newQuantity'].toString())
-                    $('#cart-amount').text(data['newAmount'].toString())
-                    flushMessage("Корзина очищена!")
+                    $(".cart-products").hide();
+                    $('#cart-all-quantity').text(data['newQuantity'].toString());
+                    $('#cart-amount').text(data['newAmount'].toString());
+                    flushMessage("Корзина очищена!");
                 },
             })
         }
 
         function CountMinusPlus(product_id, operation) {
-            let oldQuantity = $("#cart-product-quantity-" + product_id).text().trim().split(" ")[0]
+            let oldQuantity = $("#cart-product-quantity-" + product_id).text().trim().split(" ")[0];
 
             $.ajax({
-                url: "{{route('cart.countMinus')}}",
+                url: "{{route('cart.countMinusPlus')}}",
                 type: "POST",
                 data: {
                     product_id: product_id,
@@ -234,14 +231,14 @@
                 },
                 success: (data) => {
                     if (typeof data['message'] !== 'undefined') {
-                        flushMessage(data['message'])
-                        return false
+                        flushMessage(data['message']);
+                        return false;
                     }
 
-                    $('#cart-product-quantity-' + product_id).text(data['productQuantity'].toString() + " шт.")
-                    $('#cart-all-quantity').text(data['allQuantity'].toString())
-                    $('#cart-amount').text(data['allAmount'].toString())
-                    $('#product-cost-' + product_id).text(data['productAmount'].toString())
+                    $('#cart-product-quantity-' + product_id).text(data['productQuantity'].toString() + " шт.");
+                    $('#cart-all-quantity').text(data['allQuantity'].toString());
+                    $('#cart-amount').text(data['allAmount'].toString());
+                    $('#product-cost-' + product_id).text(data['productAmount'].toString());
                 },
             })
         }

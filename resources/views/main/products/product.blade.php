@@ -78,13 +78,11 @@
     <script>
         $(document).ready(function () {
             $('.btn-product-add').click(function () {
-
                 if ($('.btn-product-add').text() === "К корзине") {
                     location.href = "{{route('cart.index')}}"
-                    return
+                    return;
                 }
-
-                addToCart(this.id)
+                addToCart(this.id);
             })
         })
 
@@ -100,14 +98,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: () => {
-                    console.log(product_id)
-
-                    let btnCartProduct = $(".btn-product-add")
-                    btnCartProduct.text("К корзине")
-                    btnCartProduct.toggleClass("btn-cart-product-active")
-
-                    // btnAddToCart.text("В коризне")
-                    flushMessage("Товар был успешно добавлен в корзину!")
+                    let btnCartProduct = $(".btn-product-add");
+                    btnCartProduct.text("К корзине");
+                    btnCartProduct.toggleClass("btn-cart-product-active");
+                    flushMessage("Товар был успешно добавлен в корзину!");
                 },
             })
         }
@@ -124,7 +118,5 @@
                 </div>`
             )
         }
-
     </script>
-
 @endsection
