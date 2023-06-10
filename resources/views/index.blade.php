@@ -128,94 +128,95 @@
 
 
     <!-- Оставвить заявку -->
-    <section class="section_order">
-        <div class="container-fluid ">
-            <div class="row">
-                <div class="bg-image">
-                    <div class="d-flex text-center justify-content-center align-items-center h-100"
-                         style="flex-direction: column">
-                        <h3 class="text-white">С нами вы сможете реализовать любые кондитерские пожелания</h3>
-                        <h1 class="text-white display-1 mb-5">Узнайте о нас побольше</h1>
-                        <a class="btn btn-order" href="{{route('about')}}"> О компании </a>
-                    </div>
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="bg-image">
+                <div class="d-flex text-center justify-content-center align-items-center h-100"
+                     style="flex-direction: column">
+                    <h3 class="text-white">С нами вы сможете реализовать любые кондитерские пожелания</h3>
+                    <h1 class="text-white display-1 mb-5">Узнайте о нас побольше</h1>
+                    <a class="btn btn-order" href="{{route('about')}}"> О компании </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
 
     <!-- Продукция -->
-
-    <section class="section_products pt-0">
-        <div class="container pb-0">
-            <div class="row">
-                <div class="col-xl-4 col-sm-12">
-                    <h2 class="display-5 text-uppercase section-header">Наша продукция</h2>
-                    <div class="line-section-header mx-auto"></div>
+    @if($productsByCategory->count() > 0)
+        <section class="section_products pt-0">
+            <div class="container pb-0">
+                <div class="row">
+                    <div class="col-xl-4 col-sm-12">
+                        <h2 class="display-5 text-uppercase section-header">Наша продукция</h2>
+                        <div class="line-section-header mx-auto"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="d-flex justify-content-center pt-5 mb-5">
-                        <button onclick="showCategoryProducts(this)" id="btnCakes" class="btn btn-products shadow-sm"
-                                type="button"><img
-                                src="{{asset('main/img/i-cake.png')}}" width="30" height="30" class="me-2" alt="Торт">
-                            Торты
-                        </button>
-                        <button onclick="showCategoryProducts(this)" id="btnWaffles"
-                                class="btn btn-products ms-4 shadow-sm" type="button"><img
-                                src="{{asset('main/img/i-waffle.png')}}" width="30" height="30" class="me-2"
-                                alt="Вафля">
-                            Вафли
-                        </button>
-                        <button onclick="showCategoryProducts(this)" id="btnMuffins"
-                                class="btn btn-products ms-4 shadow-sm" type="button"><img
-                                src="{{asset('main/img/i-muffin.png')}}" width="30" height="30" class="me-2" alt="Кекс">
-                            Кексы
-                        </button>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="d-flex justify-content-center pt-5 mb-5">
+                            <button onclick="showCategoryProducts(this)" id="btnCakes" class="btn btn-products shadow-sm"
+                                    type="button"><img
+                                    src="{{asset('main/img/i-cake.png')}}" width="30" height="30" class="me-2" alt="Торт">
+                                Торты
+                            </button>
+                            <button onclick="showCategoryProducts(this)" id="btnWaffles"
+                                    class="btn btn-products ms-4 shadow-sm" type="button"><img
+                                    src="{{asset('main/img/i-waffle.png')}}" width="30" height="30" class="me-2"
+                                    alt="Вафля">
+                                Вафли
+                            </button>
+                            <button onclick="showCategoryProducts(this)" id="btnMuffins"
+                                    class="btn btn-products ms-4 shadow-sm" type="button"><img
+                                    src="{{asset('main/img/i-muffin.png')}}" width="30" height="30" class="me-2" alt="Кекс">
+                                Кексы
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @foreach ($productsByCategory as $slugCategory => $products)
+                    <div class="row row-cols-1 row-cols-md-3 g-4 index-products {{$loop->index != 0 ? 'check-status' : ''}}"
+                         id="{{$slugCategory}}Div">
+                        @foreach ($products as $product)
+                            <div class="col">
+                                <div class="card card-product h-100">
+                                    <a href="{{route('products.show', $product->slug)}}"> <img
+                                            src="{{asset($product->photo)}}"
+                                            class="card-img-top"
+                                            alt="..."> </a>
+                                    <div class="card-body d-flex flex-column justify-content-between">
+                                        <div class="card-cost-social d-flex mb-2">
+                                            <h5 class="card-cost fs-4 my-auto pe-3 fw-bold"> {{$product->title}} </h5>
+                                            <p class="fs-6 my-auto pe-2"><i class="fa-solid fa-star"
+                                                                            style="color: #ffd500;"></i> 4.5 </p>
+                                            <p class="fs-6 my-auto"><i class="fa-regular fa-comment"
+                                                                       style="color: #b0b0b0;"></i> 2 </p>
+                                        </div>
+                                        <p class="card-title fs-4 mb-3"> {{$product->price / 100}} ₽
+                                            <span
+                                                class="card-weight fs-5 color-font-pink"> {{$product->weight}} г </span>
+                                        </p>
+                                        <button class="btn btn-product shadow-sm fs-" type="button"> В корзину</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
+
+                <div class="row">
+                    <div class="col-xl-12 d-flex align-items-center justify-content-center mt-5">
+                        <a class="btn btn-all-products shadow-sm" href="{{route('products.index')}}"> Вся продукция </a>
                     </div>
                 </div>
             </div>
+        </section>
+    @endif
 
-            @foreach ($productsByCategory as $slugCategory => $products)
-                <div class="row row-cols-1 row-cols-md-3 g-4 index-products {{$loop->index != 0 ? 'check-status' : ''}}"
-                     id="{{$slugCategory}}Div">
-                    @foreach ($products as $product)
-                        <div class="col">
-                            <div class="card card-product h-100">
-                                <a href="{{route('products.show', $product->slug)}}"> <img
-                                        src="{{asset($product->photo)}}"
-                                        class="card-img-top"
-                                        alt="..."> </a>
-                                <div class="card-body d-flex flex-column justify-content-between">
-                                    <div class="card-cost-social d-flex mb-2">
-                                        <h5 class="card-cost fs-4 my-auto pe-3 fw-bold"> {{$product->title}} </h5>
-                                        <p class="fs-6 my-auto pe-2"><i class="fa-solid fa-star"
-                                                                        style="color: #ffd500;"></i> 4.5 </p>
-                                        <p class="fs-6 my-auto"><i class="fa-regular fa-comment"
-                                                                   style="color: #b0b0b0;"></i> 2 </p>
-                                    </div>
-                                    <p class="card-title fs-4 mb-3"> {{$product->price / 100}} ₽
-                                        <span
-                                            class="card-weight fs-5 color-font-pink"> {{$product->weight}} г </span>
-                                    </p>
-                                    <button class="btn btn-product shadow-sm fs-" type="button"> В корзину</button>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
-
-            <div class="row">
-                <div class="col-xl-12 d-flex align-items-center justify-content-center mt-5">
-                    <a class="btn btn-all-products shadow-sm" href="{{route('products.index')}}"> Вся продукция </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Рагестрация -->
+    <!-- Рагистрация -->
     <div class="container-fluid bg-white ">
         <div class="row index-registration">
             <div class="d-flex text-center justify-content-center align-items-center"
@@ -239,8 +240,6 @@
     <x-flash/>
 
 @endsection
-
-
 
 @section('custom_script')
     <script>
@@ -268,3 +267,4 @@
         }
     </script>
 @endsection
+

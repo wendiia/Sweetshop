@@ -59,7 +59,6 @@
                                 </div>
                             @endforeach
                             {{--                        ошибка на массив--}}
-
                         </div>
                     </div>
                 </div>

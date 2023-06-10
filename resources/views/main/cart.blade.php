@@ -42,7 +42,7 @@
             <div class="row mb-3">
                 <div class="d-flex">
                     <h1 class="display-5 pe-1">Корзина</h1>
-                    <p class="fs-4"> {{$cart->quantity ?? 0}} </p>
+                    <p id="cart-all-quantity" class="fs-4"> {{$cart->quantity ?? 0}} </p>
                 </div>
             </div>
 
@@ -60,28 +60,31 @@
                 </div>
             @endguest
 
-            @if (isset($products))
+            @if (isset($cart->products))
                 <div class="row mb-3">
                     <div class="col-3">
                         <button id="cartDeleteAll" class="color-font-pink fs-5 btn-none">Удалить все товары</button>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row cart-products">
                     <div class="col-8">
-                        <div class="bg-white my-rounded p-4 cart-products">
+                        <div class="bg-white my-rounded p-4">
 
-                            @foreach($products as $product)
+                            @foreach($cart->products as $product)
                                 <div id="cart-product-{{$product->id}}" class="position-relative">
 
                                     <div class="position-absolute cart-product-counter">
                                         <div class="btns-count d-flex">
-                                            <button class="btn my-auto me-2"><i class="fa-solid fa-minus fa-xs"
-                                                                                style="color: #ffffff;"></i>
+                                            <button id="{{$product->id}}" class="btn-count-minus btn my-auto me-2"><i
+                                                    class="fa-solid fa-minus fa-xs"
+                                                    style="color: #ffffff;"></i>
                                             </button>
-                                            <p class="fs-6 my-auto me-2"> {{$product->pivot->quantity}} шт. </p>
-                                            <button class="btn my-auto"><i class="fa-solid fa-plus fa-xs"
-                                                                           style="color: #ffffff;"></i>
+                                            <p id="cart-product-quantity-{{$product->id}}"
+                                               class="fs-6 my-auto me-2"> {{$product->pivot->quantity}} шт. </p>
+                                            <button id="{{$product->id}}" class="btn-count-plus btn my-auto"><i
+                                                    class="fa-solid fa-plus fa-xs"
+                                                    style="color: #ffffff;"></i>
                                             </button>
                                         </div>
 
@@ -91,19 +94,27 @@
                                     <div class="cart-item d-flex justify-content-between align-items-center">
 
                                         <div class="d-flex">
-                                            <a href="#"> <img src="{{asset($product->photo)}}"
-                                                              class="img-fluid rounded-3 cart-img me-3" style=""
-                                                              alt="Товар в корзине"></a>
+                                            <a href="{{route('products.show', $product->slug)}}"> <img
+                                                    src="{{asset($product->photo)}}"
+                                                    class="img-fluid rounded-3 cart-img me-3" style=""
+                                                    alt="Товар в корзине"></a>
                                             <div class="d-flex flex-column justify-content-center cart-desc">
-                                                <a href="#" class="text-decoration-none color-font-grey"><p
+                                                <a href="{{route('products.show', $product->slug)}}"
+                                                   class="text-decoration-none color-font-grey"><p
                                                         class="fs-5 fw-bold"> {{$product->title}} </p></a>
                                                 <p class="fs-6 color-font-pink"> {{$product->weight}} г</p>
                                                 <p class="fs-6"> Категория: {{$product->category->title}} </p>
 
-                                                <button id="{{$product->id}}" class="color-font-pink fs-6 btn-none me-auto p-0 btn-cart-del">Удалить</button>
+                                                <button id="{{$product->id}}"
+                                                        class="color-font-pink fs-6 btn-none me-auto p-0 btn-cart-del">
+                                                    Удалить
+                                                </button>
                                             </div>
                                         </div>
-                                        <h5 class="color-font-pink fs-5 my-auto fw-bold"> {{$product->price / 100 * $product->pivot->quantity}} ₽</h5>
+                                        <h5 id="product-cost-{{$product->id}}"
+                                            class="color-font-pink fs-5 my-auto fw-bold">
+                                            {{$product->price / 100 * $product->pivot->quantity}} ₽
+                                        </h5>
                                     </div>
 
                                     <hr class="hr-line mx-5">
@@ -120,16 +131,19 @@
                             <form>
                                 <div class="mb-3">
                                     <label class="fs-5 pt-0 ps-1" for="date_input"> Желаемая дата выдачи: </label>
-                                    <input type="date" class="form-control my-form-control mb-3" id="date_input" @guest disabled @endguest>
+                                    <input type="date" class="form-control my-form-control mb-3" id="date_input"
+                                           @guest disabled @endguest>
                                 </div>
 
                                 <p class="fs-6 my-auto text-center mb-2">
-                                    Вся информация будет отправлена на почту, когда заказ будет готов, мы с вами свяжемся!
+                                    Вся информация будет отправлена на почту, когда заказ будет готов, мы с вами
+                                    свяжемся!
                                 </p>
 
                                 <div class="d-flex justify-content-between mb-2">
                                     <p class="fs-4 fw-bold my-auto">Общая стоимость:</p>
-                                    <p class="fs-3 color-font-pink fw-bold my-auto "> {{$cart->amount / 100}} ₽</p>
+                                    <p id="cart-amount"
+                                       class="fs-3 color-font-pink fw-bold my-auto "> {{$cart->amount / 100}} ₽</p>
                                 </div>
 
                                 <button type="button" class="btn w-100" data-bs-toggle="modal"
@@ -160,17 +174,24 @@
 @endsection
 
 @section('custom_script')
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-
         $(document).ready(function () {
             $('#cartDeleteAll').click(function () {
-                DeleteAll()
+                DeleteAll();
             })
 
             $('.btn-cart-del').click(function () {
-                ProductDelete(this.id)
+                ProductDelete(this.id);
             })
+
+            $('.btn-count-minus').click(function () {
+                CountMinusPlus(this.id, "minus");
+            })
+
+            $('.btn-count-plus').click(function () {
+                CountMinusPlus(this.id, "plus");
+            })
+
         })
 
         function ProductDelete(product_id) {
@@ -184,8 +205,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: (data) => {
-                    // $("#cart-product-" + product_id).hide()
-                    flushMessage("Товар удален")
+                    $("#cart-product-" + product_id).hide();
+                    $('#cart-all-quantity').text(data['newQuantity'].toString());
+                    $('#cart-amount').text(data['newAmount'].toString());
+                    flushMessage("Товар удален");
                 },
             })
         }
@@ -197,14 +220,44 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: () => {
-                    $(".cart-products").hide()
-                    flushMessage("Корзина очищена!")
+                success: (data) => {
+                    $(".cart-products").hide();
+                    $('#cart-all-quantity').text(data['newQuantity'].toString());
+                    $('#cart-amount').text(data['newAmount'].toString());
+                    flushMessage("Корзина очищена!");
                 },
             })
         }
 
-        function flushMessage (message) {
+        function CountMinusPlus(product_id, operation) {
+            let oldQuantity = $("#cart-product-quantity-" + product_id).text().trim().split(" ")[0];
+
+            $.ajax({
+                url: "{{route('cart.countMinusPlus')}}",
+                type: "POST",
+                data: {
+                    product_id: product_id,
+                    old_quantity: oldQuantity,
+                    operation: operation,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (data) => {
+                    if (typeof data['message'] !== 'undefined') {
+                        flushMessage(data['message']);
+                        return false;
+                    }
+
+                    $('#cart-product-quantity-' + product_id).text(data['productQuantity'].toString() + " шт.");
+                    $('#cart-all-quantity').text(data['allQuantity'].toString());
+                    $('#cart-amount').text(data['allAmount'].toString());
+                    $('#product-cost-' + product_id).text(data['productAmount'].toString());
+                },
+            })
+        }
+
+        function flushMessage(message) {
             $(".flash-success").html(
                 `<div x-data="{show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
                     class="row justify-content-end me-2 toast-fixed">
@@ -216,6 +269,6 @@
                 </div>`
             )
         }
-
     </script>
 @endsection
+

@@ -44,11 +44,12 @@
                 @auth
                     <form method="POST" action="{{route('login.destroy')}}">
                         @csrf
-                        <button class="color-font-pink fs-5 btn-none" type="submit"> Выйти </button>
+                        <button class="color-font-pink fs-5 btn-none" type="submit"> Выйти</button>
                     </form>
 
-                    <a class="a-nav" href="{{route('profile')}}"><img src="{{asset('main/img/user1.png')}}" width="30" height="30"
-                                                        class="me-2" alt="Cart"></a>
+                    <a class="a-nav" href="{{route('profile')}}"><img src="{{asset('main/img/user1.png')}}" width="35"
+                                                                      height="35"
+                                                                      class="me-2" alt="Cart"></a>
                 @else
                     <a class="text-decoration-none color-font-pink fs-5 pe-3" href="{{route('login.create')}}">
                         Войти
@@ -58,9 +59,50 @@
                     </a>
                 @endauth
 
-                <a class="a-nav" href="{{route('cart.index')}}"><img src="{{asset('main/img/cart1.png')}}" width="30" height="30"
-                                                 class="me-2" alt="Cart"></a>
+                <a class="a-nav text-decoration-none position-relative" href="{{route('cart.index')}}">
+
+
+                    <div class="cart-nav-counter {{ !empty($cartProductsCount) ? 'd-block' : 'd-none' }} d-flex justify-content-center align-items-center">
+                        <p class=""> {{ !empty($cartProductsCount) ?? $cartProductsCount}} </p>
+                    </div>
+                    <img src="{{asset('main/img/cart1.png')}}" width="35" height="35" class="me-2" alt="Cart">
+                </a>
             </div>
         </nav>
     </div>
 </header>
+
+{{--@section('custom_script')--}}
+{{--    <script>--}}
+{{--        $(document).ready(function () {--}}
+{{--            $('.btn-product-add').click(function () {--}}
+{{--                if ($('.btn-product-add').text() === "К корзине") {--}}
+{{--                    location.href = "{{route('cart.index')}}"--}}
+{{--                    return;--}}
+{{--                }--}}
+{{--                addToCart(this.id);--}}
+{{--            })--}}
+{{--        })--}}
+
+{{--        function addToCart(product_id) {--}}
+{{--            $.ajax({--}}
+{{--                url: "{{route('cart.addToCart')}}",--}}
+{{--                type: "POST",--}}
+{{--                data: {--}}
+{{--                    product_id: product_id,--}}
+{{--                    quantity: 1,--}}
+{{--                },--}}
+{{--                headers: {--}}
+{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--                },--}}
+{{--                success: () => {--}}
+{{--                    let btnCartProduct = $(".btn-product-add");--}}
+{{--                    btnCartProduct.text("К корзине");--}}
+{{--                    btnCartProduct.toggleClass("btn-cart-product-active");--}}
+{{--                    flushMessage("Товар был успешно добавлен в корзину!");--}}
+{{--                },--}}
+{{--            })--}}
+{{--        }--}}
+{{--        --}}
+{{--    </script>--}}
+{{--@endsection--}}
