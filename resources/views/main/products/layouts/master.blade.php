@@ -66,7 +66,7 @@
             })
         }
 
-        function flushMessage (message) {
+        function flushMessage(message) {
             $(".flash-success").html(
                 `<div x-data="{show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
                     class="row justify-content-end me-2 toast-fixed">

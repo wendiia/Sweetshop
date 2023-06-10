@@ -689,6 +689,19 @@ ul.leaders span + span {
     object-fit: cover;
 }
 
+.cart-nav-counter {
+    position: absolute;
+    top: -2px;
+    left: 24px;
+    border-radius: 50%;
+    background: var(--color_pink);
+    color: white;
+}
+
+.cart-nav-counter p {
+    padding: 10px 8px;
+}
+
 .cart-desc * {
     margin-bottom: 0;
 }
