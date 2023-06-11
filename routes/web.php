@@ -43,4 +43,5 @@ Route::middleware(Session::class)->group(function () {
     Route::post('delete-all-cart',[CartController::class,'deleteAllCart'])->name('cart.deleteAllCart');
     Route::post('delete-product',[CartController::class,'deleteProduct'])->name('cart.deleteProduct');
     Route::post('count-minus-plus',[CartController::class,'countMinusPlus'])->name('cart.countMinusPlus');
+    Route::post('products-count',[CartController::class,'productsCount'])->name('cart.productsCount');
 });

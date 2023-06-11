@@ -30,25 +30,17 @@ class AppServiceProvider extends ServiceProvider
         {
             $categories = Category::where('status', 'active')->get(); // правильно ли???
 
-//            try {
-//                if (auth()->check()) {
-//                    $cart = Cart::where('user_id', '=', auth()->user()->id)->firstOrfail();
-//                }
-//                else {
-//                    $cart = Cart::where('session', '=', request()->cookie('uuid'))->orderByDesc('updated_at')->firstOrfail();
-//                }
-//                if ($cart->products->count() <= 0) {
-//                    throw new Exception();
-//                }
-//            }
-//            catch (Exception $exception) {
-//                $view->with(['categories' => $categories, 'cartProductsCount' => null]);
-//            }
-//
-//            dump($cart);
+            if (auth()->check()) {
+                $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
+            }
+            else {
+                $cart = Cart::where('session', '=', request()->cookie('uuid'))->orderByDesc('updated_at')->first();
+            }
+            if (empty($cart) or $cart->products->count() <= 0) {
+                $view->with(['categories' => $categories, 'cartProductsCount' => 0]);
+            }
 
-            $view->with('categories', $categories);
-//            $view->with(['categories' => $categories, 'cartProductsCount' => $cart->quantity]);
+            $view->with(['categories' => $categories, 'cartProductsCount' => $cart->quantity]);
         });
     }
 }

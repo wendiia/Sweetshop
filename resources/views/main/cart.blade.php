@@ -206,7 +206,8 @@
                 },
                 success: (data) => {
                     $("#cart-product-" + product_id).hide();
-                    $('#cart-all-quantity').text(data['newQuantity'].toString());
+                    $('#cart-all-quantity').text(data['allQuantity'].toString());
+                    $('#cart-count-p').text(data['allQuantity'].toString());
                     $('#cart-amount').text(data['newAmount'].toString());
                     flushMessage("Товар удален");
                 },
@@ -222,7 +223,8 @@
                 },
                 success: (data) => {
                     $(".cart-products").hide();
-                    $('#cart-all-quantity').text(data['newQuantity'].toString());
+                    $('#cart-all-quantity').text(data['allQuantity'].toString());
+                    $('.cart-nav-counter').text(0);
                     $('#cart-amount').text(data['newAmount'].toString());
                     flushMessage("Корзина очищена!");
                 },
@@ -231,7 +233,6 @@
 
         function CountMinusPlus(product_id, operation) {
             let oldQuantity = $("#cart-product-quantity-" + product_id).text().trim().split(" ")[0];
-
             $.ajax({
                 url: "{{route('cart.countMinusPlus')}}",
                 type: "POST",
@@ -253,6 +254,7 @@
                     $('#cart-all-quantity').text(data['allQuantity'].toString());
                     $('#cart-amount').text(data['allAmount'].toString());
                     $('#product-cost-' + product_id).text(data['productAmount'].toString());
+                    $('#cart-count-p').text(data['allQuantity']);
                 },
             })
         }

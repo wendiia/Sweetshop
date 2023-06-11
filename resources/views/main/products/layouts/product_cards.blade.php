@@ -40,7 +40,6 @@
                                     class="card-weight fs-5 color-font-pink"> {{$product->weight}} г </span>
                             </p>
 
-
                             <div class="d-flex">
                                 <input id="input-quantity-{{$product->id}}" value="1" name="quantity" min="1"
                                        class="form-control product-quantity" placeholder="0" type="number">

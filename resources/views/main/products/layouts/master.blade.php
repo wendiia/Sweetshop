@@ -60,8 +60,9 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: () => {
+                success: (data) => {
                     flushMessage("Товар был успешно добавлен в корзину!");
+                    $('#cart-count-p').text(data['allQuantity']);
                 },
             })
         }

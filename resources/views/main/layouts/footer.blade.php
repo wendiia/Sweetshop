@@ -49,8 +49,10 @@
             </div>
         </div>
     </div>
-</footer>
 
+
+
+</footer>
 
 <script src="{{asset('main/js/script.js')}}?v=<?=time()?>"></script>
 <script src="{{asset('main/js/bootstrap.bundle.min.js')}}?v=<?=time()?>"></script>

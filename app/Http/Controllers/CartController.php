@@ -56,7 +56,7 @@ class CartController extends Controller
 
         $this->updateData($cart); // обновляем данные
 
-        return response()->json();
+        return response()->json(['allQuantity' => $cart->products()->sum('quantity')]);
     }
 
     /**
@@ -67,10 +67,13 @@ class CartController extends Controller
         $cart = $this->currentCart($request->cookie('uuid'));
         $cart->products()->detach();
 
-        $newQuantity = $cart->products()->sum('quantity');
-        $newAmount = $cart->products()->sum(DB::raw('quantity * price'));
+        // обновляем данные
+        $this->updateData($cart);
 
-        return response()->json(['newQuantity' => $newQuantity, 'newAmount' => $newAmount / 100]);
+        return response()->json([
+            'allQuantity' => $cart->products()->sum('quantity'),
+            'newAmount' => $cart->products()->sum(DB::raw('quantity * price')),
+        ]);
     }
 
     /**
@@ -85,7 +88,7 @@ class CartController extends Controller
         $this->updateData($cart);
 
         return response()->json([
-            'newQuantity' =>  $cart->products()->sum('quantity'),
+            'allQuantity' =>  $cart->products()->sum('quantity'),
             'newAmount' => $cart->products()->sum(DB::raw('quantity * price')) / 100
         ]);
     }
@@ -141,4 +144,5 @@ class CartController extends Controller
         $cart->amount = $cart->products()->sum(DB::raw('quantity * price'));
         $cart->save();
     }
+
 }
