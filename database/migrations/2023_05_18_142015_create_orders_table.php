@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date_readiness');
             $table->integer('quantity')->unsigned();
             $table->integer('amount')->unsigned();
-            $table->enum('status', ['new', 'progress', 'complete', 'cancel'])->default('new');
+            $table->enum('status', ['новый', 'в процессе', 'выполнен', 'отменен'])->default('новый');
             $table->softDeletes();
         });
     }

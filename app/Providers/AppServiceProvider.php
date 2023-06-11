@@ -26,9 +26,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();
 
-        View::composer('*', function ($view)
+
+        View::composer(['main.layouts.nav'], function ($view)
         {
-            $categories = Category::where('status', 'active')->get(); // правильно ли???
+            $categories = Category::where('status', 'active')->get();
 
             if (auth()->check()) {
                 $cart = Cart::where('user_id', '=', auth()->user()->id)->first();
@@ -36,11 +37,14 @@ class AppServiceProvider extends ServiceProvider
             else {
                 $cart = Cart::where('session', '=', request()->cookie('uuid'))->orderByDesc('updated_at')->first();
             }
-            if (empty($cart) or $cart->products->count() <= 0) {
-                $view->with(['categories' => $categories, 'cartProductsCount' => 0]);
+            if (empty($cart) or $cart->products->count() === 0) {
+                $cartProductsCount = 0;
+            }
+            else {
+                $cartProductsCount = $cart->quantity;
             }
 
-            $view->with(['categories' => $categories, 'cartProductsCount' => $cart->quantity]);
+            $view->with(['categories' => $categories, 'cartProductsCount' => $cartProductsCount]);
         });
     }
 }

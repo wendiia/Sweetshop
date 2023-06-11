@@ -35,14 +35,16 @@ class Order extends Model
     use HasFactory;
     use SoftDeletes;
 
-//    protected $fillable = ['quantity'];
-
     protected $guarded = [];
     public function products() {
         return $this->belongsToMany(Product::class)
             ->withPivot('price', 'amount', 'quantity', 'updated_at', 'created_at', 'deleted_at') //
-            ->as('order_product')
             ->withTimestamps();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

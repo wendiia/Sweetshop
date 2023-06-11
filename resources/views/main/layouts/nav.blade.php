@@ -47,7 +47,7 @@
                         <button class="color-font-pink fs-5 btn-none" type="submit"> Выйти</button>
                     </form>
 
-                    <a class="a-nav" href="{{route('profile')}}"><img src="{{asset('main/img/user1.png')}}" width="35"
+                    <a class="a-nav" href="{{route('profile.index')}}"><img src="{{asset('main/img/user1.png')}}" width="35"
                                                                       height="35"
                                                                       class="me-2" alt="Cart"></a>
                 @else

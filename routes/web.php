@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
@@ -24,10 +26,9 @@ Route::middleware(Session::class)->group(function () {
     // Main
     Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::view('/about', 'main.about')->name('about');
-    Route::view('/profile', 'main.profile')->name('profile');
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
-    Route::resource('cart', CartController::class);
+    Route::resource('cart', CartController::class); // убрать ваще
 
     // Authorization
     Route::get('register', [RegisterController::class, 'create'])->middleware('guest')->name('register.create');
@@ -43,5 +44,10 @@ Route::middleware(Session::class)->group(function () {
     Route::post('delete-all-cart',[CartController::class,'deleteAllCart'])->name('cart.deleteAllCart');
     Route::post('delete-product',[CartController::class,'deleteProduct'])->name('cart.deleteProduct');
     Route::post('count-minus-plus',[CartController::class,'countMinusPlus'])->name('cart.countMinusPlus');
-    Route::post('products-count',[CartController::class,'productsCount'])->name('cart.productsCount');
+
+    // Order
+    Route::post('order', [OrderController::class,'store'])->name('order.store');
+
+    // Profile
+    Route::get('/profile', [ProfileController::class,'index'])->name('profile.index');
 });

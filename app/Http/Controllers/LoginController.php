@@ -36,7 +36,7 @@ class LoginController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('profile')->with('success', 'Данные были успешно обновлены');
+        return redirect()->route('profile.index')->with('success', 'Данные были успешно обновлены');
     }
 
     public function destroy()

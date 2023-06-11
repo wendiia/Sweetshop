@@ -21,7 +21,7 @@ class OrderFactory extends Factory
             'date_readiness' => fake()->dateTimeBetween('-3 years'),
             'quantity' => rand(1, 20),
             'amount' => fake()->randomNumber(5),
-            'status' => fake()->randomElement(['new', 'progress', 'complete', 'cancel']),
+            'status' => fake()->randomElement(['новый', 'в процессе', 'выполнен', 'отменен']),
         ];
     }
 }

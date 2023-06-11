@@ -3,30 +3,6 @@
 @section('content')
     <section>
         <div class="container ">
-
-            <!-- Модальное окно -->
-            <div class="modal fade" id="ModalConfirmOrder" tabindex="-1" aria-labelledby="ModalConfirmOrder"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-confirm-order">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="ModalConfirmOrder">Оформление заказа</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Закрыть"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h5 class="fs-5 my-auto text-center">
-                                Оформление прошло успешно, спасибо вам за заказ! <br> Вся информация будет отправлена на
-                                почту, когда заказ будет готов, мы с вами свяжемся.
-                            </h5>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Крошки -->
             <div class="row breadcrumbs mb-3">
                 <nav
@@ -128,11 +104,43 @@
                     <div class="col-4">
                         <div class="bg-white my-rounded p-4">
                             <h1 class="fs-4 text-center mb-4 fw-bold">Оставить заявку</h1>
-                            <form>
+
+
+{{--                            <!-- Модальное окно -->--}}
+{{--                            <div class="modal fade" id="ModalConfirmOrder" tabindex="-1" aria-labelledby="ModalConfirmOrder"--}}
+{{--                                 aria-hidden="true">--}}
+{{--                                <div class="modal-dialog modal-dialog-centered modal-confirm-order">--}}
+{{--                                    <div class="modal-content">--}}
+{{--                                        <div class="modal-header">--}}
+{{--                                            <h1 class="modal-title fs-5" id="ModalConfirmOrder">Оформление заказа</h1>--}}
+{{--                                            <button type="button" class="btn-close" data-bs-dismiss="modal"--}}
+{{--                                                    aria-label="Закрыть"></button>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="modal-body">--}}
+{{--                                            <h5 class="fs-5 my-auto text-center">--}}
+{{--                                                Оформление прошло успешно, спасибо вам за заказ! <br> Вся информация будет отправлена на--}}
+{{--                                                почту, когда заказ будет готов, мы с вами свяжемся.--}}
+{{--                                            </h5>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="modal-footer">--}}
+{{--                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+                            <form method="POST" action="{{route('order.store')}}">
+                                @csrf
+
                                 <div class="mb-3">
                                     <label class="fs-5 pt-0 ps-1" for="date_input"> Желаемая дата выдачи: </label>
-                                    <input type="date" class="form-control my-form-control mb-3" id="date_input"
-                                           @guest disabled @endguest>
+
+                                    <input type="date" id="date_input" name="date_input"
+                                           class="form-control my-form-control mb-3 @error('date_input') is-invalid @enderror"
+                                           @guest disabled @endguest required>
+                                    @error('date_input')
+                                    <p class="text-danger fs-6"> {{ $message }} </p>
+                                    @enderror
                                 </div>
 
                                 <p class="fs-6 my-auto text-center mb-2">
@@ -146,14 +154,14 @@
                                        class="fs-3 color-font-pink fw-bold my-auto "> {{$cart->amount / 100}} ₽</p>
                                 </div>
 
-                                <button type="button" class="btn w-100" data-bs-toggle="modal"
+                                <button type="submit" class="btn w-100" data-bs-toggle="modal"
                                         data-bs-target="#ModalConfirmOrder" @guest disabled @endguest>
                                     Оформить заказ
                                 </button>
                             </form>
+
                         </div>
                     </div>
-
                 </div>
             @else
                 <div class="row">
@@ -170,6 +178,7 @@
     </section>
 
     <div class="flash-success"></div>
+    <x-flash/>
 
 @endsection
 
