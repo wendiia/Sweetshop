@@ -12,7 +12,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $orders = Order::whereUserId(51)->orderByDesc('created_at')->get();
+        $orders = Order::whereUserId(auth()->user()->id)->orderByDesc('created_at')->get();
         $statusColor = ['новый' => '#BEBEBE', 'в процессе' => '#FFC700', 'выполнен' => '#96C25F', 'отменен' => '#F0777A', ];
 
         return view('main.profile', [
