@@ -3,7 +3,7 @@
     <div class="container-fluid d-flex justify-content-center">
         <nav class="navbar  navbar-expand-lg bg-body-tertiary d-flex justify-content-between">
             <a class="py-0 pe-2" href="{{route('index')}}">
-                <img src="{{asset('main/img/logo-grey.png')}}" alt="Logo" width="100" height="50"
+                <img src="{{asset('main/img/logo-cake.svg')}}" alt="Logo" width="50" height="50"
                      class="d-inline-block align-text-top">
             </a>
 

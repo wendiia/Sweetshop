@@ -52,6 +52,14 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereStatus($value)
  * @method static Builder|User whereUpdatedAt($value)
+ * @property Carbon|null $deleted_at
+ * @property-read \App\Models\Cart|null $cart
+ * @property-read Collection<int, \App\Models\Order> $orders
+ * @property-read int|null $orders_count
+ * @method static Builder|User onlyTrashed()
+ * @method static Builder|User whereDeletedAt($value)
+ * @method static Builder|User withTrashed()
+ * @method static Builder|User withoutTrashed()
  * @mixin Eloquent
  */
 class User extends Authenticatable

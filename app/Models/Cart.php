@@ -27,6 +27,16 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Cart whereSession($value)
  * @method static Builder|Cart whereUpdatedAt($value)
  * @method static Builder|Cart whereUserId($value)
+ * @property int|null $amount
+ * @property Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
+ * @method static \Database\Factories\CartFactory factory($count = null, $state = [])
+ * @method static Builder|Cart onlyTrashed()
+ * @method static Builder|Cart whereAmount($value)
+ * @method static Builder|Cart whereDeletedAt($value)
+ * @method static Builder|Cart withTrashed()
+ * @method static Builder|Cart withoutTrashed()
  * @mixin Eloquent
  */
 class Cart extends Model
@@ -40,5 +50,9 @@ class Cart extends Model
         return $this->belongsToMany(Product::class)
             ->withPivot('quantity', 'deleted_at')
             ->withTimestamps();
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

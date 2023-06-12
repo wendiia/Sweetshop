@@ -99,7 +99,7 @@
             <div class="row">
                 <div class="col">
                     <div class="bg-white my-rounded shadow-sm px-4 mb-4 py-3 d-flex  ">
-                        <button class="btn-profile-photo rounded-circle my-auto fs-1 me-4"> {{ $user->first_name[3] }} </button>
+                        <button class="btn-profile-photo rounded-circle my-auto fs-1 me-4"> {{ $user->last_name[0] }} </button>
 
                         <div class="d-flex flex-column justify-content-between">
                             <h3 class="fs-4">

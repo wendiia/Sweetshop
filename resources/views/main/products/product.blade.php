@@ -35,8 +35,8 @@
                         <p class="display-5 my-auto pe-2"> {{$product->title}} </p>
                         <p class="fs-4 color-font-pink my-auto pe-4"> {{$product->weight}} г</p>
 
-                        <p class="fs-5 my-auto pe-3"><i class="fa-solid fa-star" style="color: #ffd500;"></i> 4.5 </p>
-                        <p class="fs-5 my-auto"><i class="fa-regular fa-comment" style="color: #b0b0b0;"></i> 2 </p>
+{{--                        <p class="fs-5 my-auto pe-3"><i class="fa-solid fa-star" style="color: #ffd500;"></i> 4.5 </p>--}}
+{{--                        <p class="fs-5 my-auto"><i class="fa-regular fa-comment" style="color: #b0b0b0;"></i> 2 </p>--}}
                     </div>
                     <div class="d-flex">
                         <h5 class="card-cost fs-2 my-auto fw-bold me-5"> {{$product->price / 100}} ₽</h5>

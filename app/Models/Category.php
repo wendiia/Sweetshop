@@ -29,6 +29,15 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Category whereStatus($value)
  * @method static Builder|Category whereTittle($value)
  * @method static Builder|Category whereUpdatedAt($value)
+ * @property string $title
+ * @property Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
+ * @method static Builder|Category onlyTrashed()
+ * @method static Builder|Category whereDeletedAt($value)
+ * @method static Builder|Category whereTitle($value)
+ * @method static Builder|Category withTrashed()
+ * @method static Builder|Category withoutTrashed()
  * @mixin Eloquent
  */
 class Category extends Model

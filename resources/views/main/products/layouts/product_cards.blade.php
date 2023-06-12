@@ -30,10 +30,10 @@
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div class="card-cost-social d-flex mb-2">
                                 <h5 class="card-cost fs-4 my-auto pe-3 fw-bold"> {{$product->title}} </h5>
-                                <p class="fs-6 my-auto pe-2"><i class="fa-solid fa-star"
-                                                                style="color: #ffd500;"></i> 4.5 </p>
-                                <p class="fs-6 my-auto"><i class="fa-regular fa-comment"
-                                                           style="color: #b0b0b0;"></i> 2 </p>
+{{--                                <p class="fs-6 my-auto pe-2"><i class="fa-solid fa-star"--}}
+{{--                                                                style="color: #ffd500;"></i> 4.5 </p>--}}
+{{--                                <p class="fs-6 my-auto"><i class="fa-regular fa-comment"--}}
+{{--                                                           style="color: #b0b0b0;"></i> 2 </p>--}}
                             </div>
                             <p class="card-title fs-4 mb-3"> {{$product->price / 100}} ₽
                                 <span

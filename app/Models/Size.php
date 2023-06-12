@@ -23,6 +23,15 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Size whereId($value)
  * @method static Builder|Size whereName($value)
  * @method static Builder|Size whereUpdatedAt($value)
+ * @property int $order
+ * @property Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
+ * @method static Builder|Size onlyTrashed()
+ * @method static Builder|Size whereDeletedAt($value)
+ * @method static Builder|Size whereOrder($value)
+ * @method static Builder|Size withTrashed()
+ * @method static Builder|Size withoutTrashed()
  * @mixin Eloquent
  */
 class Size extends Model

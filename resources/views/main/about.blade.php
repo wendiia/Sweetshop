@@ -53,7 +53,7 @@
 
                 </div>
                 <div class="col-6">
-                    <img src="{{asset('main/img/img-about.png')}}" class="img-fluid my-rounded mt-2" alt="О компании">
+                    <img src="{{asset('main/img/about-photo.svg')}}" class="img-fluid mt-2 ms-5" width="700" height="700" alt="О компании">
                 </div>
             </div>
         </section>

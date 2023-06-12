@@ -34,6 +34,6 @@ class OrderController extends Controller
         $order->products()->attach($dataOrderProduct);
         $cart->products()->detach();
 
-        return back()->with('success', 'Ваш заказ был успешно оформлен!');
+        return redirect()->route('profile.index')->with('success', 'Возвращайтесь!');
     }
 }

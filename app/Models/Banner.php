@@ -31,6 +31,13 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Banner whereStatus($value)
  * @method static Builder|Banner whereTitle($value)
  * @method static Builder|Banner whereUpdatedAt($value)
+ * @property string|null $discount
+ * @property Carbon|null $deleted_at
+ * @method static Builder|Banner onlyTrashed()
+ * @method static Builder|Banner whereDeletedAt($value)
+ * @method static Builder|Banner whereDiscount($value)
+ * @method static Builder|Banner withTrashed()
+ * @method static Builder|Banner withoutTrashed()
  * @mixin Eloquent
  */
 class Banner extends Model
