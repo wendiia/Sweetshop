@@ -5,10 +5,10 @@
     <div class="container ">
         <!-- О компании -->
         <section class="">
-            <h1 class="display-5 mb-5">О кондитерской</h1>
+            <h1 class="display-5 mb-5 ">О кондитерской "Еще кусочек"</h1>
 
-            <div class="row">
-                <div class="col-6">
+            <div class="row ">
+                <div class="col-6 ">
                     <div class="mb-5">
                         <h3 class="fw-bold fs-4 mb-3"> Рады приветствовать вас на нашем сайте! </h3>
                         <p class="fs-5">
@@ -52,8 +52,8 @@
                     </div>
 
                 </div>
-                <div class="col-6">
-                    <img src="{{asset('main/img/about-photo.svg')}}" class="img-fluid mt-2 ms-5" width="700" height="700" alt="О компании">
+                <div class="col-6 ps-5">
+                    <img src="{{asset('main/img/about-photo.png')}}" class="img-fluid mt-2 ms-5" width="550" height="550" alt="О компании">
                 </div>
             </div>
         </section>

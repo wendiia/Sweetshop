@@ -31,7 +31,7 @@ class ProductController extends Controller
             'products' => $products,
             'maxPrice' => Product::where('status', '=', 'active')->max('price'),
             'sizes' => Size::orderBy('order')->get(),
-            'specialIngredients' => SpecialIngredient::orderBy('name')->get(),
+            'specialIngredients' => SpecialIngredient::orderByDesc('name')->get(),
             'filterData' => $request->all(),
             'currentUrl' => $request->url(),
         ]);
